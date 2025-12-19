@@ -38,18 +38,15 @@
       --header-text-color: #0f172a;
       --menu-text-color: #3b82f6;
       --theme-btn-light: #3b82f6;
-      --theme-btn-dark: #0f172a;
+      --theme-btn-dark: #1e293b;
       --theme-btn-blue: #1e40af;
       --theme-btn-green: #065f46;
       --theme-btn-purple: #5b21b6;
       --theme-btn-pink: #be185d;
       --theme-btn-orange: #ea580c;
-      --drawer-section-bg: rgba(255, 255, 255, 0.1);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.15);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Dark Theme - FIXED DRAWER COLORS */
+    /* Dark Theme */
     .theme-dark {
       --bg: #0f172a;
       --glass: rgba(255,255,255,0.08);
@@ -76,19 +73,16 @@
       --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       --header-text-color: #f1f5f9;
       --menu-text-color: #60a5fa;
-      --theme-btn-light: #64748b;
-      --theme-btn-dark: #60a5fa;
+      --theme-btn-light: #60a5fa;
+      --theme-btn-dark: #334155;
       --theme-btn-blue: #93c5fd;
       --theme-btn-green: #34d399;
       --theme-btn-purple: #a78bfa;
       --theme-btn-pink: #f472b6;
       --theme-btn-orange: #fdba74;
-      --drawer-section-bg: rgba(255, 255, 255, 0.1);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.15);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Blue Theme - FIXED DRAWER COLORS */
+    /* Blue Theme */
     .theme-blue {
       --bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
       --glass: rgba(255,255,255,0.15);
@@ -122,12 +116,9 @@
       --theme-btn-purple: #4f46e5;
       --theme-btn-pink: #db2777;
       --theme-btn-orange: #ea580c;
-      --drawer-section-bg: rgba(255, 255, 255, 0.15);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.2);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Green Theme - FIXED DRAWER COLORS */
+    /* Green Theme */
     .theme-green {
       --bg: linear-gradient(135deg, #065f46 0%, #047857 100%);
       --glass: rgba(255,255,255,0.15);
@@ -161,12 +152,9 @@
       --theme-btn-purple: #7c3aed;
       --theme-btn-pink: #db2777;
       --theme-btn-orange: #f59e0b;
-      --drawer-section-bg: rgba(255, 255, 255, 0.15);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.2);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Purple Theme - FIXED DRAWER COLORS */
+    /* Purple Theme */
     .theme-purple {
       --bg: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
       --glass: rgba(255,255,255,0.15);
@@ -200,12 +188,9 @@
       --theme-btn-purple: #7c3aed;
       --theme-btn-pink: #ec4899;
       --theme-btn-orange: #f59e0b;
-      --drawer-section-bg: rgba(255, 255, 255, 0.15);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.2);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Pink Theme - FIXED DRAWER COLORS */
+    /* Pink Theme */
     .theme-pink {
       --bg: linear-gradient(135deg, #be185d 0%, #db2777 100%);
       --glass: rgba(255,255,255,0.15);
@@ -239,12 +224,9 @@
       --theme-btn-purple: #9333ea;
       --theme-btn-pink: #db2777;
       --theme-btn-orange: #f59e0b;
-      --drawer-section-bg: rgba(255, 255, 255, 0.15);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.2);
-      --theme-btn-text: #ffffff;
     }
     
-    /* Orange Theme - FIXED DRAWER COLORS */
+    /* Orange Theme */
     .theme-orange {
       --bg: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
       --glass: rgba(255,255,255,0.15);
@@ -278,9 +260,6 @@
       --theme-btn-purple: #9333ea;
       --theme-btn-pink: #db2777;
       --theme-btn-orange: #f97316;
-      --drawer-section-bg: rgba(255, 255, 255, 0.15);
-      --drawer-btn-bg: rgba(255, 255, 255, 0.2);
-      --theme-btn-text: #ffffff;
     }
     
     /* ===== Base Styles ===== */
@@ -502,7 +481,7 @@
       background: rgba(255, 255, 255, 0.15);
     }
     
-    /* UIVERISE BUTTON STYLES - UPDATED FOR CONTINUE BUTTON */
+    /* Button styles */
     .welcome-btn {
       background: var(--gradient);
       color: white;
@@ -870,11 +849,10 @@
       padding: 25px;
     }
     
-    /* FIXED: Drawer sections background - LIGHTER */
     .drawer-section {
       margin-bottom: 30px;
       padding: 20px;
-      background: var(--drawer-section-bg);
+      background: rgba(255,255,255,0.05);
       border-radius: 16px;
       border: 1px solid var(--border);
       position: relative;
@@ -908,7 +886,6 @@
       margin-bottom: 20px;
     }
     
-    /* FIXED: Theme buttons - better contrast */
     .theme-btn {
       padding: 12px;
       border-radius: 12px;
@@ -933,40 +910,40 @@
       transform: translateY(-2px);
     }
     
-    /* Theme-specific button colors - FIXED TEXT COLOR */
+    /* FIXED: Theme buttons - LIGHTER colors for better visibility */
     .theme-btn[data-theme="light"] {
-      background: var(--theme-btn-light);
-      color: var(--theme-btn-text);
+      background: #60a5fa;
+      color: white;
     }
     
     .theme-btn[data-theme="dark"] {
-      background: var(--theme-btn-dark);
-      color: var(--theme-btn-text);
+      background: #4b5563;
+      color: white;
     }
     
     .theme-btn[data-theme="blue"] {
-      background: var(--theme-btn-blue);
-      color: var(--theme-btn-text);
+      background: #3b82f6;
+      color: white;
     }
     
     .theme-btn[data-theme="green"] {
-      background: var(--theme-btn-green);
-      color: var(--theme-btn-text);
+      background: #10b981;
+      color: white;
     }
     
     .theme-btn[data-theme="purple"] {
-      background: var(--theme-btn-purple);
-      color: var(--theme-btn-text);
+      background: #8b5cf6;
+      color: white;
     }
     
     .theme-btn[data-theme="pink"] {
-      background: var(--theme-btn-pink);
-      color: var(--theme-btn-text);
+      background: #ec4899;
+      color: white;
     }
     
     .theme-btn[data-theme="orange"] {
-      background: var(--theme-btn-orange);
-      color: var(--theme-btn-text);
+      background: #f97316;
+      color: white;
     }
     
     .theme-btn::after {
@@ -988,7 +965,7 @@
     /* Language Toggle */
     .language-toggle {
       display: flex;
-      background: var(--drawer-section-bg);
+      background: rgba(255,255,255,0.05);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 4px;
@@ -1008,7 +985,6 @@
       position: relative;
       overflow: hidden;
       font-family: var(--font-family);
-      color: var(--text);
     }
     
     .lang-btn.active {
@@ -1038,14 +1014,13 @@
       gap: 12px;
     }
     
-    /* FIXED: Drawer buttons background - LIGHTER */
     .social-link {
       display: flex;
       align-items: center;
       gap: 15px;
       padding: 15px;
       border-radius: 12px;
-      background: var(--drawer-btn-bg);
+      background: rgba(255,255,255,0.05);
       text-decoration: none;
       color: var(--text);
       transition: all 0.3s ease;
@@ -1070,12 +1045,11 @@
       gap: 12px;
     }
     
-    /* FIXED: Drawer buttons background - LIGHTER */
     .drawer-btn {
       padding: 15px;
       border-radius: 12px;
       border: none;
-      background: var(--drawer-btn-bg);
+      background: rgba(255,255,255,0.1);
       color: var(--text);
       cursor: pointer;
       transition: all 0.3s ease;
@@ -2024,7 +1998,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 80px;
+    }
+    
+    .congrats-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       animation: bounce 2s infinite alternate;
     }
     
@@ -2155,7 +2134,12 @@
       justify-content: center;
       border: 3px solid var(--accent);
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      font-size: 100px;
+    }
+    
+    .subject-congrats-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       animation: bounce 2s infinite alternate;
     }
     
@@ -2475,7 +2459,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 80px;
+    }
+    
+    .no-data-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
     
     /* ===== Graph View Switch ===== */
@@ -2527,7 +2516,7 @@
       left: 120%;
     }
     
-    /* Settings buttons */
+    /* Settings buttons - FIXED */
     .settings-btn {
       width: 100%;
       padding: 12px;
@@ -2546,6 +2535,11 @@
       position: relative;
       overflow: hidden;
       font-family: var(--font-family);
+    }
+    
+    .settings-btn.active {
+      background: var(--accent);
+      color: white;
     }
     
     .settings-btn:hover {
@@ -2802,7 +2796,12 @@
       justify-content: center;
       border: 3px solid var(--accent);
       box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      font-size: 100px;
+    }
+    
+    .test-congrats-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
       animation: bounce 2s infinite alternate;
     }
     
@@ -3040,7 +3039,6 @@
       .subject-congrats-image {
         width: 250px;
         height: 150px;
-        font-size: 80px;
       }
       
       body {
@@ -3050,7 +3048,6 @@
       .no-data-image {
         width: 300px;
         height: 225px;
-        font-size: 60px;
       }
       
       .history-content {
@@ -3105,17 +3102,10 @@
       .test-congrats-image {
         width: 300px;
         height: 180px;
-        font-size: 80px;
       }
       
       .theme-selector {
         grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .congrats-image {
-        width: 150px;
-        height: 120px;
-        font-size: 60px;
       }
     }
     
@@ -3163,7 +3153,6 @@
       .no-data-image {
         width: 250px;
         height: 200px;
-        font-size: 50px;
       }
       
       .avg-score-container {
@@ -3201,23 +3190,10 @@
       .test-congrats-image {
         width: 250px;
         height: 150px;
-        font-size: 70px;
       }
       
       .theme-selector {
         grid-template-columns: 1fr;
-      }
-      
-      .congrats-image {
-        width: 120px;
-        height: 100px;
-        font-size: 50px;
-      }
-      
-      .subject-congrats-image {
-        width: 200px;
-        height: 120px;
-        font-size: 70px;
       }
     }
     
@@ -3406,7 +3382,9 @@
   <!-- Congratulations Modal -->
   <div class="congrats-modal" id="congratsModal">
     <div class="congrats-content">
-      <div class="congrats-image">🎉</div>
+      <div class="congrats-image">
+        <img src="https://image2url.com/images/1765975197197-8aa80c1d-a2b5-4a02-9cea-1ff7fd633603.gif" alt="Celebration GIF">
+      </div>
       <h2>Congratulations!</h2>
       <p id="congratsMessage">You have completed a topic! Your hard work will lead you to success.</p>
       <div class="button-container">
@@ -3418,7 +3396,9 @@
   <!-- BIG Subject Completion Modal -->
   <div class="subject-congrats-modal" id="subjectCongratsModal">
     <div class="subject-congrats-content">
-      <div class="subject-congrats-image">🏆</div>
+      <div class="subject-congrats-image">
+        <img src="https://image2url.com/images/1765976345459-aeef2c0d-aefc-4950-884c-b98396e811bc.png" alt="Big Trophy">
+      </div>
       <h2 id="subjectCongratsTitle">Amazing Achievement!</h2>
       <p id="subjectCongratsMessage">You have successfully completed an entire subject! Your dedication is inspiring.</p>
       <div class="button-container">
@@ -3430,7 +3410,9 @@
   <!-- Test Data Saved Congratulations Modal -->
   <div class="test-congrats-modal" id="testCongratsModal">
     <div class="test-congrats-content">
-      <div class="test-congrats-image">✅</div>
+      <div class="test-congrats-image">
+        <img src="https://image2url.com/images/1766104959384-526229c1-deb3-4ac8-949e-300960e18dfd.png" alt="Test Data Saved">
+      </div>
       <h2>Your Test Data Has Been Saved!</h2>
       <p>Keep up the good work and continue your preparation journey!</p>
       <div class="button-container">
@@ -3704,7 +3686,9 @@
                   
                   <div id="latestPerformance">
                     <div class="no-data-container">
-                      <div class="no-data-image">📊</div>
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
                       <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
                     </div>
                   </div>
@@ -3749,7 +3733,9 @@
                   </div>
                   <div id="fullTestNoData" style="display: none;">
                     <div class="no-data-container">
-                      <div class="no-data-image">📊</div>
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
                       <p style="color: var(--muted); margin: 10px 0;">No full test data available for selected Tier.</p>
                     </div>
                   </div>
@@ -3788,7 +3774,9 @@
                   </div>
                   <div id="subjectNoData" style="display: none;">
                     <div class="no-data-container">
-                      <div class="no-data-image">📊</div>
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
                       <p style="color: var(--muted); margin: 10px 0;">No subject test data available for selected Tier.</p>
                     </div>
                   </div>
@@ -3813,7 +3801,9 @@
                   </div>
                   <div id="accuracyNoData" style="display: none;">
                     <div class="no-data-container">
-                      <div class="no-data-image">📊</div>
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
                       <p style="color: var(--muted); margin: 10px 0;">No accuracy data available for selected Tier.</p>
                     </div>
                   </div>
@@ -3883,7 +3873,7 @@
         }
       },
       
-      // SSC CGL Subjects with expanded topics - ENGLISH TOPICS ALWAYS IN ENGLISH
+      // SSC CGL Subjects with expanded topics
       subjects: [
         {
           id: "quantitative",
@@ -3912,26 +3902,25 @@
           title: { en: "English Language", hi: "अंग्रेजी भाषा" },
           colorClass: "english",
           weight: 1,
-          // ENGLISH TOPICS WILL ALWAYS BE IN ENGLISH
           topics: [
-            { id:"grammar_tenses", name: { en:"Tenses", hi:"Tenses" }, hint: { en:"Present, past, future tenses", hi:"Present, past, future tenses" }, weight:1, stars: 3 },
-            { id:"grammar_parts", name: { en:"Parts of Speech", hi:"Parts of Speech" }, hint: { en:"Noun, pronoun, verb, adjective, etc.", hi:"Noun, pronoun, verb, adjective, etc." }, weight:1, stars: 3 },
-            { id:"grammar_voice", name: { en:"Voice", hi:"Voice" }, hint: { en:"Active and passive voice", hi:"Active and passive voice" }, weight:1, stars: 2 },
-            { id:"grammar_narration", name: { en:"Narration", hi:"Narration" }, hint: { en:"Direct and indirect speech", hi:"Direct and indirect speech" }, weight:1, stars: 2 },
-            { id:"grammar_agreement", name: { en:"Subject-Verb Agreement", hi:"Subject-Verb Agreement" }, hint: { en:"Subject-verb agreement rules", hi:"Subject-verb agreement rules" }, weight:1, stars: 2 },
-            { id:"grammar_articles", name: { en:"Articles", hi:"Articles" }, hint: { en:"Use of a, an, the", hi:"Use of a, an, the" }, weight:1, stars: 1 },
-            { id:"grammar_prepositions", name: { en:"Prepositions", hi:"Prepositions" }, hint: { en:"Prepositions and their usage", hi:"Prepositions and their usage" }, weight:1, stars: 2 },
-            { id:"vocab_synonyms", name: { en:"Synonyms", hi:"Synonyms" }, hint: { en:"Words with similar meanings", hi:"Words with similar meanings" }, weight:1, stars: 3 },
-            { id:"vocab_antonyms", name: { en:"Antonyms", hi:"Antonyms" }, hint: { en:"Words with opposite meanings", hi:"Words with opposite meanings" }, weight:1, stars: 3 },
-            { id:"vocab_oneword", name: { en:"One Word Substitution", hi:"One Word Substitution" }, hint: { en:"Single word for phrases", hi:"Single word for phrases" }, weight:1, stars: 2 },
-            { id:"vocab_idioms", name: { en:"Idioms and Phrases", hi:"Idioms and Phrases" }, hint: { en:"Common idioms and their meanings", hi:"Common idioms and their meanings" }, weight:1, stars: 2 },
-            { id:"vocab_spelling", name: { en:"Spelling Check", hi:"Spelling Check" }, hint: { en:"Correct spelling of words", hi:"Correct spelling of words" }, weight:1, stars: 2 },
-            { id:"comprehension", name: { en:"Reading Comprehension", hi:"Reading Comprehension" }, hint: { en:"Passage reading and answering questions", hi:"Passage reading and answering questions" }, weight:1, stars: 3 },
-            { id:"errorDetection", name: { en:"Error Detection", hi:"Error Detection" }, hint: { en:"Spotting errors in sentences", hi:"Spotting errors in sentences" }, weight:1, stars: 3 },
-            { id:"sentenceImprovement", name: { en:"Sentence Improvement", hi:"Sentence Improvement" }, hint: { en:"Improving given sentences", hi:"Improving given sentences" }, weight:1, stars: 2 },
-            { id:"fillBlanks", name: { en:"Fill in the Blanks", hi:"Fill in the Blanks" }, hint: { en:"Choosing correct words to fill blanks", hi:"Choosing correct words to fill blanks" }, weight:1, stars: 2 },
-            { id:"paraJumbles", name: { en:"Para Jumbles", hi:"Para Jumbles" }, hint: { en:"Rearranging sentences to form coherent paragraph", hi:"Rearranging sentences to form coherent paragraph" }, weight:1, stars: 3 },
-            { id:"clozeTest", name: { en:"Cloze Test", hi:"Cloze Test" }, hint: { en:"Completing passage with appropriate words", hi:"Completing passage with appropriate words" }, weight:1, stars: 3 }
+            { id:"grammar_tenses", name: { en:"Tenses", hi:"काल" }, hint: { en:"Present, past, future tenses", hi:"वर्तमान, भूत, भविष्य काल" }, weight:1, stars: 3 },
+            { id:"grammar_parts", name: { en:"Parts of Speech", hi:"शब्द भेद" }, hint: { en:"Noun, pronoun, verb, adjective, etc.", hi:"संज्ञा, सर्वनाम, क्रिया, विशेषण आदि" }, weight:1, stars: 3 },
+            { id:"grammar_voice", name: { en:"Voice", hi:"वाच्य" }, hint: { en:"Active and passive voice", hi:"कर्तृवाच्य और कर्मवाच्य" }, weight:1, stars: 2 },
+            { id:"grammar_narration", name: { en:"Narration", hi:"कथन" }, hint: { en:"Direct and indirect speech", hi:"प्रत्यक्ष और अप्रत्यक्ष कथन" }, weight:1, stars: 2 },
+            { id:"grammar_agreement", name: { en:"Subject-Verb Agreement", hi:"कर्ता-क्रिया सहमति" }, hint: { en:"Subject-verb agreement rules", hi:"कर्ता-क्रिया सहमति नियम" }, weight:1, stars: 2 },
+            { id:"grammar_articles", name: { en:"Articles", hi:"उपपद" }, hint: { en:"Use of a, an, the", hi:"a, an, the का प्रयोग" }, weight:1, stars: 1 },
+            { id:"grammar_prepositions", name: { en:"Prepositions", hi:"पूर्वसर्ग" }, hint: { en:"Prepositions and their usage", hi:"पूर्वसर्ग और उनका प्रयोग" }, weight:1, stars: 2 },
+            { id:"vocab_synonyms", name: { en:"Synonyms", hi:"पर्यायवाची" }, hint: { en:"Words with similar meanings", hi:"समान अर्थ वाले शब्द" }, weight:1, stars: 3 },
+            { id:"vocab_antonyms", name: { en:"Antonyms", hi:"विलोम" }, hint: { en:"Words with opposite meanings", hi:"विपरीत अर्थ वाले शब्द" }, weight:1, stars: 3 },
+            { id:"vocab_oneword", name: { en:"One Word Substitution", hi:"एक शब्द प्रतिस्थापन" }, hint: { en:"Single word for phrases", hi:"वाक्यांशों के लिए एक शब्द" }, weight:1, stars: 2 },
+            { id:"vocab_idioms", name: { en:"Idioms and Phrases", hi:"मुहावरे और वाक्यांश" }, hint: { en:"Common idioms and their meanings", hi:"सामान्य मुहावरे और उनके अर्थ" }, weight:1, stars: 2 },
+            { id:"vocab_spelling", name: { en:"Spelling Check", hi:"वर्तनी जाँच" }, hint: { en:"Correct spelling of words", hi:"शब्दों की सही वर्तनी" }, weight:1, stars: 2 },
+            { id:"comprehension", name: { en:"Reading Comprehension", hi:"पठन समझ" }, hint: { en:"Passage reading and answering questions", hi:"अनुच्छेद पढ़ना और प्रश्नों के उत्तर देना" }, weight:1, stars: 3 },
+            { id:"errorDetection", name: { en:"Error Detection", hi:"त्रुटि पहचान" }, hint: { en:"Spotting errors in sentences", hi:"वाक्यों में त्रुटियाँ ढूँढना" }, weight:1, stars: 3 },
+            { id:"sentenceImprovement", name: { en:"Sentence Improvement", hi:"वाक्य सुधार" }, hint: { en:"Improving given sentences", hi:"दिए गए वाक्यों में सुधार करना" }, weight:1, stars: 2 },
+            { id:"fillBlanks", name: { en:"Fill in the Blanks", hi:"रिक्त स्थान भरना" }, hint: { en:"Choosing correct words to fill blanks", hi:"रिक्त स्थान भरने के लिए सही शब्द चुनना" }, weight:1, stars: 2 },
+            { id:"paraJumbles", name: { en:"Para Jumbles", hi:"अनुच्छेद जंबल" }, hint: { en:"Rearranging sentences to form coherent paragraph", hi:"सुसंगत अनुच्छेद बनाने के लिए वाक्यों को पुनर्व्यवस्थित करना" }, weight:1, stars: 3 },
+            { id:"clozeTest", name: { en:"Cloze Test", hi:"क्लोज टेस्ट" }, hint: { en:"Completing passage with appropriate words", hi:"उपयुक्त शब्दों से अनुच्छेद पूरा करना" }, weight:1, stars: 3 }
           ]
         },
         {
@@ -4165,10 +4154,10 @@
     
     // ========== GLOBAL VARIABLES ==========
     const STORAGE_KEYS = {
-      PROGRESS: "ssc_cgl_progress_v16",
-      UI_STATE: "ssc_cgl_ui_state_v16",
+      PROGRESS: "ssc_cgl_progress_v17",
+      UI_STATE: "ssc_cgl_ui_state_v17",
       STUDENT_NAME: "ssc_cgl_student_name",
-      CBT_RESULTS: "ssc_cgl_results_v16",
+      CBT_RESULTS: "ssc_cgl_results_v17",
       THEME: "ssc_cgl_theme",
       STUDY_LOG: "ssc_cgl_study_log",
       LANGUAGE: "ssc_cgl_language",
@@ -4194,7 +4183,7 @@
     let currentGraphCBT = "tier1";
     let selectedSubjectForChart = "quantitative";
     let fullTestGraphView = "total";
-    let isSubmitting = false; // FIXED: Prevent double form submission
+    let isSubmitting = false;
 
     // ========== INITIALIZATION ==========
     function initializeApp() {
@@ -4347,13 +4336,9 @@
           else if (topic.stars === 2) starClass = 'two-stars';
           else if (topic.stars === 1) starClass = 'one-star';
           
-          // FIXED: English subjects always show English text
-          let topicName = topic.name[currentLanguage];
-          let topicHint = topic.hint[currentLanguage];
-          if (subject.id === "english") {
-            topicName = topic.name['en'];
-            topicHint = topic.hint['en'];
-          }
+          // FIXED: English topics always show English names
+          const topicName = subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage];
+          const topicHint = subject.id === 'english' ? topic.hint['en'] : topic.hint[currentLanguage];
           
           topicElement.innerHTML = `
             <input type="checkbox" id="${topicId}" ${isChecked ? 'checked' : ''}>
@@ -4398,16 +4383,18 @@
         });
       }, 100);
       
-      document.querySelectorAll('.topic input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-          const topicId = this.id;
-          savedProgress[topicId] = this.checked;
+      // FIXED: Event delegation for checkbox changes
+      document.getElementById('subjectsContainer').addEventListener('change', function(e) {
+        if (e.target && e.target.type === 'checkbox') {
+          const checkbox = e.target;
+          const topicId = checkbox.id;
+          savedProgress[topicId] = checkbox.checked;
           saveProgress();
           
           updateProgress();
           
-          if (this.checked) {
-            showCongratulations(this);
+          if (checkbox.checked) {
+            showCongratulations(checkbox);
             
             const [subjectId, topicKey] = topicId.split('_');
             const subjectProgress = calculateSubjectProgress(subjectId);
@@ -4417,7 +4404,7 @@
             
             logStudyActivity(topicId);
           }
-        });
+        }
       });
       
       document.querySelectorAll('.toggle-btn').forEach(button => {
@@ -4522,16 +4509,24 @@
       const topic = subject.topics.find(t => t.id === topicKey);
       if (!topic) return;
       
+      // FIXED: Use current language properly for all subjects
+      let topicName;
+      if (subject.id === 'english') {
+        topicName = topic.name['en']; // English subjects always show English names
+      } else {
+        topicName = topic.name[currentLanguage] || topic.name['en'];
+      }
+      
       const messages = currentLanguage === 'hi' ? [
-        `बधाई हो! आपने "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}" पूरा कर लिया!`,
-        `शानदार! "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}" अब पूरा हो गया है!`,
-        `अद्भुत! आपने सफलतापूर्वक "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}" पूरा कर लिया!`,
-        `वाह! "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}" पूरा करने पर बधाई!`
+        `बधाई हो! आपने "${topicName}" पूरा कर लिया!`,
+        `शानदार! "${topicName}" अब पूरा हो गया है!`,
+        `अद्भुत! आपने सफलतापूर्वक "${topicName}" पूरा कर लिया!`,
+        `वाह! "${topicName}" पूरा करने पर बधाई!`
       ] : [
-        `Congratulations! You completed "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}"!`,
-        `Awesome! "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}" is now complete!`,
-        `Amazing! You successfully completed "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}"!`,
-        `Wow! Congratulations on completing "${subject.id === 'english' ? topic.name['en'] : topic.name[currentLanguage]}"!`
+        `Congratulations! You completed "${topicName}"!`,
+        `Awesome! "${topicName}" is now complete!`,
+        `Amazing! You successfully completed "${topicName}"!`,
+        `Wow! Congratulations on completing "${topicName}"!`
       ];
       
       const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -4545,16 +4540,19 @@
       const subject = CONFIG.subjects.find(s => s.id === subjectId);
       if (!subject) return;
       
+      // FIXED: English subject title always shows English
+      const subjectTitle = subject.id === 'english' ? subject.title['en'] : subject.title[currentLanguage];
+      
       const messages = currentLanguage === 'hi' ? [
-        `अद्भुत उपलब्धि! आपने पूरा "${subject.title[currentLanguage]}" विषय पूरा कर लिया!`,
-        `शानदार! आपने "${subject.title[currentLanguage]}" विषय में 100% प्रगति हासिल कर ली!`,
-        `बधाई हो! आपने "${subject.title[currentLanguage]}" विषय पूरी तरह से मास्टर कर लिया!`,
-        `वाह! "${subject.title[currentLanguage]}" विषय पूरा करने पर हार्दिक बधाई!`
+        `अद्भुत उपलब्धि! आपने पूरा "${subjectTitle}" विषय पूरा कर लिया!`,
+        `शानदार! आपने "${subjectTitle}" विषय में 100% प्रगति हासिल कर ली!`,
+        `बधाई हो! आपने "${subjectTitle}" विषय पूरी तरह से मास्टर कर लिया!`,
+        `वाह! "${subjectTitle}" विषय पूरा करने पर हार्दिक बधाई!`
       ] : [
-        `Amazing Achievement! You completed the entire "${subject.title[currentLanguage]}" subject!`,
-        `Outstanding! You achieved 100% progress in "${subject.title[currentLanguage]}"!`,
-        `Congratulations! You've completely mastered the "${subject.title[currentLanguage]}" subject!`,
-        `Wow! Hearty congratulations on completing the "${subject.title[currentLanguage]}" subject!`
+        `Amazing Achievement! You completed the entire "${subjectTitle}" subject!`,
+        `Outstanding! You achieved 100% progress in "${subjectTitle}"!`,
+        `Congratulations! You've completely mastered the "${subjectTitle}" subject!`,
+        `Wow! Hearty congratulations on completing the "${subjectTitle}" subject!`
       ];
       
       const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -4571,6 +4569,11 @@
     }
     
     function launchConfetti() {
+      if (typeof confetti !== 'function') {
+        console.error('Confetti library not loaded');
+        return;
+      }
+      
       confetti({
         particleCount: 150,
         spread: 70,
@@ -4600,6 +4603,11 @@
     }
     
     function launchBigConfetti() {
+      if (typeof confetti !== 'function') {
+        console.error('Confetti library not loaded');
+        return;
+      }
+      
       for(let i = 0; i < 5; i++) {
         setTimeout(() => {
           confetti({
@@ -4827,7 +4835,9 @@
       if (cbtResults.length === 0) {
         latestPerformance.innerHTML = `
           <div class="no-data-container">
-            <div class="no-data-image">📊</div>
+            <div class="no-data-image">
+              <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+            </div>
             <p style="color: var(--muted); margin: 10px 0;">${t('noData')}</p>
           </div>`;
         return;
@@ -4851,7 +4861,9 @@
       if (filteredResults.length === 0) {
         latestPerformance.innerHTML = `
           <div class="no-data-container">
-            <div class="no-data-image">📊</div>
+            <div class="no-data-image">
+              <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+            </div>
             <p style="color: var(--muted); margin: 10px 0;">No test data found for selected criteria.</p>
           </div>`;
         return;
@@ -5648,53 +5660,58 @@
       document.getElementById('drawerClose').addEventListener('click', closeDrawer);
       document.getElementById('drawerOverlay').addEventListener('click', closeDrawer);
       
-      // Settings buttons toggle
+      // FIXED: Settings buttons toggle with proper event delegation
       document.getElementById('themeSettingsBtn').addEventListener('click', function() {
+        this.classList.toggle('active');
         const content = document.getElementById('themeSettings');
         content.classList.toggle('active');
-        const icon = this.querySelector('i.fa-chevron-right, i.fa-chevron-down');
+        const icon = this.querySelector('i.fa-chevron-right');
         if (icon) {
-          icon.classList.toggle('fa-chevron-right');
-          icon.classList.toggle('fa-chevron-down');
+          if (content.classList.contains('active')) {
+            icon.classList.remove('fa-chevron-right');
+            icon.classList.add('fa-chevron-down');
+          } else {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+          }
         }
       });
       
       document.getElementById('languageSettingsBtn').addEventListener('click', function() {
+        this.classList.toggle('active');
         const content = document.getElementById('languageSettings');
         content.classList.toggle('active');
-        const icon = this.querySelector('i.fa-chevron-right, i.fa-chevron-down');
+        const icon = this.querySelector('i.fa-chevron-right');
         if (icon) {
-          icon.classList.toggle('fa-chevron-right');
-          icon.classList.toggle('fa-chevron-down');
+          if (content.classList.contains('active')) {
+            icon.classList.remove('fa-chevron-right');
+            icon.classList.add('fa-chevron-down');
+          } else {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+          }
         }
       });
       
-      // FIXED: Theme and Language buttons with proper event delegation
-      document.addEventListener('click', function(e) {
-        // Theme buttons
-        const themeBtn = e.target.closest('.theme-btn');
-        if (themeBtn) {
-          e.preventDefault();
-          e.stopPropagation();
-          const theme = themeBtn.dataset.theme;
-          setTheme(theme);
-          
-          document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-          themeBtn.classList.add('active');
-          return;
-        }
-        
-        // Language buttons
-        const langBtn = e.target.closest('.lang-btn');
-        if (langBtn) {
-          e.preventDefault();
-          e.stopPropagation();
-          const lang = langBtn.dataset.lang;
+      // Language toggle - FIXED: Use event delegation properly
+      document.getElementById('languageSettings').addEventListener('click', function(e) {
+        if (e.target.classList.contains('lang-btn')) {
+          const lang = e.target.dataset.lang;
           setLanguage(lang);
           
           document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-          langBtn.classList.add('active');
-          return;
+          e.target.classList.add('active');
+        }
+      });
+      
+      // Theme buttons - FIXED: Use event delegation properly
+      document.getElementById('themeSettings').addEventListener('click', function(e) {
+        if (e.target.classList.contains('theme-btn')) {
+          const theme = e.target.dataset.theme;
+          setTheme(theme);
+          
+          document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
         }
       });
       
@@ -5839,13 +5856,12 @@
         });
       });
       
-      // FIXED: CBT form submission - PREVENT DOUBLE SUBMISSION
+      // FIXED: CBT form submission - prevent multiple submissions
       document.getElementById('cbtForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Prevent double submission
+        // Prevent multiple submissions
         if (isSubmitting) {
-          alert('Please wait, your test is being saved...');
           return;
         }
         
@@ -5856,7 +5872,6 @@
         }
         
         isSubmitting = true;
-        
         const config = CONFIG.cbtConfig[currentCBT];
         let testData;
         
@@ -5871,75 +5886,68 @@
         submitBtn.disabled = true;
         loadingSpinner.style.display = 'block';
         
+        // Process submission
+        if (currentTestType === 'full') {
+          const quantitative = parseFloat(document.getElementById('quantitativeMarks').value) || 0;
+          const english = parseFloat(document.getElementById('englishMarks').value) || 0;
+          const reasoning = parseFloat(document.getElementById('reasoningMarks').value) || 0;
+          const awareness = parseFloat(document.getElementById('awarenessMarks').value) || 0;
+          const accuracy = parseFloat(document.getElementById('accuracy').value) || 0;
+          const total = quantitative + english + reasoning + awareness;
+          
+          testData = {
+            name: document.getElementById('testName').value.trim(),
+            date: document.getElementById('testDate').value,
+            time: timeString,
+            timestamp: now.toISOString(),
+            cbt: currentCBT,
+            testType: 'full',
+            quantitative: quantitative,
+            english: english,
+            reasoning: reasoning,
+            awareness: awareness,
+            total: total,
+            accuracy: accuracy
+          };
+        } else {
+          testData = {
+            name: document.getElementById('testName').value.trim(),
+            date: document.getElementById('testDate').value,
+            time: timeString,
+            timestamp: now.toISOString(),
+            cbt: currentCBT,
+            testType: 'sectional',
+            section: currentTestType,
+            marks: parseFloat(document.getElementById('sectionalMarks').value) || 0
+          };
+        }
+        
+        // Add test to results
+        cbtResults.push(testData);
+        localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+        
+        // Reset form
+        this.reset();
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        document.getElementById('testDate').value = formattedDate;
+        updateCBTForm();
+        
+        // Update UI
+        loadCBTResults();
+        updateAllGraphs();
+        updateAverageScores();
+        
+        // Reset button and hide loading spinner
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        loadingSpinner.style.display = 'none';
+        isSubmitting = false;
+        
+        // Show congratulations modal
         setTimeout(() => {
-          try {
-            if (currentTestType === 'full') {
-              const quantitative = parseFloat(document.getElementById('quantitativeMarks').value) || 0;
-              const english = parseFloat(document.getElementById('englishMarks').value) || 0;
-              const reasoning = parseFloat(document.getElementById('reasoningMarks').value) || 0;
-              const awareness = parseFloat(document.getElementById('awarenessMarks').value) || 0;
-              const accuracy = parseFloat(document.getElementById('accuracy').value) || 0;
-              const total = quantitative + english + reasoning + awareness;
-              
-              testData = {
-                name: document.getElementById('testName').value.trim(),
-                date: document.getElementById('testDate').value,
-                time: timeString,
-                timestamp: now.toISOString(),
-                cbt: currentCBT,
-                testType: 'full',
-                quantitative: quantitative,
-                english: english,
-                reasoning: reasoning,
-                awareness: awareness,
-                total: total,
-                accuracy: accuracy
-              };
-            } else {
-              testData = {
-                name: document.getElementById('testName').value.trim(),
-                date: document.getElementById('testDate').value,
-                time: timeString,
-                timestamp: now.toISOString(),
-                cbt: currentCBT,
-                testType: 'sectional',
-                section: currentTestType,
-                marks: parseFloat(document.getElementById('sectionalMarks').value) || 0
-              };
-            }
-            
-            cbtResults.push(testData);
-            localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
-            
-            this.reset();
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            document.getElementById('testDate').value = formattedDate;
-            updateCBTForm();
-            
-            loadCBTResults();
-            updateAllGraphs();
-            updateAverageScores();
-            
-            // Reset button and hide loading spinner
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            loadingSpinner.style.display = 'none';
-            isSubmitting = false;
-            
-            // Show congratulations modal
-            setTimeout(() => {
-              showTestCongratsModal();
-            }, 300);
-          } catch (error) {
-            console.error('Error saving test data:', error);
-            alert('Error saving test data. Please try again.');
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            loadingSpinner.style.display = 'none';
-            isSubmitting = false;
-          }
-        }, 1000); // Simulate processing time
+          showTestCongratsModal();
+        }, 300);
       });
       
       // Control buttons
@@ -6050,6 +6058,7 @@
       document.body.className = `theme-${theme}`;
       localStorage.setItem(STORAGE_KEYS.THEME, theme);
       
+      // Update active state of theme buttons
       document.querySelectorAll('.theme-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.theme === theme) {
@@ -6069,6 +6078,7 @@
       currentLanguage = lang;
       localStorage.setItem(STORAGE_KEYS.LANGUAGE, lang);
       
+      // Update active state of language buttons
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.lang === lang) {
@@ -6341,4 +6351,4 @@
     document.addEventListener('DOMContentLoaded', initializeApp);
   </script>
 </body>
-</html> 
+</html>

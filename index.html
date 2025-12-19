@@ -1,0 +1,4992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NTPC PRO</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ===== CSS Variables for Themes ===== */
+    :root {
+      /* Modern Light Theme (Default) */
+      --bg: #f8fafc;
+      --glass: rgba(15, 23, 42, 0.05);
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #4f46e5;
+      --accent-2: #db2777;
+      --accent-3: #059669;
+      --accent-4: #d97706;
+      --accent-5: #7c3aed;
+      --pill: #f1f5f9;
+      --shadow: 0 12px 35px rgba(0,0,0,0.08);
+      --gradient: linear-gradient(135deg, #4f46e5, #db2777, #d97706, #059669);
+      --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --drawer-bg: rgba(255, 255, 255, 0.98);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%234f46e5" opacity="0.2"/><circle cx="80" cy="30" r="8" fill="%23db2777" opacity="0.2"/><circle cx="40" cy="80" r="6" fill="%23d97706" opacity="0.2"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.95;
+    }
+    
+    /* Dark Theme */
+    .theme-dark {
+      --bg: #0f172a;
+      --glass: rgba(255,255,255,0.08);
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #cbd5e1;
+      --border: #334155;
+      --accent: #6366f1;
+      --accent-2: #ec4899;
+      --accent-3: #10b981;
+      --accent-4: #f59e0b;
+      --accent-5: #8b5cf6;
+      --pill: #1a2437;
+      --shadow: 0 12px 35px rgba(0,0,0,0.4);
+      --gradient: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b, #10b981);
+      --gradient-card: linear-gradient(145deg, #1e293b, #1a2437);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --drawer-bg: rgba(15, 23, 42, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%236366f1" opacity="0.2"/><circle cx="80" cy="30" r="8" fill="%23ec4899" opacity="0.2"/><circle cx="40" cy="80" r="6" fill="%23f59e0b" opacity="0.2"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2310b981" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.92;
+    }
+    
+    /* Blue Theme */
+    .theme-blue {
+      --bg: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);
+      --glass: rgba(255,255,255,0.15);
+      --card: rgba(255, 255, 255, 0.95);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #60a5fa;
+      --accent: #1d4ed8;
+      --accent-2: #2563eb;
+      --accent-3: #0284c7;
+      --accent-4: #0ea5e9;
+      --accent-5: #3b82f6;
+      --pill: rgba(30, 58, 138, 0.2);
+      --shadow: 0 12px 35px rgba(14, 165, 233, 0.3);
+      --gradient: linear-gradient(135deg, #1d4ed8, #2563eb, #0ea5e9, #0284c7);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --drawer-bg: rgba(12, 74, 110, 0.97);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%231d4ed8" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%232563eb" opacity="0.3"/><circle cx="40" cy="80" r="6" fill="%230ea5e9" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230284c7" stroke-width="1" opacity="0.2"/></svg>');
+      --card-opacity: 0.92;
+    }
+    
+    /* Green Theme */
+    .theme-green {
+      --bg: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+      --glass: rgba(255,255,255,0.15);
+      --card: rgba(255, 255, 255, 0.95);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #10b981;
+      --accent: #047857;
+      --accent-2: #059669;
+      --accent-3: #10b981;
+      --accent-4: #34d399;
+      --accent-5: #059669;
+      --pill: rgba(6, 78, 59, 0.2);
+      --shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
+      --gradient: linear-gradient(135deg, #047857, #059669, #10b981, #34d399);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --drawer-bg: rgba(6, 78, 59, 0.97);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%23047857" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%23059669" opacity="0.3"/><circle cx="40" cy="80" r="6" fill="%2310b981" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2334d399" stroke-width="1" opacity="0.2"/></svg>');
+      --card-opacity: 0.92;
+    }
+    
+    /* ===== Base Styles ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.5s ease, color 0.3s ease;
+    }
+    
+    body {
+      background: var(--bg);
+      background-image: var(--illustration);
+      background-size: 300px;
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 70px;
+    }
+    
+    /* Animated background elements */
+    .bg-doodle {
+      position: fixed;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.1;
+    }
+    
+    .bg-doodle-1 {
+      top: 10%;
+      left: 5%;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: float 20s infinite linear;
+    }
+    
+    .bg-doodle-2 {
+      top: 60%;
+      right: 10%;
+      width: 150px;
+      height: 150px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: var(--accent-2);
+      animation: float 25s infinite linear reverse;
+    }
+    
+    .bg-doodle-3 {
+      bottom: 20%;
+      left: 15%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--accent-3);
+      animation: float 18s infinite linear;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    /* ===== Welcome Screen ===== */
+    #welcomeScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      background-image: var(--illustration);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    
+    #welcomeScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .welcome-content {
+      text-align: center;
+      max-width: 600px;
+      padding: 40px 30px;
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      margin: 20px;
+      opacity: var(--card-opacity);
+    }
+    
+    .welcome-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient);
+    }
+    
+    .welcome-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      animation: pulse 2.5s infinite;
+      border: 5px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+    
+    .welcome-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      padding: 8px;
+      background: white;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+      50% { transform: scale(1.05); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+      100% { transform: scale(1); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    }
+    
+    .welcome-content h1 {
+      font-size: 2.8rem;
+      margin: 0 0 15px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    
+    .welcome-content p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      padding: 0 10px;
+    }
+    
+    .name-input {
+      width: 100%;
+      padding: 15px 20px;
+      margin: 15px 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      color: var(--text);
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .name-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    /* UIVERISE BUTTON STYLES - UPDATED FOR CONTINUE BUTTON */
+    .welcome-btn {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 0 15px 35px rgba(79, 70, 229, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin: 20px auto;
+      display: block;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .welcome-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
+    }
+    
+    /* Button shine effect */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow);
+    }
+    
+    .btn-shine::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 50%;
+      height: 200%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: rotate(30deg);
+      transition: all 0.6s ease;
+    }
+    
+    .btn-shine:hover::after {
+      left: 120%;
+      transition: all 0.6s ease;
+    }
+    
+    .btn-shine:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      background: var(--accent-2);
+    }
+    
+    /* ===== Header / Navigation ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.7));
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+    }
+    
+    .theme-dark header {
+      background: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
+    }
+    
+    .theme-blue header, .theme-green header {
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.8));
+    }
+    
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 0;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: conic-gradient(from 220deg, var(--accent), var(--accent-3), var(--accent-4), var(--accent-2));
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      padding: 4px;
+      background: white;
+    }
+    
+    .titles h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 0.2px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 900;
+    }
+    
+    .titles p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .greeting {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    
+    .nav-btn:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* ===== Bottom Navigation Bar ===== */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      z-index: 99;
+      padding: 8px;
+      box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+      height: 65px;
+    }
+    
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      max-width: 1200px;
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .nav-tab-btn {
+      flex: 1;
+      max-width: 180px;
+      padding: 12px 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      height: 45px;
+    }
+    
+    .nav-tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+    
+    .nav-tab-btn:hover:not(.active) {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    
+    /* ===== Drawer Menu ===== */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 380px;
+      max-width: 90vw;
+      height: 100%;
+      background: var(--drawer-bg);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      overflow-y: auto;
+      transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+      border-left: 1px solid var(--border);
+      transform: translateX(100%);
+    }
+    
+    .drawer.active {
+      transform: translateX(0);
+    }
+    
+    .drawer-header {
+      padding: 25px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .drawer-header h2 {
+      font-size: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .drawer-close {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    
+    .drawer-close:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .drawer-content {
+      padding: 25px;
+    }
+    
+    .drawer-section {
+      margin-bottom: 30px;
+    }
+    
+    .drawer-section h3 {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .theme-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    
+    .theme-btn {
+      padding: 12px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+    
+    .theme-btn.active {
+      border-color: var(--accent);
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+    }
+    
+    /* Language Toggle */
+    .language-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .lang-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      background: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .social-link i {
+      font-size: 1.3rem;
+      width: 30px;
+    }
+    
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .drawer-btn {
+      padding: 15px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .drawer-btn:hover {
+      background: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .drawer-btn.danger {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+    
+    .drawer-btn.danger:hover {
+      background: var(--danger);
+      color: white;
+    }
+    
+    /* ===== Main Container ===== */
+    .container {
+      max-width: 1200px;
+      margin: 25px auto;
+      padding: 0 20px;
+    }
+    
+    /* ===== Tabs Content ===== */
+    .tab-content {
+      display: none;
+      opacity: var(--card-opacity);
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* ===== Grid Layout ===== */
+    .grid {
+      display: grid;
+      gap: 25px;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    @media (max-width: 992px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* ===== Cards ===== */
+    .card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      margin: 15px 0;
+      opacity: var(--card-opacity);
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient);
+    }
+    
+    .card h2 {
+      margin: 0;
+      padding: 18px 20px;
+      font-size: 1.2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), transparent);
+      border-bottom: 1px solid var(--border);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .card h3 {
+      padding: 15px 20px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card .body {
+      padding: 20px;
+    }
+    
+    /* ===== NEW: Subject Controls in Card Header ===== */
+    .subject-controls {
+      display: flex;
+      gap: 8px;
+      margin-left: auto;
+    }
+    
+    .subject-controls button {
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    
+    .subject-controls button:hover {
+      background: var(--accent);
+      color: white;
+    }
+    
+    /* ===== Subjects List ===== */
+    .subject {
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
+    }
+    
+    .subject-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      background: var(--pill);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    
+    .subject-header:hover {
+      background: color-mix(in srgb, var(--pill) 90%, white);
+    }
+    
+    .subject-title {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    
+    .badge {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      color: white;
+      font-weight: 800;
+      background: var(--accent);
+      white-space: nowrap;
+    }
+    
+    .badge.arithmetic { background: #4f46e5; }
+    .badge.advanced-math { background: #7c3aed; }
+    .badge.reasoning { background: #059669; }
+    .badge.history { background: #d97706; }
+    .badge.polity { background: #db2777; }
+    .badge.geography { background: #3b82f6; }
+    .badge.economy { background: #10b981; }
+    .badge.static-gk { background: #06b6d4; }
+    .badge.current-affairs { background: #ec4899; }
+    .badge.science { background: #f97316; }
+    .badge.computer { background: #8b5cf6; }
+    
+    .progress-wrap {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .progress-bar {
+      height: 12px;
+      width: 150px;
+      background: rgba(0,0,0,0.1);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-3));
+      width: 0%;
+      transition: width 1s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    
+    .percent {
+      font-size: 0.95rem;
+      color: var(--muted);
+      width: 60px;
+      text-align: right;
+      font-weight: 700;
+    }
+    
+    .toggle-btn {
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .toggle-btn:hover {
+      background: var(--accent);
+      color: white;
+    }
+    
+    /* ===== FIXED TOPICS CONTAINER ===== */
+    .topics {
+      padding: 15px 20px;
+      display: grid;
+      gap: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) rgba(255,255,255,0.05);
+    }
+    
+    .topic {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .topic:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .topic input {
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      transform: translateY(3px);
+      accent-color: var(--accent);
+    }
+    
+    .topic label {
+      cursor: pointer;
+      line-height: 1.5;
+      flex: 1;
+      padding-right: 10px;
+      margin: 5px 0;
+    }
+    
+    .topic small {
+      display: block;
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 0.9rem;
+      margin: 8px 0 0 0;
+    }
+    
+    .weight {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: var(--accent);
+      background: rgba(0,0,0,0.1);
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 700;
+      min-width: 60px;
+      text-align: center;
+    }
+    
+    /* Star ratings */
+    .stars {
+      margin-left: 10px;
+      color: #fbbf24;
+      font-size: 0.9rem;
+    }
+    
+    .stars.three-stars::after { content: " ★★★"; }
+    .stars.two-stars::after { content: " ★★"; }
+    .stars.one-star::after { content: " ★"; }
+    
+    /* ===== Charts ===== */
+    .charts {
+      display: grid;
+      gap: 25px;
+      text-align: center;
+    }
+    
+    .overall-chart {
+      margin-bottom: 30px;
+    }
+    
+    .overall-donut {
+      width: 240px;
+      height: 240px;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .overall-donut text {
+      fill: var(--text);
+      font-size: 28px;
+      font-weight: 900;
+    }
+    
+    .subject-charts {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .chart-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .chart-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .donut {
+      width: 120px;
+      height: 120px;
+    }
+    
+    .donut text {
+      fill: var(--text);
+      font-size: 16px;
+      font-weight: 800;
+    }
+    
+    .legend {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+    }
+    
+    .dot.arithmetic { background: #4f46e5; }
+    .dot.advanced-math { background: #7c3aed; }
+    .dot.reasoning { background: #059669; }
+    .dot.history { background: #d97706; }
+    .dot.polity { background: #db2777; }
+    .dot.geography { background: #3b82f6; }
+    .dot.economy { background: #10b981; }
+    .dot.static-gk { background: #06b6d4; }
+    .dot.current-affairs { background: #ec4899; }
+    .dot.science { background: #f97316; }
+    .dot.computer { background: #8b5cf6; }
+    .dot.todo { background: var(--border); }
+    .dot.done { background: var(--accent-3); }
+    
+    .subject-names {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    
+    /* ===== Modern Subject Selector ===== */
+    .subject-selector-container {
+      margin: 20px 0;
+    }
+    
+    .subject-selector-title {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: var(--accent);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .subject-selector {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .subject-selector-btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+    
+    .subject-selector-btn.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+    }
+    
+    /* ===== Circular Subject Charts ===== */
+    .subject-chart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+    }
+    
+    .subject-donut-chart {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      margin: 0 auto;
+    }
+    
+    .subject-donut-chart svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    
+    .subject-chart-percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* ===== CBT Analysis Section ===== */
+    .cbt-container {
+      display: grid;
+      gap: 25px;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    @media (max-width: 768px) {
+      .cbt-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .cbt-card {
+      grid-column: 1 / -1;
+    }
+    
+    .cbt-selection {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .cbt-type-btn {
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      flex: 1;
+      min-width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    
+    .cbt-type-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    .test-type-selection {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .test-type-btn {
+      padding: 10px 15px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .test-type-btn.active {
+      background: var(--accent-3);
+      border-color: var(--accent-3);
+      color: white;
+    }
+    
+    .cbt-form {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .form-group label {
+      font-weight: 600;
+      color: var(--muted);
+    }
+    
+    .form-group input, .form-group select {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    /* ===== Test History Modal ===== */
+    .history-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .history-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .history-content {
+      background: var(--gradient-card);
+      border-radius: 24px;
+      padding: 30px;
+      text-align: center;
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .history-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient);
+    }
+    
+    .history-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      max-height: 60vh;
+      overflow-y: auto;
+      display: block;
+    }
+    
+    .history-table thead {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      z-index: 10;
+    }
+    
+    .history-table th {
+      padding: 12px;
+      background: var(--accent);
+      color: white;
+      text-align: left;
+      font-weight: 600;
+      border: 1px solid var(--border);
+    }
+    
+    .history-table td {
+      padding: 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    
+    .history-table tr:nth-child(even) {
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .history-table tr:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .close-history {
+      padding: 12px 30px;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      display: block;
+      margin: 20px auto 0;
+    }
+    
+    .close-history:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* ===== Congratulations Modal ===== */
+    .congrats-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .congrats-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .congrats-content {
+      background: var(--gradient-card);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .congrats-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient);
+    }
+    
+    .congrats-image {
+      width: 200px;
+      height: 150px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .congrats-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      animation: bounce 2s infinite alternate;
+    }
+    
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+    
+    .congrats-content h2 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .congrats-content p {
+      color: var(--muted);
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      padding: 0 10px;
+    }
+    
+    /* Continue button को right align करने के लिए */
+    .congrats-content .button-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .close-congrats {
+      padding: 12px 30px;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      display: inline-block;
+      margin-left: auto;
+    }
+    
+    .close-congrats:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* ===== BIG Subject Completion Modal ===== */
+    .subject-congrats-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .subject-congrats-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .subject-congrats-content {
+      background: var(--gradient-card);
+      border-radius: 30px;
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 700px;
+      width: 90%;
+      border: 3px solid var(--border);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+      position: relative;
+      overflow: hidden;
+      animation: zoomIn 0.5s ease-out;
+    }
+    
+    @keyframes zoomIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .subject-congrats-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--gradient);
+    }
+    
+    .subject-congrats-image {
+      width: 300px;
+      height: 200px;
+      margin: 0 auto 30px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--accent);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .subject-congrats-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      animation: bounce 2s infinite alternate;
+    }
+    
+    .subject-congrats-content h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .subject-congrats-content p {
+      color: var(--muted);
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      padding: 0 20px;
+    }
+    
+    /* Continue button को right align करने के लिए */
+    .subject-congrats-content .button-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      margin-top: 20px;
+    }
+    
+    .close-subject-congrats {
+      padding: 15px 40px;
+      background: var(--gradient);
+      border: none;
+      border-radius: 16px;
+      color: white;
+      font-weight: 800;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      display: inline-block;
+      margin-left: auto;
+    }
+    
+    .close-subject-congrats:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+    }
+    
+    /* ===== Graph Controls ===== */
+    .graph-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .graph-btn {
+      padding: 10px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .graph-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    /* ===== CBT Toggle for Graphs ===== */
+    .graph-cbt-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .graph-cbt-btn {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .graph-cbt-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .graph-info {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    
+    /* ===== Reset Confirmation ===== */
+    .reset-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .reset-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .reset-content {
+      background: var(--gradient-card);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+    
+    .reset-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: var(--danger);
+    }
+    
+    .reset-content p {
+      color: var(--muted);
+      margin-bottom: 25px;
+      line-height: 1.6;
+      padding: 0 10px;
+    }
+    
+    .reset-confirm-input {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 1rem;
+      width: 100%;
+      margin-bottom: 20px;
+      -webkit-text-security: disc;
+      text-security: disc;
+      font-family: monospace;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    
+    .reset-confirm-input:focus {
+      outline: none;
+      border-color: var(--danger);
+    }
+    
+    .reset-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+    
+    /* ===== Performance Subject Buttons ===== */
+    .performance-subject-buttons {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .performance-subject-btn {
+      padding: 12px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .performance-subject-btn.active {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+    }
+    
+    /* ===== BIGGER No Data Image ===== */
+    .no-data-container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    
+    .no-data-image {
+      width: 400px;
+      height: 300px;
+      margin: 0 auto 20px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .no-data-image img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    /* ===== Graph View Switch ===== */
+    .graph-view-switch {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin: 20px 0;
+    }
+    
+    .view-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+    
+    .view-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    
+    /* Settings buttons */
+    .settings-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .settings-btn:hover {
+      background: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .settings-content {
+      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      display: none;
+    }
+    
+    .settings-content.active {
+      display: block;
+    }
+    
+    /* Chart canvas */
+    .chart-canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+    
+    /* Additional margin for better spacing */
+    .cbt-form, .graph-controls, .cbt-selection, .test-type-selection {
+      margin-bottom: 25px;
+    }
+    
+    /* Center all continue buttons */
+    .center-button {
+      display: block;
+      margin: 20px auto;
+    }
+    
+    /* NEW: Average Score Display */
+    .avg-score-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+    
+    .avg-score-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    
+    .avg-score-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .avg-score-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin: 10px 0;
+    }
+    
+    .avg-score-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    
+    /* NEW: History Button */
+    .history-btn {
+      background: var(--accent-2);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px auto;
+      transition: all 0.3s ease;
+    }
+    
+    .history-btn:hover {
+      background: var(--accent-3);
+      transform: translateY(-3px);
+    }
+    
+    /* NEW: Mock Test History Item */
+    .history-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .history-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-3px);
+    }
+    
+    /* NEW: Full Test Subject Toggle */
+    .full-test-toggle {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .full-test-btn {
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    
+    .full-test-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+    
+    /* Progress Image Modal (removed) */
+    .progress-image-modal {
+      display: none !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .welcome-content {
+        padding: 30px 20px;
+        margin: 15px;
+      }
+      
+      .welcome-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .welcome-logo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .titles h1 {
+        font-size: 1.4rem;
+      }
+      
+      .grid {
+        gap: 20px;
+      }
+      
+      /* Drawer को mobile पर 75% width दी */
+      .drawer {
+        width: 75%;
+        max-width: 75%;
+      }
+      
+      /* Drawer overlay को 75% width दी और right 25% transparent */
+      .drawer-overlay.active {
+        background: linear-gradient(to right, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 75%);
+      }
+      
+      .subject-selector-btn, .performance-subject-btn {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+      
+      .subject-congrats-content {
+        padding: 30px 20px;
+      }
+      
+      .subject-congrats-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .subject-congrats-image {
+        width: 250px;
+        height: 150px;
+      }
+      
+      body {
+        padding-bottom: 65px;
+      }
+      
+      .no-data-image {
+        width: 300px;
+        height: 225px;
+      }
+      
+      .history-content {
+        padding: 20px;
+      }
+      
+      .history-table {
+        font-size: 0.85rem;
+      }
+      
+      .avg-score-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      /* Subject controls को mobile पर row में रखा */
+      .card h2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .subject-controls {
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+      }
+      
+      .subject-controls button {
+        flex: 1;
+        max-width: 48%;
+        padding: 8px 10px;
+        font-size: 0.75rem;
+      }
+      
+      .full-test-toggle {
+        flex-direction: column;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 8px 0;
+      }
+      
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .titles h1 {
+        font-size: 1.2rem;
+      }
+      
+      .nav-btn {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .container {
+        padding: 0 15px;
+      }
+      
+      .cbt-selection, .test-type-selection, .graph-controls {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .cbt-type-btn, .test-type-btn, .graph-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .nav-tab-btn span {
+        display: inline;
+      }
+      
+      .bottom-nav {
+        height: 60px;
+      }
+      
+      .no-data-image {
+        width: 250px;
+        height: 200px;
+      }
+      
+      .avg-score-container {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Mobile पर और छोटा किया */
+      .subject-controls button {
+        padding: 6px 8px;
+        font-size: 0.7rem;
+      }
+      
+      .welcome-content h1 {
+        font-size: 2.2rem;
+      }
+      
+      .welcome-logo {
+        width: 130px;
+        height: 130px;
+      }
+    }
+    
+    /* Fix for mobile touch issues */
+    @media (hover: none) and (pointer: coarse) {
+      button, .nav-btn, .toggle-btn, .subject-selector-btn, .performance-subject-btn {
+        min-height: 44px;
+      }
+      
+      input, select {
+        font-size: 16px !important;
+      }
+    }
+  </style>
+</head>
+<body class="theme-light">
+  <!-- Animated Background Doodles -->
+  <div class="bg-doodle bg-doodle-1"></div>
+  <div class="bg-doodle bg-doodle-2"></div>
+  <div class="bg-doodle bg-doodle-3"></div>
+  
+  <!-- Welcome Screen -->
+  <div id="welcomeScreen">
+    <div class="welcome-content">
+      <div class="welcome-logo">
+        <img src="https://image2url.com/images/1766043743592-6b43d649-a3ae-48d7-8b00-6c6c751e23d7.png" alt="NTPC PRO Logo">
+      </div>
+      <h1>NTPC PRO</h1>
+      <p>Smart tool for RRB NTPC exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.</p>
+      
+      <input type="text" class="name-input" id="studentName" placeholder="Enter your name (e.g., Rahul Sharma)" maxlength="30">
+      
+      <button class="welcome-btn center-button" id="startTracking">
+        <i class="fas fa-rocket"></i> Get Started
+      </button>
+    </div>
+  </div>
+  
+  <!-- Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  
+  <!-- Drawer Menu -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h2><i class="fas fa-bars"></i> Menu</h2>
+      <button class="drawer-close" id="drawerClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="drawer-section">
+        <h3><i class="fas fa-share-alt"></i> Share</h3>
+        <div class="btn-group">
+          <button class="drawer-btn" id="shareProgressBtn">
+            <i class="fas fa-share"></i> Share Progress
+          </button>
+          <button class="drawer-btn" id="shareWebsiteBtn">
+            <i class="fas fa-external-link-alt"></i> Share Website
+          </button>
+          <a href="https://t.me/shailuk7" class="social-link" target="_blank">
+            <i class="fab fa-telegram"></i>
+            <div>
+              <strong>Help and Queries</strong>
+              <small>Get support and ask questions</small>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <div class="drawer-section">
+        <h3><i class="fas fa-cog"></i> Settings</h3>
+        <button class="settings-btn" id="themeSettingsBtn">
+          <span><i class="fas fa-palette"></i> Theme</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="settings-content" id="themeSettings">
+          <div class="theme-selector">
+            <button class="theme-btn active" data-theme="light">Light</button>
+            <button class="theme-btn" data-theme="dark">Dark</button>
+            <button class="theme-btn" data-theme="blue">Blue</button>
+            <button class="theme-btn" data-theme="green">Green</button>
+          </div>
+        </div>
+        
+        <button class="settings-btn" id="languageSettingsBtn">
+          <span><i class="fas fa-language"></i> Language</span>
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="settings-content" id="languageSettings">
+          <div class="language-toggle">
+            <button class="lang-btn active" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="hi">हिंदी</button>
+          </div>
+        </div>
+        
+        <div class="btn-group" style="margin-top: 15px;">
+          <button class="drawer-btn" id="exportBackupBtn">
+            <i class="fas fa-file-export"></i> Export Backup
+          </button>
+          <button class="drawer-btn" id="importBackupBtn">
+            <i class="fas fa-file-import"></i> Import Backup
+          </button>
+          <button class="drawer-btn danger" id="resetBtn">
+            <i class="fas fa-trash-alt"></i> Reset Data
+          </button>
+        </div>
+      </div>
+      
+      <div class="drawer-section">
+        <h3><i class="fas fa-info-circle"></i> Information</h3>
+        <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 10px 0;">
+          NTPC PRO is specifically designed for RRB NTPC exam preparation. 
+          All data is securely stored on your device.
+        </p>
+        <p style="color: var(--accent); margin-top: 15px; font-weight: 600;">
+          <i class="fas fa-heart"></i> Created by: Mr. SHAILENDRA KUSHWAH
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Reset Confirmation Modal -->
+  <div class="reset-modal" id="resetModal">
+    <div class="reset-content">
+      <h2><i class="fas fa-exclamation-triangle"></i> Reset Data</h2>
+      <p>Are you sure you want to reset all progress and data? This action cannot be undone.</p>
+      <p>To confirm, type below: <strong>"RESET MY PROGRESS"</strong></p>
+      <input type="text" class="reset-confirm-input" id="resetConfirmInput" placeholder='Type "RESET MY PROGRESS" here' autocomplete="off">
+      <div class="reset-buttons">
+        <button class="btn-shine" id="resetCancel">Cancel</button>
+        <button class="btn-shine" id="resetConfirm" disabled>Reset</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Test History Modal -->
+  <div class="history-modal" id="historyModal">
+    <div class="history-content">
+      <h2><i class="fas fa-history"></i> Test History (Last 30 Tests)</h2>
+      <div class="history-table-container">
+        <table class="history-table" id="historyTable">
+          <thead>
+            <tr>
+              <th>Test Name</th>
+              <th>Type</th>
+              <th>CBT</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Math</th>
+              <th>Reasoning</th>
+              <th>Awareness</th>
+            </tr>
+          </thead>
+          <tbody id="historyTableBody">
+            <!-- History will be populated here -->
+          </tbody>
+        </table>
+      </div>
+      <button class="close-history center-button" id="closeHistory">Close</button>
+    </div>
+  </div>
+  
+  <!-- Congratulations Modal -->
+  <div class="congrats-modal" id="congratsModal">
+    <div class="congrats-content">
+      <div class="congrats-image">
+        <img src="https://image2url.com/images/1765975197197-8aa80c1d-a2b5-4a02-9cea-1ff7fd633603.gif" alt="Celebration GIF">
+      </div>
+      <h2>Congratulations!</h2>
+      <p id="congratsMessage">You have completed a topic! Your hard work will lead you to success.</p>
+      <div class="button-container">
+        <button class="close-congrats" id="closeCongrats">Continue</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- BIG Subject Completion Modal -->
+  <div class="subject-congrats-modal" id="subjectCongratsModal">
+    <div class="subject-congrats-content">
+      <div class="subject-congrats-image">
+        <img src="https://image2url.com/images/1765976345459-aeef2c0d-aefc-4950-884c-b98396e811bc.png" alt="Big Trophy">
+      </div>
+      <h2 id="subjectCongratsTitle">Amazing Achievement!</h2>
+      <p id="subjectCongratsMessage">You have successfully completed an entire subject! Your dedication is inspiring.</p>
+      <div class="button-container">
+        <button class="close-subject-congrats" id="closeSubjectCongrats">Celebrate & Continue</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main App -->
+  <div id="mainApp" style="display: none;">
+    <header>
+      <div class="nav-container">
+        <div class="brand">
+          <div class="logo">
+            <img src="https://image2url.com/images/1766043743592-6b43d649-a3ae-48d7-8b00-6c6c751e23d7.png" alt="NTPC PRO Logo">
+          </div>
+          <div class="titles">
+            <h1>NTPC PRO</h1>
+            <p><span class="greeting" id="greetingText">Welcome</span></p>
+          </div>
+        </div>
+        <div class="nav-controls">
+          <button class="nav-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="container">
+      <!-- Syllabus Tab -->
+      <div class="tab-content active" id="syllabus-tab">
+        <div class="grid">
+          <!-- Subjects List -->
+          <div class="card">
+            <h2>
+              <i class="fas fa-graduation-cap"></i> Subjects and Topics <span id="totalProgress">(0% Complete)</span>
+              <div class="subject-controls">
+                <button id="expandAll">
+                  <i class="fas fa-expand-alt"></i> Expand All
+                </button>
+                <button id="collapseAll">
+                  <i class="fas fa-compress-alt"></i> Collapse All
+                </button>
+              </div>
+            </h2>
+            <div class="body">
+              <div id="subjectsContainer"></div>
+            </div>
+          </div>
+          
+          <!-- Progress Overview -->
+          <div class="card">
+            <h2><i class="fas fa-chart-pie"></i> Progress Overview</h2>
+            <div class="body charts">
+              <!-- Graph View Switch -->
+              <div class="graph-view-switch" id="graphViewSwitch">
+                <button class="view-btn active" data-view="overall">
+                  <i class="fas fa-globe"></i> Overall Syllabus
+                </button>
+                <button class="view-btn" data-view="subject">
+                  <i class="fas fa-book"></i> Subject-wise Graph
+                </button>
+              </div>
+              
+              <!-- Overall Graph View -->
+              <div id="overallGraphView">
+                <div class="overall-chart">
+                  <svg class="overall-donut" viewBox="0 0 200 200" aria-label="Overall completion donut">
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="var(--border)" stroke-width="25"/>
+                    <circle id="donutOverall" cx="100" cy="100" r="85" fill="none" stroke="url(#gradOverall)" stroke-width="25" stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534"/>
+                    <defs>
+                      <linearGradient id="gradOverall" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="var(--accent)"/>
+                        <stop offset="100%" stop-color="var(--accent-3)"/>
+                      </linearGradient>
+                    </defs>
+                    <text x="100" y="105" text-anchor="middle" id="overallText">0%</text>
+                  </svg>
+                  <div class="legend">
+                    <div class="legend-item"><span class="dot done"></span>Completed</div>
+                    <div class="legend-item"><span class="dot todo"></span>Remaining</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Subject Graph View -->
+              <div id="subjectGraphView" style="display: none;">
+                <div class="subject-selector-container">
+                  <div class="subject-selector-title">
+                    <i class="fas fa-filter"></i> Select Subject
+                  </div>
+                  <div class="subject-selector" id="subjectSelector">
+                    <!-- Subject buttons will be dynamically generated -->
+                  </div>
+                </div>
+                
+                <div class="subject-chart-container" id="selectedSubjectChart">
+                  <div class="subject-donut-chart">
+                    <svg viewBox="0 0 200 200" id="subjectDonutSvg">
+                      <circle cx="100" cy="100" r="85" fill="none" stroke="var(--border)" stroke-width="25"/>
+                      <circle id="subjectDonut" cx="100" cy="100" r="85" fill="none" stroke="url(#gradSubject)" stroke-width="25" stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534"/>
+                      <defs>
+                        <linearGradient id="gradSubject" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="var(--accent)"/>
+                          <stop offset="100%" stop-color="var(--accent-3)"/>
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <div class="subject-chart-percentage" id="subjectChartPercentage">0%</div>
+                  </div>
+                  <div class="legend">
+                    <div class="legend-item"><span class="dot done"></span>Completed</div>
+                    <div class="legend-item"><span class="dot todo"></span>Remaining</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mock Analysis Tab -->
+      <div class="tab-content" id="mock-analysis-tab">
+        <div class="card">
+          <h2><i class="fas fa-chart-line"></i> Mock Test Analysis</h2>
+          <div class="body">
+            <!-- CBT Selection -->
+            <div class="cbt-selection">
+              <button class="cbt-type-btn active" data-cbt="cbt1">
+                <i class="fas fa-file-alt"></i> CBT-1 (100 marks)
+              </button>
+              <button class="cbt-type-btn" data-cbt="cbt2">
+                <i class="fas fa-file-alt"></i> CBT-2 (120 marks)
+              </button>
+            </div>
+            
+            <!-- Test Type Selection -->
+            <div class="test-type-selection">
+              <button class="test-type-btn active" data-test-type="full">
+                <i class="fas fa-clipboard-check"></i> Full Test
+              </button>
+              <button class="test-type-btn" data-test-type="math">
+                <i class="fas fa-calculator"></i> Mathematics
+              </button>
+              <button class="test-type-btn" data-test-type="reasoning">
+                <i class="fas fa-brain"></i> Reasoning
+              </button>
+              <button class="test-type-btn" data-test-type="awareness">
+                <i class="fas fa-globe-asia"></i> General Awareness
+              </button>
+            </div>
+            
+            <div class="cbt-container">
+              <div class="card">
+                <h3 id="testFormTitle"><i class="fas fa-edit"></i> Full Test Marks Entry</h3>
+                <div class="body">
+                  <form class="cbt-form" id="cbtForm">
+                    <div class="form-group">
+                      <label for="testName">Test Name:</label>
+                      <input type="text" id="testName" placeholder="e.g., Mock Test 1, Previous Year Paper" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="testDate">Date:</label>
+                      <input type="date" id="testDate" required>
+                    </div>
+                    
+                    <!-- Full Test Fields (Initially visible) -->
+                    <div id="fullTestFields">
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="mathMarks">Mathematics (marks):</label>
+                          <input type="number" id="mathMarks" min="0" max="30" placeholder="0-30">
+                        </div>
+                        <div class="form-group">
+                          <label for="reasoningMarks">Reasoning (marks):</label>
+                          <input type="number" id="reasoningMarks" min="0" max="30" placeholder="0-30">
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group">
+                          <label for="awarenessMarks">General Awareness (marks):</label>
+                          <input type="number" id="awarenessMarks" min="0" max="40" placeholder="0-40">
+                        </div>
+                        <div class="form-group">
+                          <label for="accuracy">Accuracy (%):</label>
+                          <input type="number" id="accuracy" min="0" max="100" placeholder="0-100" step="0.1">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="totalMarks">Total Marks (auto):</label>
+                        <input type="number" id="totalMarks" min="0" max="100" placeholder="0-100" readonly>
+                      </div>
+                    </div>
+                    
+                    <!-- Sectional Test Fields (Initially hidden) -->
+                    <div id="sectionalTestFields" style="display: none;">
+                      <div class="form-group">
+                        <label id="sectionalMarksLabel">Marks:</label>
+                        <input type="number" id="sectionalMarks" min="0" max="30" placeholder="0-30">
+                      </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-shine center-button">
+                      <i class="fas fa-save"></i> Save & Update Graphs
+                    </button>
+                  </form>
+                  
+                  <!-- History Button -->
+                  <button class="history-btn center-button" id="showHistoryBtn">
+                    <i class="fas fa-history"></i> View Test History (Last 30 Tests)
+                  </button>
+                </div>
+              </div>
+              
+              <div class="card">
+                <h3><i class="fas fa-trophy"></i> Latest Performance</h3>
+                <div class="body">
+                  <div id="latestPerformance">
+                    <div class="no-data-container">
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
+                      <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Graph 1: Full Test Performance -->
+              <div class="card cbt-card">
+                <h3><i class="fas fa-chart-line"></i> Full Test Performance</h3>
+                <div class="body">
+                  <div class="graph-cbt-toggle" id="graph1CbtToggle">
+                    <button class="graph-cbt-btn active" data-cbt="cbt1">
+                      <i class="fas fa-file-alt"></i> CBT-1
+                    </button>
+                    <button class="graph-cbt-btn" data-cbt="cbt2">
+                      <i class="fas fa-file-alt"></i> CBT-2
+                    </button>
+                  </div>
+                  
+                  <!-- Full Test Subject Toggle -->
+                  <div class="full-test-toggle" id="fullTestToggle">
+                    <button class="full-test-btn active" data-view="total">
+                      <i class="fas fa-chart-line"></i> Total Marks
+                    </button>
+                    <button class="full-test-btn" data-view="math">
+                      <i class="fas fa-calculator"></i> Mathematics
+                    </button>
+                    <button class="full-test-btn" data-view="reasoning">
+                      <i class="fas fa-brain"></i> Reasoning
+                    </button>
+                    <button class="full-test-btn" data-view="awareness">
+                      <i class="fas fa-globe-asia"></i> Awareness
+                    </button>
+                  </div>
+                  
+                  <p class="graph-info" id="fullTestGraphInfo">Shows full test scores and accuracy</p>
+                  <div id="fullTestGraphContainer">
+                    <canvas id="fullTestChart" class="chart-canvas"></canvas>
+                  </div>
+                  <div id="fullTestNoData" style="display: none;">
+                    <div class="no-data-container">
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
+                      <p style="color: var(--muted); margin: 10px 0;">No full test data available for selected CBT.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Graph 2: Subject-wise Performance -->
+              <div class="card cbt-card">
+                <h3><i class="fas fa-chart-bar"></i> Subject-wise Performance</h3>
+                <div class="body">
+                  <div class="graph-cbt-toggle" id="graph2CbtToggle">
+                    <button class="graph-cbt-btn active" data-cbt="cbt1">
+                      <i class="fas fa-file-alt"></i> CBT-1
+                    </button>
+                    <button class="graph-cbt-btn" data-cbt="cbt2">
+                      <i class="fas fa-file-alt"></i> CBT-2
+                    </button>
+                  </div>
+                  <p class="graph-info">Sectional test data only (full test marks not included)</p>
+                  <div class="performance-subject-buttons" id="subjectGraphButtons">
+                    <button class="performance-subject-btn active" data-subject="math">
+                      <i class="fas fa-calculator"></i> Mathematics
+                    </button>
+                    <button class="performance-subject-btn" data-subject="reasoning">
+                      <i class="fas fa-brain"></i> Reasoning
+                    </button>
+                    <button class="performance-subject-btn" data-subject="awareness">
+                      <i class="fas fa-globe-asia"></i> General Awareness
+                    </button>
+                  </div>
+                  <div id="subjectGraphContainer">
+                    <canvas id="subjectChart" class="chart-canvas"></canvas>
+                  </div>
+                  <div id="subjectNoData" style="display: none;">
+                    <div class="no-data-container">
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
+                      <p style="color: var(--muted); margin: 10px 0;">No subject test data available for selected CBT.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Graph 3: Accuracy Analysis -->
+              <div class="card cbt-card">
+                <h3><i class="fas fa-bullseye"></i> Accuracy Analysis</h3>
+                <div class="body">
+                  <div class="graph-cbt-toggle" id="graph3CbtToggle">
+                    <button class="graph-cbt-btn active" data-cbt="cbt1">
+                      <i class="fas fa-file-alt"></i> CBT-1
+                    </button>
+                    <button class="graph-cbt-btn" data-cbt="cbt2">
+                      <i class="fas fa-file-alt"></i> CBT-2
+                    </button>
+                  </div>
+                  <p class="graph-info">Accuracy from full tests only</p>
+                  <div id="accuracyGraphContainer">
+                    <canvas id="accuracyChart" class="chart-canvas"></canvas>
+                  </div>
+                  <div id="accuracyNoData" style="display: none;">
+                    <div class="no-data-container">
+                      <div class="no-data-image">
+                        <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+                      </div>
+                      <p style="color: var(--muted); margin: 10px 0;">No accuracy data available for selected CBT.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Average Scores Card -->
+              <div class="card cbt-card">
+                <h3><i class="fas fa-chart-pie"></i> Average Scores</h3>
+                <div class="body">
+                  <div class="avg-score-container" id="avgScoreContainer">
+                    <!-- Average scores will be populated here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+      <div class="nav-tabs">
+        <button class="nav-tab-btn active" data-tab="syllabus">
+          <i class="fas fa-book-open"></i> <span>Tracker</span>
+        </button>
+        <button class="nav-tab-btn" data-tab="mock-analysis">
+          <i class="fas fa-chart-line"></i> <span>Analysis</span>
+        </button>
+      </div>
+    </div>
+    
+    <footer>
+      © <span class="creator">NTPC PRO 2026</span> — RRB NTPC Syllabus Tracker
+    </footer>
+  </div>
+  
+  <!-- Hidden file input for import -->
+  <input type="file" id="importFile" accept=".json" style="display:none">
+  
+  <script>
+    // ========== CONFIGURATION ==========
+    const CONFIG = {
+      appName: "NTPC PRO",
+      appVersion: "2026.4.0",
+      
+      // Hindi Translations
+      translations: {
+        en: {
+          appName: "NTPC PRO",
+          welcomeTitle: "NTPC PRO",
+          welcomeSubtitle: "Smart tool for RRB NTPC exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.",
+          namePlaceholder: "Enter your name (e.g., Rahul Sharma)",
+          getStarted: "Get Started",
+          continue: "Continue",
+          subjects: "Subjects and Topics",
+          progressOverview: "Progress Overview",
+          mockAnalysis: "Mock Analysis",
+          syllabusTracker: "Syllabus Tracker",
+          overallSyllabus: "Overall Syllabus",
+          subjectWiseGraph: "Subject-wise Graph",
+          selectSubject: "Select Subject",
+          cbt1: "CBT-1 (100 marks)",
+          cbt2: "CBT-2 (120 marks)",
+          fullTest: "Full Test",
+          mathematics: "Mathematics",
+          reasoning: "Reasoning",
+          generalAwareness: "General Awareness",
+          testName: "Test Name:",
+          date: "Date:",
+          mathMarks: "Mathematics (marks):",
+          reasoningMarks: "Reasoning (marks):",
+          awarenessMarks: "General Awareness (marks):",
+          accuracy: "Accuracy (%):",
+          totalMarks: "Total Marks (auto):",
+          marks: "Marks:",
+          save: "Save & Update Graphs",
+          latestPerformance: "Latest Performance",
+          performanceGraphs: "Performance Graphs",
+          fullTestGraph: "Full Test",
+          mathGraph: "Mathematics",
+          reasoningGraph: "Reasoning",
+          gsGraph: "General Awareness",
+          accuracyGraph: "Accuracy",
+          noData: "No test data yet. Add your first test entry.",
+          expandAll: "Expand All",
+          collapseAll: "Collapse All",
+          resetConfirm: "RESET MY PROGRESS",
+          resetPlaceholder: 'Type "RESET MY PROGRESS" here',
+          shareProgress: "Share Progress",
+          shareWebsite: "Share Website",
+          generateImage: "Generate Progress Image",
+          helpQueries: "Help and Queries",
+          exportBackup: "Export Backup",
+          importBackup: "Import Backup",
+          resetData: "Reset Data",
+          createdBy: "Created by: Mr. SHAILENDRA KUSHWAH",
+          footerText: "© NTPC PRO 2026 — RRB NTPC Syllabus Tracker",
+          congratulations: "Congratulations!",
+          congratsMessage: "You have completed a topic! Your hard work will lead you to success.",
+          subjectCongrats: "Amazing Achievement!",
+          subjectCongratsMessage: "You have successfully completed an entire subject! Your dedication is inspiring.",
+          continueBtn: "Continue",
+          celebrateBtn: "Celebrate & Continue",
+          completed: "Completed",
+          remaining: "Remaining",
+          viewHistory: "View Test History",
+          testHistory: "Test History",
+          avgScore: "Average Score",
+          cbt1Avg: "CBT-1 Average",
+          cbt2Avg: "CBT-2 Average",
+          overallAvg: "Overall Average",
+          fullTests: "Full Tests",
+          mathTests: "Math Tests",
+          reasoningTests: "Reasoning Tests",
+          awarenessTests: "Awareness Tests",
+          tests: "tests",
+          percentage: "Percentage",
+          downloadImage: "Download Image",
+          shareImage: "Share Image",
+          closeImage: "Close"
+        },
+        hi: {
+          appName: "एनटीपीसी प्रो",
+          welcomeTitle: "एनटीपीसी प्रो",
+          welcomeSubtitle: "आरआरबी एनटीपीसी परीक्षा की तैयारी के लिए स्मार्ट टूल। विषय-वार प्रगति ट्रैक करें, मॉक टेस्ट का विश्लेषण करें, और अपने प्रदर्शन में सुधार करें।",
+          namePlaceholder: "अपना नाम दर्ज करें (जैसे, राहुल शर्मा)",
+          getStarted: "शुरू करें",
+          continue: "जारी रखें",
+          subjects: "विषय और टॉपिक्स",
+          progressOverview: "प्रगति अवलोकन",
+          mockAnalysis: "मॉक विश्लेषण",
+          syllabusTracker: "पाठ्यक्रम ट्रैकर",
+          overallSyllabus: "समग्र पाठ्यक्रम",
+          subjectWiseGraph: "विषय-वार ग्राफ",
+          selectSubject: "विषय चुनें",
+          cbt1: "सीबीटी-1 (100 अंक)",
+          cbt2: "सीबीटी-2 (120 अंक)",
+          fullTest: "पूर्ण परीक्षा",
+          mathematics: "गणित",
+          reasoning: "तर्कशक्ति",
+          generalAwareness: "सामान्य जागरूकता",
+          testName: "टेस्ट नाम:",
+          date: "तारीख:",
+          mathMarks: "गणित (अंक):",
+          reasoningMarks: "तर्कशक्ति (अंक):",
+          awarenessMarks: "सामान्य जागरूकता (अंक):",
+          accuracy: "सटीकता (%):",
+          totalMarks: "कुल अंक (स्वचालित):",
+          marks: "अंक:",
+          save: "सहेजें और ग्राफ अपडेट करें",
+          latestPerformance: "नवीनतम प्रदर्शन",
+          performanceGraphs: "प्रदर्शन ग्राफ",
+          fullTestGraph: "पूर्ण परीक्षा",
+          mathGraph: "गणित",
+          reasoningGraph: "तर्कशक्ति",
+          gsGraph: "सामान्य जागरूकता",
+          accuracyGraph: "सटीकता",
+          noData: "अभी तक कोई टेस्ट डेटा नहीं है। अपनी पहली टेस्ट एंट्री जोड़ें।",
+          expandAll: "सभी विस्तारित करें",
+          collapseAll: "सभी संक्षिप्त करें",
+          resetConfirm: "मेरी प्रगति रीसेट करें",
+          resetPlaceholder: '"मेरी प्रगति रीसेट करें" टाइप करें',
+          shareProgress: "प्रगति साझा करें",
+          shareWebsite: "वेबसाइट साझा करें",
+          generateImage: "प्रगति छवि बनाएं",
+          helpQueries: "सहायता और प्रश्न",
+          exportBackup: "बैकअप निर्यात करें",
+          importBackup: "बैकअप आयात करें",
+          resetData: "डेटा रीसेट करें",
+          createdBy: "बनाया गया: श्री शैलेंद्र कुशवाह द्वारा",
+          footerText: "© एनटीपीसी प्रो 2026 — आरआरबी एनटीपीसी पाठ्यक्रम ट्रैकर",
+          congratulations: "बधाई हो!",
+          congratsMessage: "आपने एक टॉपिक पूरा कर लिया है! आपकी मेहनत आपको सफलता की ओर ले जाएगी।",
+          subjectCongrats: "अद्भुत उपलब्धि!",
+          subjectCongratsMessage: "आपने पूरा विषय सफलतापूर्वक पूरा कर लिया है! आपका समर्पण प्रेरणादायक है।",
+          continueBtn: "जारी रखें",
+          celebrateBtn: "जश्न मनाएं और जारी रखें",
+          completed: "पूर्ण",
+          remaining: "शेष",
+          viewHistory: "टेस्ट इतिहास देखें",
+          testHistory: "टेस्ट इतिहास",
+          avgScore: "औसत स्कोर",
+          cbt1Avg: "सीबीटी-1 औसत",
+          cbt2Avg: "सीबीटी-2 औसत",
+          overallAvg: "कुल औसत",
+          fullTests: "पूर्ण टेस्ट",
+          mathTests: "गणित टेस्ट",
+          reasoningTests: "तर्कशक्ति टेस्ट",
+          awarenessTests: "सामान्य जागरूकता टेस्ट",
+          tests: "टेस्ट",
+          percentage: "प्रतिशत",
+          downloadImage: "छवि डाउनलोड करें",
+          shareImage: "छवि साझा करें",
+          closeImage: "बंद करें"
+        }
+      },
+      
+      // Subjects with Hindi translations
+      subjects: [
+        {
+          id: "arithmetic",
+          title: { en: "Arithmetic", hi: "अंकगणित" },
+          colorClass: "arithmetic",
+          weight: 1,
+          topics: [
+            { id:"numSys", name: { en:"Number System", hi:"संख्या प्रणाली" }, hint: { en:"Number system, decimals, fractions, LCM and HCF", hi:"संख्या प्रणाली, दशमलव, भिन्न, लघुत्तम समापवर्त्य और महत्तम समापवर्तक" }, weight:1, stars: 3 },
+            { id:"ratio", name: { en:"Ratio and Proportion", hi:"अनुपात और समानुपात" }, hint: { en:"Ratio and proportion", hi:"अनुपात और समानुपात" }, weight:1, stars: 2 },
+            { id:"percent", name: { en:"Percentage", hi:"प्रतिशत" }, hint: { en:"Percentage", hi:"प्रतिशत" }, weight:1, stars: 3 },
+            { id:"mensuration", name: { en:"Mensuration", hi:"क्षेत्रमिति" }, hint: { en:"Mensuration", hi:"क्षेत्रमिति" }, weight:1, stars: 2 },
+            { id:"timeWork", name: { en:"Time and Work", hi:"समय और कार्य" }, hint: { en:"Time and work", hi:"समय और कार्य" }, weight:1, stars: 3 },
+            { id:"speedTime", name: { en:"Speed, Time and Distance", hi:"गति, समय और दूरी" }, hint: { en:"Speed, time and distance", hi:"गति, समय और दूरी" }, weight:1, stars: 3 },
+            { id:"simpleInterest", name: { en:"Simple and Compound Interest", hi:"साधारण और चक्रवृद्धि ब्याज" }, hint: { en:"Simple and compound interest", hi:"साधारण और चक्रवृद्धि ब्याज" }, weight:1, stars: 2 },
+            { id:"profitLoss", name: { en:"Profit and Loss", hi:"लाभ और हानि" }, hint: { en:"Profit and loss", hi:"लाभ और हानि" }, weight:1, stars: 2 },
+            { id:"dataInterpretation", name: { en:"Data Interpretation", hi:"डेटा व्याख्या" }, hint: { en:"Data interpretation", hi:"डेटा व्याख्या" }, weight:1, stars: 3 },
+            { id:"simplification", name: { en:"Simplification", hi:"सरलीकरण" }, hint: { en:"Simplification", hi:"सरलीकरण" }, weight:1, stars: 2 }
+          ]
+        },
+        {
+          id: "advanced-math",
+          title: { en: "Advanced Mathematics", hi: "उन्नत गणित" },
+          colorClass: "advanced-math",
+          weight: 1,
+          topics: [
+            { id:"algebra", name: { en:"Elementary Algebra", hi:"प्रारंभिक बीजगणित" }, hint: { en:"Elementary algebra", hi:"प्रारंभिक बीजगणित" }, weight:1, stars: 3 },
+            { id:"geometry", name: { en:"Geometry", hi:"ज्यामिति" }, hint: { en:"Geometry", hi:"ज्यामिति" }, weight:1, stars: 2 },
+            { id:"trigonometry", name: { en:"Trigonometry", hi:"त्रिकोणमिति" }, hint: { en:"Trigonometry", hi:"त्रिकोणमिति" }, weight:1, stars: 1 },
+            { id:"statistics", name: { en:"Elementary Statistics", hi:"प्रारंभिक सांख्यिकी" }, hint: { en:"Elementary statistics", hi:"प्रारंभिक सांख्यिकी" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "reasoning",
+          title: { en: "Reasoning Ability", hi: "तार्किक योग्यता" },
+          colorClass: "reasoning",
+          weight: 1,
+          topics: [
+            { id:"analogies", name: { en:"Analogies", hi:"सादृश्यता" }, hint: { en:"Analogies", hi:"सादृश्यता" }, weight:1, stars: 2 },
+            { id:"series", name: { en:"Number and Alphabet Series", hi:"संख्या और वर्णमाला श्रृंखला" }, hint: { en:"Completing number and alphabet series", hi:"संख्या और वर्णमाला श्रृंखला पूरी करना" }, weight:1, stars: 3 },
+            { id:"coding", name: { en:"Coding and Decoding", hi:"कोडिंग और डिकोडिंग" }, hint: { en:"Coding and decoding", hi:"कोडिंग और डिकोडिंग" }, weight:1, stars: 3 },
+            { id:"mathOps", name: { en:"Mathematical Operations", hi:"गणितीय संक्रियाएं" }, hint: { en:"Mathematical operations", hi:"गणितीय संक्रियाएं" }, weight:1, stars: 2 },
+            { id:"similarities", name: { en:"Similarities and Differences", hi:"समानताएं और अंतर" }, hint: { en:"Similarities and differences", hi:"समानताएं और अंतर" }, weight:1, stars: 1 },
+            { id:"relationships", name: { en:"Relationships", hi:"संबंध" }, hint: { en:"Relationships", hi:"संबंध" }, weight:1, stars: 1 },
+            { id:"analytical", name: { en:"Analytical Reasoning", hi:"विश्लेषणात्मक तर्क" }, hint: { en:"Analytical reasoning", hi:"विश्लेषणात्मक तर्क" }, weight:1, stars: 3 },
+            { id:"syllogism", name: { en:"Syllogism", hi:"न्यायवाक्य" }, hint: { en:"Syllogism", hi:"न्यायवाक्य" }, weight:1, stars: 3 },
+            { id:"jumbling", name: { en:"Jumbling", hi:"जंबलिंग" }, hint: { en:"Jumbling", hi:"जंबलिंग" }, weight:1, stars: 2 },
+            { id:"venn", name: { en:"Venn Diagrams", hi:"वेन आरेख" }, hint: { en:"Venn diagrams", hi:"वेन आरेख" }, weight:1, stars: 2 },
+            { id:"puzzle", name: { en:"Puzzle", hi:"पहेली" }, hint: { en:"Puzzle", hi:"पहेली" }, weight:1, stars: 3 },
+            { id:"dataSuff", name: { en:"Data Sufficiency", hi:"डेटा पर्याप्तता" }, hint: { en:"Data sufficiency", hi:"डेटा पर्याप्तता" }, weight:1, stars: 2 },
+            { id:"statementConcl", name: { en:"Statement-Conclusion", hi:"कथन-निष्कर्ष" }, hint: { en:"Statement-conclusion", hi:"कथन-निष्कर्ष" }, weight:1, stars: 2 },
+            { id:"coursesAction", name: { en:"Courses of Action", hi:"कार्रवाई के तरीके" }, hint: { en:"Statement: courses of action", hi:"कथन: कार्रवाई के तरीके" }, weight:1, stars: 1 },
+            { id:"decisionMaking", name: { en:"Decision Making", hi:"निर्णय लेना" }, hint: { en:"Decision making", hi:"निर्णय लेना" }, weight:1, stars: 1 },
+            { id:"maps", name: { en:"Maps", hi:"मानचित्र" }, hint: { en:"Maps", hi:"मानचित्र" }, weight:1, stars: 1 },
+            { id:"graphs", name: { en:"Graph Interpretation", hi:"ग्राफ व्याख्या" }, hint: { en:"Graph interpretation", hi:"ग्राफ व्याख्या" }, weight:1, stars: 2 }
+          ]
+        },
+        {
+          id: "history",
+          title: { en: "Indian History", hi: "भारतीय इतिहास" },
+          colorClass: "history",
+          weight: 1,
+          topics: [
+            { id:"ancientHistory", name: { en:"Ancient Indian History", hi:"प्राचीन भारतीय इतिहास" }, hint: { en:"Indus Valley Civilization, Vedic Period, Maurya Empire, Gupta Empire", hi:"सिंधु घाटी सभ्यता, वैदिक काल, मौर्य साम्राज्य, गुप्त साम्राज्य" }, weight:1, stars: 2 },
+            { id:"medievalHistory", name: { en:"Medieval Indian History", hi:"मध्यकालीन भारतीय इतिहास" }, hint: { en:"Delhi Sultanate, Mughal Empire, Vijayanagara Empire, Maratha Empire", hi:"दिल्ली सल्तनत, मुगल साम्राज्य, विजयनगर साम्राज्य, मराठा साम्राज्य" }, weight:1, stars: 2 },
+            { id:"modernHistory", name: { en:"Modern Indian History", hi:"आधुनिक भारतीय इतिहास" }, hint: { en:"British rule, Revolt of 1857, Indian National Movement, Independence", hi:"ब्रिटिश शासन, 1857 का विद्रोह, भारतीय राष्ट्रीय आंदोलन, स्वतंत्रता" }, weight:1, stars: 3 },
+            { id:"freedomStruggle", name: { en:"Freedom Struggle", hi:"स्वतंत्रता संग्राम" }, hint: { en:"Major events and leaders of Indian freedom struggle", hi:"भारतीय स्वतंत्रता संग्राम की प्रमुख घटनाएं और नेता" }, weight:1, stars: 3 },
+            { id:"indianCulture", name: { en:"Indian Art and Culture", hi:"भारतीय कला और संस्कृति" }, hint: { en:"Indian art, culture, architecture and festivals", hi:"भारतीय कला, संस्कृति, वास्तुकला और त्योहार" }, weight:1, stars: 2 },
+            { id:"worldHistory", name: { en:"World History", hi:"विश्व इतिहास" }, hint: { en:"Major events in world history", hi:"विश्व इतिहास की प्रमुख घटनाएं" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "polity",
+          title: { en: "Indian Polity", hi: "भारतीय राजव्यवस्था" },
+          colorClass: "polity",
+          weight: 1,
+          topics: [
+            { id:"constitution", name: { en:"Indian Constitution", hi:"भारतीय संविधान" }, hint: { en:"Constitution making, preamble, fundamental rights and duties", hi:"संविधान निर्माण, प्रस्तावना, मौलिक अधिकार और कर्तव्य" }, weight:1, stars: 3 },
+            { id:"politicalSystem", name: { en:"Political System", hi:"राजनीतिक व्यवस्था" }, hint: { en:"Parliament, President, Prime Minister, Cabinet", hi:"संसद, राष्ट्रपति, प्रधानमंत्री, मंत्रिमंडल" }, weight:1, stars: 3 },
+            { id:"judiciary", name: { en:"Judiciary", hi:"न्यायपालिका" }, hint: { en:"Supreme Court, High Court, judicial system", hi:"सुप्रीम कोर्ट, हाई कोर्ट, न्यायिक प्रणाली" }, weight:1, stars: 2 },
+            { id:"centralState", name: { en:"Center-State Relations", hi:"केंद्र-राज्य संबंध" }, hint: { en:"Relations between center and state governments", hi:"केंद्र और राज्य सरकारों के बीच संबंध" }, weight:1, stars: 2 },
+            { id:"localGovt", name: { en:"Local Government", hi:"स्थानीय सरकार" }, hint: { en:"Panchayati Raj, Municipal Corporation", hi:"पंचायती राज, नगर निगम" }, weight:1, stars: 1 },
+            { id:"constitutionalBodies", name: { en:"Constitutional Bodies", hi:"संवैधानिक निकाय" }, hint: { en:"Election Commission, UPSC, CAG", hi:"चुनाव आयोग, यूपीएससी, सीएजी" }, weight:1, stars: 2 }
+          ]
+        },
+        {
+          id: "geography",
+          title: { en: "Geography", hi: "भूगोल" },
+          colorClass: "geography",
+          weight: 1,
+          topics: [
+            { id:"physicalGeo", name: { en:"Physical Geography", hi:"भौतिक भूगोल" }, hint: { en:"Mountains, plateaus, plains, rivers, climate", hi:"पर्वत, पठार, मैदान, नदियाँ, जलवायु" }, weight:1, stars: 3 },
+            { id:"indianGeo", name: { en:"Geography of India", hi:"भारत का भूगोल" }, hint: { en:"Geographical features of India, states and capitals", hi:"भारत की भौगोलिक विशेषताएं, राज्य और राजधानियाँ" }, weight:1, stars: 3 },
+            { id:"worldGeo", name: { en:"World Geography", hi:"विश्व भूगोल" }, hint: { en:"Continents, oceans, important places", hi:"महाद्वीप, महासागर, महत्वपूर्ण स्थान" }, weight:1, stars: 2 },
+            { id:"economicGeo", name: { en:"Economic Geography", hi:"आर्थिक भूगोल" }, hint: { en:"Agriculture, minerals, industry, transport", hi:"कृषि, खनिज, उद्योग, परिवहन" }, weight:1, stars: 2 },
+            { id:"environment", name: { en:"Environment and Ecology", hi:"पर्यावरण और पारिस्थितिकी" }, hint: { en:"Environmental issues, conservation, national parks", hi:"पर्यावरणीय मुद्दे, संरक्षण, राष्ट्रीय उद्यान" }, weight:1, stars: 2 },
+            { id:"disasterMgmt", name: { en:"Disaster Management", hi:"आपदा प्रबंधन" }, hint: { en:"Natural disasters and their management", hi:"प्राकृतिक आपदाएं और उनका प्रबंधन" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "economy",
+          title: { en: "Economy", hi: "अर्थव्यवस्था" },
+          colorClass: "economy",
+          weight: 1,
+          topics: [
+            { id:"basicConcepts", name: { en:"Basic Concepts of Economy", hi:"अर्थव्यवस्था की मूल अवधारणाएं" }, hint: { en:"Demand and supply, inflation, unemployment", hi:"मांग और आपूर्ति, मुद्रास्फीति, बेरोजगारी" }, weight:1, stars: 3 },
+            { id:"indianEconomy", name: { en:"Indian Economy", hi:"भारतीय अर्थव्यवस्था" }, hint: { en:"Planning, budget, banking, tax system", hi:"योजना, बजट, बैंकिंग, कर प्रणाली" }, weight:1, stars: 3 },
+            { id:"economicTerms", name: { en:"Economic Terminology", hi:"आर्थिक शब्दावली" }, hint: { en:"GDP, GNP, repo rate, reverse repo", hi:"जीडीपी, जीएनपी, रेपो रेट, रिवर्स रेपो" }, weight:1, stars: 2 },
+            { id:"agriculture", name: { en:"Agriculture and Rural Development", hi:"कृषि और ग्रामीण विकास" }, hint: { en:"Agricultural policies, Green Revolution", hi:"कृषि नीतियां, हरित क्रांति" }, weight:1, stars: 2 },
+            { id:"industry", name: { en:"Industry and Infrastructure", hi:"उद्योग और अवसंरचना" }, hint: { en:"Industrial policies, infrastructure projects", hi:"औद्योगिक नीतियां, अवसंरचना परियोजनाएं" }, weight:1, stars: 2 },
+            { id:"internationalEco", name: { en:"International Economy", hi:"अंतर्राष्ट्रीय अर्थव्यवस्था" }, hint: { en:"World Bank, IMF, WTO", hi:"विश्व बैंक, आईएमएफ, डब्ल्यूटीओ" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "static-gk",
+          title: { en: "Static GK", hi: "स्थिर सामान्य ज्ञान" },
+          colorClass: "static-gk",
+          weight: 1,
+          topics: [
+            { id:"awards", name: { en:"Awards and Honors", hi:"पुरस्कार और सम्मान" }, hint: { en:"Bharat Ratna, Padma Awards, Nobel Prize", hi:"भारत रतन, पद्म पुरस्कार, नोबेल पुरस्कार" }, weight:1, stars: 2 },
+            { id:"booksAuthors", name: { en:"Books and Authors", hi:"पुस्तकें और लेखक" }, hint: { en:"Famous books and their authors", hi:"प्रसिद्ध पुस्तकें और उनके लेखक" }, weight:1, stars: 2 },
+            { id:"importantDays", name: { en:"Important Days", hi:"महत्वपूर्ण दिवस" }, hint: { en:"National and international days", hi:"राष्ट्रीय और अंतर्राष्ट्रीय दिवस" }, weight:1, stars: 1 },
+            { id:"sports", name: { en:"Sports", hi:"खेल" }, hint: { en:"Sports competitions, awards, players", hi:"खेल प्रतियोगिताएं, पुरस्कार, खिलाड़ी" }, weight:1, stars: 1 },
+            { id:"inventions", name: { en:"Inventions and Inventors", hi:"आविष्कार और आविष्कारक" }, hint: { en:"Important inventions and inventors", hi:"महत्वपूर्ण आविष्कार और आविष्कारक" }, weight:1, stars: 1 },
+            { id:"capitalsCurrencies", name: { en:"Capitals and Currencies", hi:"राजधानियाँ और मुद्राएं" }, hint: { en:"Capitals and currencies of countries", hi:"देशों की राजधानियाँ और मुद्राएं" }, weight:1, stars: 2 },
+            { id:"organizations", name: { en:"Organizations and Headquarters", hi:"संगठन और मुख्यालय" }, hint: { en:"National and international organizations", hi:"राष्ट्रीय और अंतर्राष्ट्रीय संगठन" }, weight:1, stars: 2 }
+          ]
+        },
+        {
+          id: "current-affairs",
+          title: { en: "Current Affairs", hi: "समसामयिक घटनाक्रम" },
+          colorClass: "current-affairs",
+          weight: 1,
+          topics: [
+            { id:"nationalCA", name: { en:"National Current Affairs", hi:"राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"Important events happening in the country", hi:"देश में होने वाली महत्वपूर्ण घटनाएं" }, weight:1, stars: 3 },
+            { id:"internationalCA", name: { en:"International Current Affairs", hi:"अंतर्राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"Important events happening in the world", hi:"दुनिया में होने वाली महत्वपूर्ण घटनाएं" }, weight:1, stars: 2 },
+            { id:"sportsCA", name: { en:"Sports Current Affairs", hi:"खेल समसामयिक घटनाक्रम" }, hint: { en:"Latest news from sports world", hi:"खेल जगत की नवीनतम खबरें" }, weight:1, stars: 1 },
+            { id:"scienceCA", name: { en:"Science and Technology", hi:"विज्ञान और प्रौद्योगिकी" }, hint: { en:"Scientific research and new technology", hi:"वैज्ञानिक शोध और नई प्रौद्योगिकी" }, weight:1, stars: 2 },
+            { id:"economyCA", name: { en:"Economy Current Affairs", hi:"अर्थव्यवस्था समसामयिक घटनाक्रम" }, hint: { en:"Economic policies and announcements", hi:"आर्थिक नीतियां और घोषणाएं" }, weight:1, stars: 2 },
+            { id:"importantPersons", name: { en:"Important Personalities", hi:"महत्वपूर्ण व्यक्तित्व" }, hint: { en:"Appointments and postings", hi:"नियुक्तियां और पदस्थापन" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "science",
+          title: { en: "Science", hi: "विज्ञान" },
+          colorClass: "science",
+          weight: 1,
+          topics: [
+            { id:"physics", name: { en:"Physics", hi:"भौतिक विज्ञान" }, hint: { en:"Mechanics, optics, electricity, magnetism", hi:"यांत्रिकी, प्रकाशिकी, विद्युत, चुंबकत्व" }, weight:1, stars: 3 },
+            { id:"chemistry", name: { en:"Chemistry", hi:"रसायन विज्ञान" }, hint: { en:"Elements, compounds, acids, bases, salts", hi:"तत्व, यौगिक, अम्ल, क्षार, लवण" }, weight:1, stars: 2 },
+            { id:"biology", name: { en:"Biology", hi:"जीव विज्ञान" }, hint: { en:"Human body, plants, animals, ecology", hi:"मानव शरीर, पौधे, जानवर, पारिस्थितिकी" }, weight:1, stars: 3 },
+            { id:"everydayScience", name: { en:"Everyday Science", hi:"रोजमर्रा का विज्ञान" }, hint: { en:"Science in daily life", hi:"दैनिक जीवन में विज्ञान" }, weight:1, stars: 2 },
+            { id:"sciInventions", name: { en:"Scientific Inventions", hi:"वैज्ञानिक आविष्कार" }, hint: { en:"Important scientific inventions", hi:"महत्वपूर्ण वैज्ञानिक आविष्कार" }, weight:1, stars: 1 },
+            { id:"scientists", name: { en:"Scientists and their Contributions", hi:"वैज्ञानिक और उनके योगदान" }, hint: { en:"Famous scientists and their contributions", hi:"प्रसिद्ध वैज्ञानिक और उनके योगदान" }, weight:1, stars: 1 }
+          ]
+        },
+        {
+          id: "computer",
+          title: { en: "Computer", hi: "कंप्यूटर" },
+          colorClass: "computer",
+          weight: 1,
+          topics: [
+            { id:"computerFundamentals", name: { en:"Computer Fundamentals", hi:"कंप्यूटर मूल बातें" }, hint: { en:"Hardware, software, operating systems", hi:"हार्डवेयर, सॉफ्टवेयर, ऑपरेटिंग सिस्टम" }, weight:1, stars: 3 },
+            { id:"msOffice", name: { en:"MS Office", hi:"एमएस ऑफिस" }, hint: { en:"Word, Excel, PowerPoint", hi:"वर्ड, एक्सेल, पावरपॉइंट" }, weight:1, stars: 2 },
+            { id:"internet", name: { en:"Internet and Networking", hi:"इंटरनेट और नेटवर्किंग" }, hint: { en:"Internet, email, social media", hi:"इंटरनेट, ईमेल, सोशल मीडिया" }, weight:1, stars: 2 },
+            { id:"abbreviations", name: { en:"Computer Abbreviations", hi:"कंप्यूटर संक्षिप्ताक्षर" }, hint: { en:"Computer related abbreviations", hi:"कंप्यूटर से संबंधित संक्षिप्ताक्षर" }, weight:1, stars: 1 },
+            { id:"cyberSecurity", name: { en:"Cyber Security", hi:"साइबर सुरक्षा" }, hint: { en:"Virus, hacking, data security", hi:"वायरस, हैकिंग, डेटा सुरक्षा" }, weight:1, stars: 1 },
+            { id:"emergingTech", name: { en:"Emerging Technologies", hi:"उभरती प्रौद्योगिकियाँ" }, hint: { en:"Artificial Intelligence, Blockchain, IoT", hi:"कृत्रिम बुद्धिमत्ता, ब्लॉकचेन, आईओटी" }, weight:1, stars: 1 }
+          ]
+        }
+      ],
+      
+      // CBT Configuration
+      cbtConfig: {
+        cbt1: {
+          totalMarks: 100,
+          sections: {
+            math: { maxMarks: 30, questions: 30 },
+            reasoning: { maxMarks: 30, questions: 30 },
+            awareness: { maxMarks: 40, questions: 40 }
+          }
+        },
+        cbt2: {
+          totalMarks: 120,
+          sections: {
+            math: { maxMarks: 35, questions: 35 },
+            reasoning: { maxMarks: 35, questions: 35 },
+            awareness: { maxMarks: 50, questions: 50 }
+          }
+        }
+      }
+    };
+    
+    // ========== GLOBAL VARIABLES ==========
+    const STORAGE_KEYS = {
+      PROGRESS: "ntpc_progress_v12",
+      UI_STATE: "ntpc_ui_state_v12",
+      STUDENT_NAME: "ntpc_student_name",
+      CBT_RESULTS: "ntpc_cbt_results_v12",
+      THEME: "ntpc_theme",
+      STUDY_LOG: "ntpc_study_log",
+      LANGUAGE: "ntpc_language"
+    };
+    
+    let savedProgress = JSON.parse(localStorage.getItem(STORAGE_KEYS.PROGRESS) || "{}");
+    let savedUIState = JSON.parse(localStorage.getItem(STORAGE_KEYS.UI_STATE) || "{}");
+    let cbtResults = JSON.parse(localStorage.getItem(STORAGE_KEYS.CBT_RESULTS) || "[]");
+    let studyLog = JSON.parse(localStorage.getItem(STORAGE_KEYS.STUDY_LOG) || "[]");
+    let currentTheme = localStorage.getItem(STORAGE_KEYS.THEME) || "light";
+    let currentLanguage = localStorage.getItem(STORAGE_KEYS.LANGUAGE) || "en";
+    let charts = {
+      fullTest: null,
+      subject: null,
+      accuracy: null
+    };
+    let currentCBT = "cbt1";
+    let currentTestType = "full";
+    let selectedSubjectForGraph = null;
+    let currentGraphCBT = "cbt1";
+    let selectedSubjectForChart = "math";
+    let fullTestGraphView = "total"; // 'total', 'math', 'reasoning', 'awareness'
+    
+    // ========== INITIALIZATION ==========
+    function initializeApp() {
+      setTheme(currentTheme);
+      setLanguage(currentLanguage);
+      
+      const welcomeScreen = document.getElementById('welcomeScreen');
+      const mainApp = document.getElementById('mainApp');
+      const nameInput = document.getElementById('studentName');
+      const startBtn = document.getElementById('startTracking');
+      const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "";
+      
+      welcomeScreen.style.display = 'flex';
+      mainApp.style.display = 'none';
+      
+      if (studentName) {
+        nameInput.value = studentName;
+        nameInput.readOnly = true;
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> Continue`;
+        
+        setTimeout(() => {
+          if (document.visibilityState === 'visible') {
+            startWelcomeTransition();
+          }
+        }, 1500);
+      } else {
+        nameInput.readOnly = false;
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> Get Started`;
+      }
+      
+      startBtn.onclick = () => {
+        const name = nameInput.value.trim();
+        if (!studentName && !name) {
+          alert('Please enter your name!');
+          nameInput.focus();
+          return;
+        }
+        
+        if (!studentName) {
+          localStorage.setItem(STORAGE_KEYS.STUDENT_NAME, name);
+        }
+        
+        startWelcomeTransition();
+      };
+      
+      nameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          startBtn.click();
+        }
+      });
+      
+      function startWelcomeTransition() {
+        welcomeScreen.classList.add('hidden');
+        setTimeout(() => {
+          welcomeScreen.style.display = 'none';
+          mainApp.style.display = 'block';
+          initializeMainApp();
+        }, 800);
+      }
+    }
+    
+    function initializeMainApp() {
+      updateGreeting();
+      renderSubjects();
+      updateProgress();
+      setupEventListeners();
+      initializeCBTForm();
+      loadCBTResults();
+      initializeSubjectSelector();
+      updateAllGraphs();
+      updateAverageScores();
+      
+      setInterval(saveAllData, 30000);
+      setInterval(updateGreeting, 60000);
+    }
+    
+    // ========== TRANSLATION FUNCTION ==========
+    function t(key) {
+      return CONFIG.translations[currentLanguage][key] || key;
+    }
+    
+    // ========== UI FUNCTIONS ==========
+    function updateGreeting() {
+      const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "";
+      const hour = new Date().getHours();
+      let greeting = '';
+      
+      if (hour < 12) {
+        greeting = currentLanguage === 'hi' ? 'शुभ प्रभात' : 'Good Morning';
+      } else if (hour < 18) {
+        greeting = currentLanguage === 'hi' ? 'शुभ दोपहर' : 'Good Afternoon';
+      } else {
+        greeting = currentLanguage === 'hi' ? 'शुभ संध्या' : 'Good Evening';
+      }
+      
+      if (studentName) {
+        document.getElementById('greetingText').textContent = `${greeting}, ${studentName}`;
+      } else {
+        document.getElementById('greetingText').textContent = greeting;
+      }
+    }
+    
+    function renderSubjects() {
+      const container = document.getElementById('subjectsContainer');
+      container.innerHTML = '';
+      
+      CONFIG.subjects.forEach(subject => {
+        const subjectElement = document.createElement('div');
+        subjectElement.className = 'subject';
+        subjectElement.dataset.subject = subject.id;
+        
+        const progress = calculateSubjectProgress(subject.id);
+        const collapsed = savedUIState[subject.id]?.collapsed || false;
+        
+        const header = document.createElement('div');
+        header.className = 'subject-header';
+        header.innerHTML = `
+          <div class="subject-title">
+            <span class="badge ${subject.colorClass}">${subject.title[currentLanguage].split('(')[0].trim()}</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar">
+              <div class="progress-fill" id="bar_${subject.id}" style="width: ${progress}%"></div>
+            </div>
+            <div class="percent" id="percent_${subject.id}">${Math.round(progress)}%</div>
+            <button class="toggle-btn" data-toggle="${subject.id}">
+              ${collapsed ? '<i class="fas fa-chevron-right"></i>' : '<i class="fas fa-chevron-down"></i>'}
+              ${collapsed ? 'Expand' : 'Collapse'}
+            </button>
+          </div>
+        `;
+        
+        const topicsContainer = document.createElement('div');
+        topicsContainer.className = 'topics';
+        topicsContainer.id = `topics_${subject.id}`;
+        topicsContainer.style.display = collapsed ? 'none' : '';
+        
+        subject.topics.forEach(topic => {
+          const topicId = `${subject.id}_${topic.id}`;
+          const isChecked = savedProgress[topicId] || false;
+          
+          const topicElement = document.createElement('div');
+          topicElement.className = 'topic';
+          
+          let starClass = '';
+          if (topic.stars === 3) starClass = 'three-stars';
+          else if (topic.stars === 2) starClass = 'two-stars';
+          else if (topic.stars === 1) starClass = 'one-star';
+          
+          topicElement.innerHTML = `
+            <input type="checkbox" id="${topicId}" ${isChecked ? 'checked' : ''}>
+            <label for="${topicId}">
+              <strong>${topic.name[currentLanguage]}<span class="stars ${starClass}"></span></strong>
+              <small>${topic.hint[currentLanguage]}</small>
+            </label>
+            <span class="weight">wt ${topic.weight}</span>
+          `;
+          
+          topicsContainer.appendChild(topicElement);
+        });
+        
+        subjectElement.appendChild(header);
+        subjectElement.appendChild(topicsContainer);
+        container.appendChild(subjectElement);
+      });
+      
+      document.querySelectorAll('.subject-header').forEach(header => {
+        header.addEventListener('click', (e) => {
+          if (e.target.closest('.toggle-btn')) return;
+          
+          const subjectId = e.currentTarget.closest('.subject').dataset.subject;
+          const topicsEl = document.getElementById(`topics_${subjectId}`);
+          const collapsed = topicsEl.style.display === 'none';
+          
+          topicsEl.style.display = collapsed ? '' : 'none';
+          const btn = e.currentTarget.querySelector(`.toggle-btn[data-toggle="${subjectId}"]`);
+          if (btn) {
+            btn.innerHTML = collapsed ? 
+              '<i class="fas fa-chevron-down"></i> Collapse' : 
+              '<i class="fas fa-chevron-right"></i> Expand';
+          }
+          
+          savedUIState[subjectId] = { collapsed: !collapsed };
+          saveUIState();
+        });
+      });
+      
+      document.querySelectorAll('.topic input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const topicId = this.id;
+          savedProgress[topicId] = this.checked;
+          saveProgress();
+          
+          updateProgress();
+          
+          if (this.checked) {
+            showCongratulations(this);
+            
+            const [subjectId, topicKey] = topicId.split('_');
+            const subjectProgress = calculateSubjectProgress(subjectId);
+            if (subjectProgress === 100) {
+              showSubjectCongratulations(subjectId);
+            }
+            
+            logStudyActivity(topicId);
+          }
+        });
+      });
+      
+      document.querySelectorAll('.toggle-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const subjectId = this.dataset.toggle;
+          const topicsEl = document.getElementById(`topics_${subjectId}`);
+          const collapsed = topicsEl.style.display === 'none';
+          
+          topicsEl.style.display = collapsed ? '' : 'none';
+          this.innerHTML = collapsed ? 
+            '<i class="fas fa-chevron-down"></i> Collapse' : 
+            '<i class="fas fa-chevron-right"></i> Expand';
+          
+          savedUIState[subjectId] = { collapsed: !collapsed };
+          saveUIState();
+        });
+      });
+    }
+    
+    function calculateSubjectProgress(subjectId) {
+      const subject = CONFIG.subjects.find(s => s.id === subjectId);
+      if (!subject) return 0;
+      
+      let totalWeight = 0;
+      let completedWeight = 0;
+      
+      subject.topics.forEach(topic => {
+        const topicId = `${subject.id}_${topic.id}`;
+        totalWeight += topic.weight;
+        if (savedProgress[topicId]) {
+          completedWeight += topic.weight;
+        }
+      });
+      
+      return totalWeight > 0 ? (completedWeight / totalWeight) * 100 : 0;
+    }
+    
+    function calculateOverallProgress() {
+      let totalWeight = 0;
+      let completedWeight = 0;
+      
+      CONFIG.subjects.forEach(subject => {
+        subject.topics.forEach(topic => {
+          const topicId = `${subject.id}_${topic.id}`;
+          totalWeight += topic.weight;
+          if (savedProgress[topicId]) {
+            completedWeight += topic.weight;
+          }
+        });
+      });
+      
+      return totalWeight > 0 ? (completedWeight / totalWeight) * 100 : 0;
+    }
+    
+    function updateProgress() {
+      const overallProgress = calculateOverallProgress();
+      document.getElementById('totalProgress').textContent = `(${Math.round(overallProgress)}% Complete)`;
+      
+      const donut = document.getElementById('donutOverall');
+      const circumference = 2 * Math.PI * 85;
+      const offset = circumference * (1 - overallProgress / 100);
+      donut.setAttribute('stroke-dasharray', circumference);
+      donut.setAttribute('stroke-dashoffset', offset);
+      document.getElementById('overallText').textContent = `${Math.round(overallProgress)}%`;
+      
+      CONFIG.subjects.forEach(subject => {
+        const progress = calculateSubjectProgress(subject.id);
+        const progressBar = document.getElementById(`bar_${subject.id}`);
+        const percentText = document.getElementById(`percent_${subject.id}`);
+        
+        if (progressBar) progressBar.style.width = `${progress}%`;
+        if (percentText) percentText.textContent = `${Math.round(progress)}%`;
+      });
+      
+      if (selectedSubjectForGraph) {
+        updateSubjectDonutChart(selectedSubjectForGraph);
+      }
+    }
+    
+    function updateSubjectDonutChart(subjectId) {
+      const subject = CONFIG.subjects.find(s => s.id === subjectId);
+      if (!subject) return;
+      
+      const progress = calculateSubjectProgress(subjectId);
+      const donut = document.getElementById('subjectDonut');
+      const circumference = 2 * Math.PI * 85;
+      const offset = circumference * (1 - progress / 100);
+      
+      donut.setAttribute('stroke-dasharray', circumference);
+      donut.setAttribute('stroke-dashoffset', offset);
+      document.getElementById('subjectChartPercentage').textContent = `${Math.round(progress)}%`;
+    }
+    
+    function showCongratulations(checkbox) {
+      const topicId = checkbox.id;
+      const [subjectId, topicKey] = topicId.split('_');
+      
+      const subject = CONFIG.subjects.find(s => s.id === subjectId);
+      if (!subject) return;
+      
+      const topic = subject.topics.find(t => t.id === topicKey);
+      if (!topic) return;
+      
+      const messages = currentLanguage === 'hi' ? [
+        `बधाई हो! आपने "${topic.name[currentLanguage]}" पूरा कर लिया!`,
+        `शानदार! "${topic.name[currentLanguage]}" अब पूरा हो गया है!`,
+        `अद्भुत! आपने सफलतापूर्वक "${topic.name[currentLanguage]}" पूरा कर लिया!`,
+        `वाह! "${topic.name[currentLanguage]}" पूरा करने पर बधाई!`
+      ] : [
+        `Congratulations! You completed "${topic.name[currentLanguage]}"!`,
+        `Awesome! "${topic.name[currentLanguage]}" is now complete!`,
+        `Amazing! You successfully completed "${topic.name[currentLanguage]}"!`,
+        `Wow! Congratulations on completing "${topic.name[currentLanguage]}"!`
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('congratsMessage').textContent = randomMessage;
+      
+      document.getElementById('congratsModal').classList.add('active');
+      launchConfetti();
+    }
+    
+    function showSubjectCongratulations(subjectId) {
+      const subject = CONFIG.subjects.find(s => s.id === subjectId);
+      if (!subject) return;
+      
+      const messages = currentLanguage === 'hi' ? [
+        `अद्भुत उपलब्धि! आपने पूरा "${subject.title[currentLanguage]}" विषय पूरा कर लिया!`,
+        `शानदार! आपने "${subject.title[currentLanguage]}" विषय में 100% प्रगति हासिल कर ली!`,
+        `बधाई हो! आपने "${subject.title[currentLanguage]}" विषय पूरी तरह से मास्टर कर लिया!`,
+        `वाह! "${subject.title[currentLanguage]}" विषय पूरा करने पर हार्दिक बधाई!`
+      ] : [
+        `Amazing Achievement! You completed the entire "${subject.title[currentLanguage]}" subject!`,
+        `Outstanding! You achieved 100% progress in "${subject.title[currentLanguage]}"!`,
+        `Congratulations! You've completely mastered the "${subject.title[currentLanguage]}" subject!`,
+        `Wow! Hearty congratulations on completing the "${subject.title[currentLanguage]}" subject!`
+      ];
+      
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById('subjectCongratsTitle').textContent = t('subjectCongrats');
+      document.getElementById('subjectCongratsMessage').textContent = randomMessage;
+      
+      document.getElementById('subjectCongratsModal').classList.add('active');
+      launchBigConfetti();
+    }
+    
+    function launchConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#4f46e5', '#059669', '#db2777', '#d97706', '#7c3aed']
+      });
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#db2777', '#d97706']
+        });
+      }, 250);
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#4f46e5', '#059669', '#7c3aed']
+        });
+      }, 500);
+    }
+    
+    function launchBigConfetti() {
+      for(let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          confetti({
+            particleCount: 300,
+            spread: 100,
+            origin: { y: 0.6 },
+            colors: ['#4f46e5', '#059669', '#db2777', '#d97706', '#7c3aed', '#3b82f6', '#8b5cf6']
+          });
+        }, i * 300);
+      }
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 200,
+          angle: 60,
+          spread: 80,
+          origin: { x: 0 },
+          colors: ['#db2777', '#d97706', '#f97316']
+        });
+      }, 600);
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 200,
+          angle: 120,
+          spread: 80,
+          origin: { x: 1 },
+          colors: ['#4f46e5', '#059669', '#7c3aed', '#06b6d4']
+        });
+      }, 900);
+    }
+    
+    // ========== CBT ANALYSIS FUNCTIONS ==========
+    function initializeCBTForm() {
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      document.getElementById('testDate').value = formattedDate;
+      updateCBTForm();
+      
+      document.getElementById('mathMarks').addEventListener('input', updateTotalMarks);
+      document.getElementById('reasoningMarks').addEventListener('input', updateTotalMarks);
+      document.getElementById('awarenessMarks').addEventListener('input', updateTotalMarks);
+    }
+    
+    function updateCBTForm() {
+      const config = CONFIG.cbtConfig[currentCBT];
+      
+      const titles = {
+        'full': 'Full Test',
+        'math': 'Mathematics',
+        'reasoning': 'Reasoning',
+        'awareness': 'General Awareness'
+      };
+      document.getElementById('testFormTitle').innerHTML = `<i class="fas fa-edit"></i> ${titles[currentTestType]} Marks Entry`;
+      
+      if (currentTestType === 'full') {
+        document.getElementById('fullTestFields').style.display = 'block';
+        document.getElementById('sectionalTestFields').style.display = 'none';
+        
+        document.getElementById('mathMarks').max = config.sections.math.maxMarks;
+        document.getElementById('mathMarks').placeholder = `0-${config.sections.math.maxMarks}`;
+        document.getElementById('reasoningMarks').max = config.sections.reasoning.maxMarks;
+        document.getElementById('reasoningMarks').placeholder = `0-${config.sections.reasoning.maxMarks}`;
+        document.getElementById('awarenessMarks').max = config.sections.awareness.maxMarks;
+        document.getElementById('awarenessMarks').placeholder = `0-${config.sections.awareness.maxMarks}`;
+        document.getElementById('totalMarks').max = config.totalMarks;
+        document.getElementById('totalMarks').placeholder = `0-${config.totalMarks}`;
+      } else {
+        document.getElementById('fullTestFields').style.display = 'none';
+        document.getElementById('sectionalTestFields').style.display = 'block';
+        
+        const maxMarks = config.sections[currentTestType].maxMarks;
+        document.getElementById('sectionalMarksLabel').textContent = `Marks (0-${maxMarks}):`;
+        document.getElementById('sectionalMarks').max = maxMarks;
+        document.getElementById('sectionalMarks').placeholder = `0-${maxMarks}`;
+      }
+      
+      updateTotalMarks();
+    }
+    
+    function updateTotalMarks() {
+      if (currentTestType === 'full') {
+        const math = parseInt(document.getElementById('mathMarks').value) || 0;
+        const reasoning = parseInt(document.getElementById('reasoningMarks').value) || 0;
+        const awareness = parseInt(document.getElementById('awarenessMarks').value) || 0;
+        const total = math + reasoning + awareness;
+        document.getElementById('totalMarks').value = total;
+      }
+    }
+    
+    function loadCBTResults() {
+      const latestPerformance = document.getElementById('latestPerformance');
+      
+      if (cbtResults.length === 0) {
+        latestPerformance.innerHTML = `
+          <div class="no-data-container">
+            <div class="no-data-image">
+              <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+            </div>
+            <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
+          </div>`;
+        return;
+      }
+      
+      cbtResults.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const latest = cbtResults[0];
+      
+      let html = '';
+      if (latest.testType === 'full') {
+        const percentage = ((latest.total / latest.maxTotal) * 100).toFixed(1);
+        const date = new Date(latest.date).toLocaleDateString();
+        const time = latest.time || '';
+        
+        html = `
+          <div style="text-align: center;">
+            <h3 style="color: var(--accent); margin-bottom: 15px;">${latest.name}</h3>
+            <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 15px 0;">${percentage}%</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+              <div style="background: rgba(79, 70, 229, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">Mathematics</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.math}/${latest.maxMath}</div>
+              </div>
+              <div style="background: rgba(5, 150, 105, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">Reasoning</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.reasoning}/${latest.maxReasoning}</div>
+              </div>
+              <div style="background: rgba(217, 119, 6, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">General Awareness</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.awareness}/${latest.maxAwareness}</div>
+              </div>
+              <div style="background: rgba(124, 58, 237, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">Total Marks</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.total}/${latest.maxTotal}</div>
+              </div>
+            </div>
+            <div style="color: var(--muted); font-size: 0.9rem; margin: 10px 0;">Date: ${date} ${time ? `(${time})` : ''}</div>
+            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</div>
+          </div>
+        `;
+      } else {
+        const percentage = ((latest.marks / latest.maxMarks) * 100).toFixed(1);
+        const date = new Date(latest.date).toLocaleDateString();
+        const time = latest.time || '';
+        const sectionNames = {
+          'math': 'Mathematics',
+          'reasoning': 'Reasoning',
+          'awareness': 'General Awareness'
+        };
+        
+        html = `
+          <div style="text-align: center;">
+            <h3 style="color: var(--accent); margin-bottom: 15px;">${latest.name}</h3>
+            <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 15px 0;">${percentage}%</div>
+            <div style="background: rgba(79, 70, 229, 0.1); padding: 30px; border-radius: 16px; margin: 20px 0;">
+              <div style="font-size: 1.2rem; color: var(--muted); margin-bottom: 10px;">${sectionNames[latest.section]}</div>
+              <div style="font-size: 3rem; font-weight: 800; color: var(--accent);">${latest.marks}/${latest.maxMarks}</div>
+            </div>
+            <div style="color: var(--muted); font-size: 0.9rem; margin: 10px 0;">Date: ${date} ${time ? `(${time})` : ''}</div>
+            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</div>
+          </div>
+        `;
+      }
+      
+      latestPerformance.innerHTML = html;
+    }
+    
+    function updateAllGraphs() {
+      updateFullTestGraph();
+      updateSubjectGraph();
+      updateAccuracyGraph();
+    }
+    
+    function updateFullTestGraph() {
+      const ctx = document.getElementById('fullTestChart').getContext('2d');
+      
+      if (charts.fullTest) {
+        charts.fullTest.destroy();
+      }
+      
+      let filteredResults = cbtResults.filter(r => r.cbt === currentGraphCBT && r.testType === 'full');
+      
+      if (filteredResults.length === 0) {
+        document.getElementById('fullTestGraphContainer').style.display = 'none';
+        document.getElementById('fullTestNoData').style.display = 'block';
+        return;
+      }
+      
+      document.getElementById('fullTestGraphContainer').style.display = 'block';
+      document.getElementById('fullTestNoData').style.display = 'none';
+      
+      filteredResults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      
+      const labels = filteredResults.map(r => {
+        const date = new Date(r.date);
+        return date.toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      });
+      
+      const pointRadius = filteredResults.length === 1 ? 8 : 6;
+      
+      let datasets = [];
+      
+      if (fullTestGraphView === 'total') {
+        const scores = filteredResults.map(r => r.total);
+        const percentages = filteredResults.map(r => r.accuracy || 0);
+        
+        datasets = [
+          {
+            label: 'Total Marks',
+            data: scores,
+            borderColor: '#4f46e5',
+            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+            tension: 0.3,
+            fill: true,
+            pointRadius: pointRadius,
+            pointBackgroundColor: '#4f46e5',
+            yAxisID: 'y'
+          },
+          {
+            label: 'Accuracy',
+            data: percentages,
+            borderColor: '#db2777',
+            backgroundColor: 'rgba(219, 39, 119, 0.1)',
+            tension: 0.3,
+            fill: false,
+            pointRadius: pointRadius,
+            pointBackgroundColor: '#db2777',
+            yAxisID: 'y1'
+          }
+        ];
+        
+        document.getElementById('fullTestGraphInfo').textContent = 'Shows full test scores and accuracy';
+      } else {
+        const subjectData = filteredResults.map(r => {
+          if (fullTestGraphView === 'math') return r.math;
+          if (fullTestGraphView === 'reasoning') return r.reasoning;
+          if (fullTestGraphView === 'awareness') return r.awareness;
+          return 0;
+        });
+        
+        const colors = {
+          'math': '#4f46e5',
+          'reasoning': '#059669',
+          'awareness': '#d97706'
+        };
+        
+        const labelsText = {
+          'math': 'Mathematics',
+          'reasoning': 'Reasoning',
+          'awareness': 'General Awareness'
+        };
+        
+        datasets = [
+          {
+            label: labelsText[fullTestGraphView],
+            data: subjectData,
+            borderColor: colors[fullTestGraphView],
+            backgroundColor: colors[fullTestGraphView] + '40',
+            tension: 0.3,
+            fill: true,
+            pointRadius: pointRadius,
+            pointBackgroundColor: colors[fullTestGraphView],
+            yAxisID: 'y'
+          }
+        ];
+        
+        document.getElementById('fullTestGraphInfo').textContent = `Shows ${labelsText[fullTestGraphView]} marks from full tests`;
+      }
+      
+      charts.fullTest = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+          stacked: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: 'var(--text)',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - Full Test Performance (${fullTestGraphView === 'total' ? 'Total Marks' : fullTestGraphView.charAt(0).toUpperCase() + fullTestGraphView.slice(1)})`,
+              color: 'var(--text)',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed.y !== null) {
+                    if (fullTestGraphView === 'total' && context.datasetIndex === 0) {
+                      label += context.parsed.y + ' marks';
+                    } else if (fullTestGraphView === 'total' && context.datasetIndex === 1) {
+                      label += context.parsed.y + '%';
+                    } else {
+                      label += context.parsed.y + ' marks';
+                    }
+                  }
+                  return label;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: 'var(--text)',
+                maxRotation: 45,
+                font: {
+                  size: 11
+                }
+              },
+              grid: {
+                color: 'var(--border)'
+              }
+            },
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              title: {
+                display: true,
+                text: fullTestGraphView === 'total' ? 'Total Marks' : 'Marks',
+                color: 'var(--text)'
+              },
+              ticks: {
+                color: 'var(--text)'
+              },
+              grid: {
+                color: 'var(--border)'
+              }
+            },
+            y1: {
+              type: 'linear',
+              display: fullTestGraphView === 'total',
+              position: 'right',
+              title: {
+                display: true,
+                text: 'Accuracy (%)',
+                color: 'var(--text)'
+              },
+              ticks: {
+                color: 'var(--text)'
+              },
+              grid: {
+                drawOnChartArea: false,
+              },
+            }
+          }
+        }
+      });
+    }
+    
+    function updateSubjectGraph() {
+      const ctx = document.getElementById('subjectChart').getContext('2d');
+      
+      if (charts.subject) {
+        charts.subject.destroy();
+      }
+      
+      // Filter results for selected CBT and SECTIONAL tests only (not full tests)
+      let filteredResults = cbtResults.filter(r => r.cbt === currentGraphCBT && 
+        r.testType === 'sectional' && r.section === selectedSubjectForChart);
+      
+      if (filteredResults.length === 0) {
+        document.getElementById('subjectGraphContainer').style.display = 'none';
+        document.getElementById('subjectNoData').style.display = 'block';
+        return;
+      }
+      
+      document.getElementById('subjectGraphContainer').style.display = 'block';
+      document.getElementById('subjectNoData').style.display = 'none';
+      
+      filteredResults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      
+      const subjectData = filteredResults.map(r => r.marks);
+      const labels = filteredResults.map(r => {
+        const date = new Date(r.date);
+        return date.toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      });
+      
+      const pointRadius = filteredResults.length === 1 ? 8 : 6;
+      
+      const subjectNames = {
+        'math': 'Mathematics',
+        'reasoning': 'Reasoning',
+        'awareness': 'General Awareness'
+      };
+      
+      const colors = {
+        'math': '#4f46e5',
+        'reasoning': '#059669',
+        'awareness': '#d97706'
+      };
+      
+      charts.subject = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: subjectNames[selectedSubjectForChart] + ' (Sectional)',
+              data: subjectData,
+              backgroundColor: colors[selectedSubjectForChart] + '40',
+              borderColor: colors[selectedSubjectForChart],
+              borderWidth: 2,
+              fill: true,
+              tension: 0.3,
+              pointRadius: pointRadius
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: 'var(--text)',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - ${subjectNames[selectedSubjectForChart]} Performance (Sectional Tests Only)`,
+              color: 'var(--text)',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: 'var(--text)',
+                maxRotation: 45,
+                font: {
+                  size: 11
+                }
+              },
+              grid: {
+                color: 'var(--border)'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              ticks: {
+                color: 'var(--text)'
+              },
+              grid: {
+                color: 'var(--border)'
+              },
+              title: {
+                display: true,
+                text: 'Marks',
+                color: 'var(--text)'
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    function updateAccuracyGraph() {
+      const ctx = document.getElementById('accuracyChart').getContext('2d');
+      
+      if (charts.accuracy) {
+        charts.accuracy.destroy();
+      }
+      
+      let filteredResults = cbtResults.filter(r => r.cbt === currentGraphCBT && r.testType === 'full');
+      
+      if (filteredResults.length === 0) {
+        document.getElementById('accuracyGraphContainer').style.display = 'none';
+        document.getElementById('accuracyNoData').style.display = 'block';
+        return;
+      }
+      
+      document.getElementById('accuracyGraphContainer').style.display = 'block';
+      document.getElementById('accuracyNoData').style.display = 'none';
+      
+      filteredResults.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      
+      const labels = filteredResults.map(r => {
+        const date = new Date(r.date);
+        return date.toLocaleDateString('en-US', { 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      });
+      
+      const accuracyData = filteredResults.map(r => r.accuracy || 0);
+      const pointRadius = filteredResults.length === 1 ? 8 : 6;
+      
+      charts.accuracy = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Accuracy',
+              data: accuracyData,
+              borderColor: '#db2777',
+              backgroundColor: 'rgba(219, 39, 119, 0.1)',
+              tension: 0.3,
+              fill: true,
+              pointRadius: pointRadius,
+              pointBackgroundColor: '#db2777'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                color: 'var(--text)',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            title: {
+              display: true,
+              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - Accuracy Analysis`,
+              color: 'var(--text)',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: 'var(--text)',
+                maxRotation: 45,
+                font: {
+                  size: 11
+                }
+              },
+              grid: {
+                color: 'var(--border)'
+              }
+            },
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                color: 'var(--text)',
+                callback: function(value) {
+                  return value + '%';
+                }
+              },
+              grid: {
+                color: 'var(--border)'
+              },
+              title: {
+                display: true,
+                text: 'Accuracy (%)',
+                color: 'var(--text)'
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    function updateAverageScores() {
+      const container = document.getElementById('avgScoreContainer');
+      
+      if (cbtResults.length === 0) {
+        container.innerHTML = `
+          <div class="no-data-container" style="width: 100%;">
+            <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
+          </div>`;
+        return;
+      }
+      
+      let cbt1FullTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'full');
+      let cbt2FullTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'full');
+      
+      let cbt1MathTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'math');
+      let cbt2MathTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'math');
+      
+      let cbt1ReasoningTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'reasoning');
+      let cbt2ReasoningTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'reasoning');
+      
+      let cbt1AwarenessTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'awareness');
+      let cbt2AwarenessTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'awareness');
+      
+      function calculateAverage(tests, type) {
+        if (tests.length === 0) return 0;
+        
+        let total = 0;
+        tests.forEach(test => {
+          if (type === 'full') {
+            total += test.total;
+          } else {
+            total += test.marks;
+          }
+        });
+        
+        return (total / tests.length).toFixed(1);
+      }
+      
+      const cbt1FullAvg = calculateAverage(cbt1FullTests, 'full');
+      const cbt2FullAvg = calculateAverage(cbt2FullTests, 'full');
+      const cbt1MathAvg = calculateAverage(cbt1MathTests, 'math');
+      const cbt2MathAvg = calculateAverage(cbt2MathTests, 'math');
+      const cbt1ReasoningAvg = calculateAverage(cbt1ReasoningTests, 'reasoning');
+      const cbt2ReasoningAvg = calculateAverage(cbt2ReasoningTests, 'reasoning');
+      const cbt1AwarenessAvg = calculateAverage(cbt1AwarenessTests, 'awareness');
+      const cbt2AwarenessAvg = calculateAverage(cbt2AwarenessTests, 'awareness');
+      
+      container.innerHTML = `
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-1 Full Tests</div>
+          <div class="avg-score-value">${cbt1FullAvg > 0 ? cbt1FullAvg : '--'}</div>
+          <div class="avg-score-label">${cbt1FullTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-2 Full Tests</div>
+          <div class="avg-score-value">${cbt2FullAvg > 0 ? cbt2FullAvg : '--'}</div>
+          <div class="avg-score-label">${cbt2FullTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-1 Math Tests</div>
+          <div class="avg-score-value">${cbt1MathAvg > 0 ? cbt1MathAvg : '--'}</div>
+          <div class="avg-score-label">${cbt1MathTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-2 Math Tests</div>
+          <div class="avg-score-value">${cbt2MathAvg > 0 ? cbt2MathAvg : '--'}</div>
+          <div class="avg-score-label">${cbt2MathTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-1 Reasoning Tests</div>
+          <div class="avg-score-value">${cbt1ReasoningAvg > 0 ? cbt1ReasoningAvg : '--'}</div>
+          <div class="avg-score-label">${cbt1ReasoningTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-2 Reasoning Tests</div>
+          <div class="avg-score-value">${cbt2ReasoningAvg > 0 ? cbt2ReasoningAvg : '--'}</div>
+          <div class="avg-score-label">${cbt2ReasoningTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-1 Awareness Tests</div>
+          <div class="avg-score-value">${cbt1AwarenessAvg > 0 ? cbt1AwarenessAvg : '--'}</div>
+          <div class="avg-score-label">${cbt1AwarenessTests.length} tests</div>
+        </div>
+        <div class="avg-score-card">
+          <div class="avg-score-label">CBT-2 Awareness Tests</div>
+          <div class="avg-score-value">${cbt2AwarenessAvg > 0 ? cbt2AwarenessAvg : '--'}</div>
+          <div class="avg-score-label">${cbt2AwarenessTests.length} tests</div>
+        </div>
+      `;
+    }
+    
+    function showTestHistory() {
+      const tableBody = document.getElementById('historyTableBody');
+      tableBody.innerHTML = '';
+      
+      const sortedResults = [...cbtResults].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const recentTests = sortedResults.slice(0, 30);
+      
+      if (recentTests.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align: center; padding: 30px; color: var(--muted);">
+              No test data yet. Add your first test entry.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+      
+      recentTests.forEach(test => {
+        const row = document.createElement('tr');
+        row.className = 'history-item';
+        
+        const date = new Date(test.date);
+        const formattedDate = date.toLocaleDateString();
+        const time = test.time || '';
+        
+        let typeText = '';
+        let mathText = '', reasoningText = '', awarenessText = '';
+        
+        if (test.testType === 'full') {
+          typeText = 'Full Test';
+          mathText = `${test.math}/${test.maxMath}`;
+          reasoningText = `${test.reasoning}/${test.maxReasoning}`;
+          awarenessText = `${test.awareness}/${test.maxAwareness}`;
+        } else {
+          const sectionNames = {
+            'math': 'Mathematics',
+            'reasoning': 'Reasoning',
+            'awareness': 'General Awareness'
+          };
+          typeText = sectionNames[test.section] || test.section;
+          if (test.section === 'math') mathText = `${test.marks}/${test.maxMarks}`;
+          else if (test.section === 'reasoning') reasoningText = `${test.marks}/${test.maxMarks}`;
+          else if (test.section === 'awareness') awarenessText = `${test.marks}/${test.maxMarks}`;
+        }
+        
+        row.innerHTML = `
+          <td>${test.name}</td>
+          <td>${typeText}</td>
+          <td>${test.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</td>
+          <td>${formattedDate} ${time ? `(${time})` : ''}</td>
+          <td><strong>${test.testType === 'full' ? `${test.total}/${test.maxTotal}` : ''}</strong></td>
+          <td>${mathText}</td>
+          <td>${reasoningText}</td>
+          <td>${awarenessText}</td>
+        `;
+        
+        row.addEventListener('click', () => {
+          let details = `${test.name}\n`;
+          details += `Date: ${formattedDate} ${time ? `(${time})` : ''}\n`;
+          details += `Type: ${typeText}\n`;
+          details += `CBT: ${test.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}\n`;
+          
+          if (test.testType === 'full') {
+            details += `\nMathematics: ${test.math}/${test.maxMath}\n`;
+            details += `Reasoning: ${test.reasoning}/${test.maxReasoning}\n`;
+            details += `General Awareness: ${test.awareness}/${test.maxAwareness}\n`;
+            details += `Total Marks: ${test.total}/${test.maxTotal}\n`;
+            if (test.accuracy) {
+              details += `Accuracy: ${test.accuracy}%`;
+            }
+          } else {
+            details += `\nMarks: ${test.marks}/${test.maxMarks}\n`;
+            details += `Percentage: ${((test.marks / test.maxMarks) * 100).toFixed(1)}%`;
+          }
+          
+          alert(details);
+        });
+        
+        tableBody.appendChild(row);
+      });
+      
+      document.getElementById('historyModal').classList.add('active');
+    }
+    
+    function logStudyActivity(topicId) {
+      const today = new Date().toDateString();
+      const todayLog = studyLog.find(log => new Date(log.date).toDateString() === today);
+      
+      if (todayLog) {
+        if (!todayLog.topics.includes(topicId)) {
+          todayLog.topics.push(topicId);
+        }
+      } else {
+        studyLog.push({
+          date: new Date().toISOString(),
+          topics: [topicId]
+        });
+      }
+      
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+      studyLog = studyLog.filter(log => new Date(log.date) >= thirtyDaysAgo);
+      
+      localStorage.setItem(STORAGE_KEYS.STUDY_LOG, JSON.stringify(studyLog));
+    }
+    
+    // ========== EVENT LISTENERS SETUP ==========
+    function setupEventListeners() {
+      // Drawer menu
+      document.getElementById('menuBtn').addEventListener('click', () => {
+        document.getElementById('drawer').classList.add('active');
+        document.getElementById('drawerOverlay').classList.add('active');
+      });
+      
+      document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+      document.getElementById('drawerOverlay').addEventListener('click', closeDrawer);
+      
+      // Settings buttons toggle
+      document.getElementById('themeSettingsBtn').addEventListener('click', function() {
+        const content = document.getElementById('themeSettings');
+        content.classList.toggle('active');
+        this.querySelector('i').classList.toggle('fa-chevron-right');
+        this.querySelector('i').classList.toggle('fa-chevron-down');
+      });
+      
+      document.getElementById('languageSettingsBtn').addEventListener('click', function() {
+        const content = document.getElementById('languageSettings');
+        content.classList.toggle('active');
+        this.querySelector('i').classList.toggle('fa-chevron-right');
+        this.querySelector('i').classList.toggle('fa-chevron-down');
+      });
+      
+      // Language toggle
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const lang = this.dataset.lang;
+          setLanguage(lang);
+          
+          document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          updateAllTexts();
+        });
+      });
+      
+      // Theme buttons
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const theme = this.dataset.theme;
+          setTheme(theme);
+          
+          document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+      
+      // Bottom Navigation Tabs
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const tabId = this.dataset.tab;
+          
+          document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          document.getElementById(`${tabId}-tab`).classList.add('active');
+          
+          window.scrollTo(0, 0);
+          
+          if (tabId === 'mock-analysis') {
+            setTimeout(() => {
+              updateAllGraphs();
+              updateAverageScores();
+            }, 100);
+          }
+        });
+      });
+      
+      // Graph view switch
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const view = this.dataset.view;
+          
+          document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          if (view === 'overall') {
+            document.getElementById('overallGraphView').style.display = 'block';
+            document.getElementById('subjectGraphView').style.display = 'none';
+          } else {
+            document.getElementById('overallGraphView').style.display = 'none';
+            document.getElementById('subjectGraphView').style.display = 'block';
+            
+            if (!selectedSubjectForGraph) {
+              selectedSubjectForGraph = CONFIG.subjects[0].id;
+              initializeSubjectSelector();
+              updateSubjectDonutChart(selectedSubjectForGraph);
+            }
+          }
+        });
+      });
+      
+      // CBT type buttons
+      document.querySelectorAll('.cbt-type-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.cbt-type-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentCBT = this.dataset.cbt;
+          updateCBTForm();
+        });
+      });
+      
+      // Test type buttons
+      document.querySelectorAll('.test-type-btn[data-test-type]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.test-type-btn[data-test-type]').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          currentTestType = this.dataset.testType;
+          updateCBTForm();
+        });
+      });
+      
+      // Graph CBT Toggles
+      document.querySelectorAll('.graph-cbt-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const cbt = this.dataset.cbt;
+          
+          document.querySelectorAll('.graph-cbt-toggle .graph-cbt-btn').forEach(b => {
+            b.classList.remove('active');
+            if (b.dataset.cbt === cbt) {
+              b.classList.add('active');
+            }
+          });
+          
+          currentGraphCBT = cbt;
+          updateAllGraphs();
+          updateAverageScores();
+        });
+      });
+      
+      // Subject graph buttons
+      document.querySelectorAll('.performance-subject-btn[data-subject]').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.performance-subject-btn[data-subject]').forEach(b => {
+            b.classList.remove('active');
+          });
+          this.classList.add('active');
+          selectedSubjectForChart = this.dataset.subject;
+          updateSubjectGraph();
+        });
+      });
+      
+      // Full Test Toggle buttons
+      document.querySelectorAll('.full-test-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.full-test-btn').forEach(b => {
+            b.classList.remove('active');
+          });
+          this.classList.add('active');
+          fullTestGraphView = this.dataset.view;
+          updateFullTestGraph();
+        });
+      });
+      
+      // CBT form submission
+      document.getElementById('cbtForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const config = CONFIG.cbtConfig[currentCBT];
+        let testData;
+        
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        if (currentTestType === 'full') {
+          const math = parseInt(document.getElementById('mathMarks').value) || 0;
+          const reasoning = parseInt(document.getElementById('reasoningMarks').value) || 0;
+          const awareness = parseInt(document.getElementById('awarenessMarks').value) || 0;
+          const accuracy = parseFloat(document.getElementById('accuracy').value) || 0;
+          const total = math + reasoning + awareness;
+          
+          if (total === 0) {
+            alert('Total marks cannot be 0. Please enter some marks.');
+            return;
+          }
+          
+          if (math < 0 || math > config.sections.math.maxMarks) {
+            alert(`Mathematics marks must be between 0 and ${config.sections.math.maxMarks}`);
+            return;
+          }
+          if (reasoning < 0 || reasoning > config.sections.reasoning.maxMarks) {
+            alert(`Reasoning marks must be between 0 and ${config.sections.reasoning.maxMarks}`);
+            return;
+          }
+          if (awareness < 0 || awareness > config.sections.awareness.maxMarks) {
+            alert(`General Awareness marks must be between 0 and ${config.sections.awareness.maxMarks}`);
+            return;
+          }
+          
+          testData = {
+            name: document.getElementById('testName').value,
+            date: document.getElementById('testDate').value,
+            time: timeString,
+            timestamp: now.toISOString(),
+            cbt: currentCBT,
+            testType: 'full',
+            math: math,
+            maxMath: config.sections.math.maxMarks,
+            reasoning: reasoning,
+            maxReasoning: config.sections.reasoning.maxMarks,
+            awareness: awareness,
+            maxAwareness: config.sections.awareness.maxMarks,
+            total: total,
+            maxTotal: config.totalMarks,
+            accuracy: accuracy
+          };
+        } else {
+          const marks = parseInt(document.getElementById('sectionalMarks').value) || 0;
+          if (marks === 0) {
+            alert('Marks cannot be 0. Please enter some marks.');
+            return;
+          }
+          
+          if (marks < 0 || marks > config.sections[currentTestType].maxMarks) {
+            alert(`Marks must be between 0 and ${config.sections[currentTestType].maxMarks}`);
+            return;
+          }
+          
+          testData = {
+            name: document.getElementById('testName').value,
+            date: document.getElementById('testDate').value,
+            time: timeString,
+            timestamp: now.toISOString(),
+            cbt: currentCBT,
+            testType: 'sectional',
+            section: currentTestType,
+            marks: marks,
+            maxMarks: config.sections[currentTestType].maxMarks
+          };
+        }
+        
+        cbtResults.push(testData);
+        localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+        
+        this.reset();
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        document.getElementById('testDate').value = formattedDate;
+        updateCBTForm();
+        
+        loadCBTResults();
+        updateAllGraphs();
+        updateAverageScores();
+        
+        alert('Test data saved successfully! Graphs have been updated.');
+      });
+      
+      // Control buttons
+      document.getElementById('expandAll').addEventListener('click', () => {
+        CONFIG.subjects.forEach(subject => {
+          const topicsEl = document.getElementById(`topics_${subject.id}`);
+          topicsEl.style.display = '';
+          const btn = document.querySelector(`.toggle-btn[data-toggle="${subject.id}"]`);
+          if (btn) btn.innerHTML = '<i class="fas fa-chevron-down"></i> Collapse';
+          
+          savedUIState[subject.id] = { collapsed: false };
+        });
+        saveUIState();
+      });
+      
+      document.getElementById('collapseAll').addEventListener('click', () => {
+        CONFIG.subjects.forEach(subject => {
+          const topicsEl = document.getElementById(`topics_${subject.id}`);
+          topicsEl.style.display = 'none';
+          const btn = document.querySelector(`.toggle-btn[data-toggle="${subject.id}"]`);
+          if (btn) btn.innerHTML = '<i class="fas fa-chevron-right"></i> Expand';
+          
+          savedUIState[subject.id] = { collapsed: true };
+        });
+        saveUIState();
+      });
+      
+      // History button
+      document.getElementById('showHistoryBtn').addEventListener('click', showTestHistory);
+      document.getElementById('closeHistory').addEventListener('click', () => {
+        document.getElementById('historyModal').classList.remove('active');
+      });
+      
+      // Reset button
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        document.getElementById('resetModal').classList.add('active');
+      });
+      
+      document.getElementById('resetCancel').addEventListener('click', () => {
+        document.getElementById('resetModal').classList.remove('active');
+        document.getElementById('resetConfirmInput').value = '';
+        document.getElementById('resetConfirm').disabled = true;
+      });
+      
+      document.getElementById('resetConfirmInput').addEventListener('input', function() {
+        document.getElementById('resetConfirm').disabled = 
+          this.value !== "RESET MY PROGRESS";
+      });
+      
+      document.getElementById('resetConfirm').addEventListener('click', () => {
+        savedProgress = {};
+        cbtResults = [];
+        studyLog = [];
+        
+        localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(savedProgress));
+        localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+        localStorage.setItem(STORAGE_KEYS.STUDY_LOG, JSON.stringify(studyLog));
+        
+        document.querySelectorAll('.topic input[type="checkbox"]').forEach(checkbox => {
+          checkbox.checked = false;
+        });
+        
+        updateProgress();
+        loadCBTResults();
+        updateAllGraphs();
+        updateAverageScores();
+        
+        document.getElementById('resetModal').classList.remove('active');
+        document.getElementById('resetConfirmInput').value = '';
+        document.getElementById('resetConfirm').disabled = true;
+        
+        alert('All data has been reset!');
+      });
+      
+      // Export/Import buttons
+      document.getElementById('exportBackupBtn').addEventListener('click', exportBackup);
+      document.getElementById('importBackupBtn').addEventListener('click', () => {
+        document.getElementById('importFile').click();
+      });
+      
+      document.getElementById('importFile').addEventListener('change', importBackup);
+      
+      // Share buttons
+      document.getElementById('shareProgressBtn').addEventListener('click', shareProgress);
+      document.getElementById('shareWebsiteBtn').addEventListener('click', shareWebsite);
+      
+      // Close congratulations modals
+      document.getElementById('closeCongrats').addEventListener('click', () => {
+        document.getElementById('congratsModal').classList.remove('active');
+      });
+      
+      document.getElementById('closeSubjectCongrats').addEventListener('click', () => {
+        document.getElementById('subjectCongratsModal').classList.remove('active');
+      });
+    }
+    
+    function closeDrawer() {
+      document.getElementById('drawer').classList.remove('active');
+      document.getElementById('drawerOverlay').classList.remove('active');
+    }
+    
+    function setTheme(theme) {
+      currentTheme = theme;
+      document.body.className = `theme-${theme}`;
+      localStorage.setItem(STORAGE_KEYS.THEME, theme);
+      
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.theme === theme) {
+          btn.classList.add('active');
+        }
+      });
+      
+      setTimeout(() => {
+        updateAllGraphs();
+        if (selectedSubjectForGraph) {
+          updateSubjectDonutChart(selectedSubjectForGraph);
+        }
+      }, 100);
+    }
+    
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem(STORAGE_KEYS.LANGUAGE, lang);
+      
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
+      
+      updateAllTexts();
+    }
+    
+    function updateAllTexts() {
+      document.title = t('appName');
+      document.getElementById('studentName').placeholder = t('namePlaceholder');
+      
+      const startBtn = document.getElementById('startTracking');
+      if (startBtn) {
+        const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "";
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> ${studentName ? t('continue') : t('getStarted')}`;
+      }
+      
+      updateGreeting();
+      
+      document.querySelectorAll('.card h2').forEach(card => {
+        if (card.innerHTML.includes('Subjects and Topics')) {
+          const progressSpan = document.getElementById('totalProgress');
+          card.innerHTML = `<i class="fas fa-graduation-cap"></i> ${t('subjects')} <span id="totalProgress">${progressSpan ? progressSpan.textContent : '(0% Complete)'}</span>
+            <div class="subject-controls">
+              <button id="expandAll">
+                <i class="fas fa-expand-alt"></i> ${t('expandAll')}
+              </button>
+              <button id="collapseAll">
+                <i class="fas fa-compress-alt"></i> ${t('collapseAll')}
+              </button>
+            </div>`;
+        } else if (card.innerHTML.includes('Progress Overview')) {
+          card.innerHTML = `<i class="fas fa-chart-pie"></i> ${t('progressOverview')}`;
+        } else if (card.innerHTML.includes('Mock Test Analysis')) {
+          card.innerHTML = `<i class="fas fa-chart-line"></i> ${t('mockAnalysis')}`;
+        }
+      });
+      
+      const formLabels = {
+        'testName': t('testName'),
+        'testDate': t('date'),
+        'mathMarks': t('mathMarks'),
+        'reasoningMarks': t('reasoningMarks'),
+        'awarenessMarks': t('awarenessMarks'),
+        'accuracy': t('accuracy'),
+        'totalMarks': t('totalMarks')
+      };
+      
+      Object.keys(formLabels).forEach(id => {
+        const label = document.querySelector(`label[for="${id}"]`);
+        if (label) {
+          label.textContent = formLabels[id];
+        }
+      });
+      
+      const saveButton = document.querySelector('#cbtForm button[type="submit"]');
+      if (saveButton) {
+        saveButton.innerHTML = `<i class="fas fa-save"></i> ${t('save')}`;
+      }
+      
+      const historyButton = document.getElementById('showHistoryBtn');
+      if (historyButton) {
+        historyButton.innerHTML = `<i class="fas fa-history"></i> ${t('viewHistory')}`;
+      }
+      
+      const historyTitle = document.querySelector('#historyModal h2');
+      if (historyTitle) {
+        historyTitle.innerHTML = `<i class="fas fa-history"></i> ${t('testHistory')}`;
+      }
+      
+      const expandBtn = document.getElementById('expandAll');
+      const collapseBtn = document.getElementById('collapseAll');
+      if (expandBtn) expandBtn.innerHTML = `<i class="fas fa-expand-alt"></i> ${t('expandAll')}`;
+      if (collapseBtn) collapseBtn.innerHTML = `<i class="fas fa-compress-alt"></i> ${t('collapseAll')}`;
+      
+      renderSubjects();
+      updateProgress();
+      loadCBTResults();
+      initializeSubjectSelector();
+      updateAllGraphs();
+      updateAverageScores();
+      
+      if (selectedSubjectForGraph) {
+        updateSubjectDonutChart(selectedSubjectForGraph);
+      }
+    }
+    
+    function initializeSubjectSelector() {
+      const selector = document.getElementById('subjectSelector');
+      if (!selector) return;
+      
+      selector.innerHTML = '';
+      
+      CONFIG.subjects.forEach(subject => {
+        const button = document.createElement('button');
+        button.className = 'subject-selector-btn';
+        button.dataset.subject = subject.id;
+        button.innerHTML = `
+          <i class="fas fa-chart-pie"></i>
+          ${subject.title[currentLanguage].split('(')[0].trim()}
+        `;
+        
+        if (subject.id === selectedSubjectForGraph) {
+          button.classList.add('active');
+        }
+        
+        button.addEventListener('click', function() {
+          selectedSubjectForGraph = this.dataset.subject;
+          
+          document.querySelectorAll('.subject-selector-btn').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          updateSubjectDonutChart(selectedSubjectForGraph);
+        });
+        
+        selector.appendChild(button);
+      });
+    }
+    
+    // ========== STORAGE FUNCTIONS ==========
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(savedProgress));
+    }
+    
+    function saveUIState() {
+      localStorage.setItem(STORAGE_KEYS.UI_STATE, JSON.stringify(savedUIState));
+    }
+    
+    function saveAllData() {
+      saveProgress();
+      saveUIState();
+      localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+      localStorage.setItem(STORAGE_KEYS.STUDY_LOG, JSON.stringify(studyLog));
+    }
+    
+    // ========== BACKUP FUNCTIONS ==========
+    function exportBackup() {
+      const backupData = {
+        app: CONFIG.appName,
+        version: CONFIG.appVersion,
+        timestamp: new Date().toISOString(),
+        studentName: localStorage.getItem(STORAGE_KEYS.STUDENT_NAME),
+        progress: savedProgress,
+        uiState: savedUIState,
+        cbtResults: cbtResults,
+        studyLog: studyLog,
+        theme: currentTheme,
+        language: currentLanguage
+      };
+      
+      const dataStr = JSON.stringify(backupData, null, 2);
+      const dataBlob = new Blob([dataStr], {type: 'application/json'});
+      const url = URL.createObjectURL(dataBlob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `ntpc_backup_${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      alert('Backup exported successfully!');
+    }
+    
+    function importBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const backupData = JSON.parse(e.target.result);
+          
+          if (!backupData.app || !backupData.version) {
+            throw new Error('Invalid backup file');
+          }
+          
+          if (backupData.studentName) {
+            localStorage.setItem(STORAGE_KEYS.STUDENT_NAME, backupData.studentName);
+          }
+          
+          if (backupData.progress) {
+            savedProgress = backupData.progress;
+            localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(savedProgress));
+          }
+          
+          if (backupData.uiState) {
+            savedUIState = backupData.uiState;
+            localStorage.setItem(STORAGE_KEYS.UI_STATE, JSON.stringify(savedUIState));
+          }
+          
+          if (backupData.cbtResults) {
+            cbtResults = backupData.cbtResults;
+            localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+          }
+          
+          if (backupData.studyLog) {
+            studyLog = backupData.studyLog;
+            localStorage.setItem(STORAGE_KEYS.STUDY_LOG, JSON.stringify(studyLog));
+          }
+          
+          if (backupData.theme) {
+            currentTheme = backupData.theme;
+            localStorage.setItem(STORAGE_KEYS.THEME, currentTheme);
+            setTheme(currentTheme);
+          }
+          
+          if (backupData.language) {
+            currentLanguage = backupData.language;
+            localStorage.setItem(STORAGE_KEYS.LANGUAGE, currentLanguage);
+            setLanguage(currentLanguage);
+          }
+          
+          updateGreeting();
+          renderSubjects();
+          updateProgress();
+          loadCBTResults();
+          initializeSubjectSelector();
+          updateAllGraphs();
+          updateAverageScores();
+          
+          alert('Backup imported successfully!');
+        } catch (error) {
+          alert('Invalid backup file. Please choose a valid backup file.');
+          console.error('Import error:', error);
+        }
+      };
+      
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+    
+    // ========== SHARE FUNCTIONS ==========
+    async function shareProgress() {
+      try {
+        const overallProgress = calculateOverallProgress();
+        const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "Student";
+        
+        const shareText = currentLanguage === 'hi' ? 
+          `📊 मेरी NTPC PRO प्रगति: ${Math.round(overallProgress)}% पूर्ण\n👤 छात्र: ${studentName}\n📅 तारीख: ${new Date().toLocaleDateString('hi-IN')}\n🚀 अपनी तैयारी ट्रैक करें: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation` :
+          `📊 My NTPC PRO Progress: ${Math.round(overallProgress)}% Complete\n👤 Student: ${studentName}\n📅 Date: ${new Date().toLocaleDateString('en-US')}\n🚀 Track your preparation: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation`;
+        
+        if (navigator.share) {
+          await navigator.share({
+            title: `${studentName}'s NTPC Progress`,
+            text: shareText
+          });
+        } else {
+          await navigator.clipboard.writeText(shareText);
+          alert(currentLanguage === 'hi' ? 
+            'प्रगति पाठ क्लिपबोर्ड पर कॉपी किया गया! आप अब इसे साझा कर सकते हैं।' : 
+            'Progress text copied to clipboard! You can now share it.');
+        }
+      } catch (error) {
+        console.error('Error sharing progress:', error);
+      }
+    }
+    
+    async function shareWebsite() {
+      try {
+        const shareText = currentLanguage === 'hi' ? 
+          '🚀 आरआरबी एनटीपीसी परीक्षा की तैयारी के लिए NTPC PRO ऐप का उपयोग करें!\n\n📊 अपनी प्रगति ट्रैक करें और अपने प्रदर्शन में सुधार करें।\n\n🔗 लिंक: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation 💪' :
+          '🚀 Use NTPC PRO app for RRB NTPC exam preparation!\n\n📊 Track your progress and improve your performance.\n\n🔗 Link: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation 💪';
+        
+        if (navigator.share) {
+          await navigator.share({
+            title: 'NTPC PRO - RRB NTPC Preparation',
+            text: shareText
+          });
+        } else {
+          await navigator.clipboard.writeText(shareText);
+          alert(currentLanguage === 'hi' ? 
+            'वेबसाइट लिंक क्लिपबोर्ड पर कॉपी किया गया! आप अब इसे साझा कर सकते हैं।' : 
+            'Website link copied to clipboard! You can now share it.');
+        }
+      } catch (error) {
+        console.error('Error sharing website:', error);
+      }
+    }
+    
+    // ========== INITIALIZE APP ==========
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  </script>
+</body>
+</html>

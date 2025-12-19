@@ -4192,6 +4192,17 @@
     let fullTestGraphView = "total";
     let isSubmitting = false;
 
+    // ========== HELPER FUNCTION FOR SPLITTING TOPIC IDs ==========
+    function splitTopicId(topicId) {
+      const firstUnderscoreIndex = topicId.indexOf('_');
+      if (firstUnderscoreIndex === -1) return { subjectId: '', topicKey: '' };
+      
+      const subjectId = topicId.substring(0, firstUnderscoreIndex);
+      const topicKey = topicId.substring(firstUnderscoreIndex + 1);
+      
+      return { subjectId, topicKey };
+    }
+
     // ========== INITIALIZATION ==========
     function initializeApp() {
       setTheme(currentTheme);
@@ -4390,7 +4401,7 @@
         });
       }, 100);
       
-      // FIXED: Event delegation for checkbox changes
+      // FIXED: Event delegation for checkbox changes - USING HELPER FUNCTION
       document.getElementById('subjectsContainer').addEventListener('change', function(e) {
         if (e.target && e.target.type === 'checkbox') {
           const checkbox = e.target;
@@ -4401,15 +4412,18 @@
           updateProgress();
           
           if (checkbox.checked) {
-            showCongratulations(checkbox);
+            const { subjectId, topicKey } = splitTopicId(topicId);
             
-            const [subjectId, topicKey] = topicId.split('_');
-            const subjectProgress = calculateSubjectProgress(subjectId);
-            if (subjectProgress === 100) {
-              showSubjectCongratulations(subjectId);
+            if (subjectId && topicKey) {
+              showCongratulations(subjectId, topicKey);
+              
+              const subjectProgress = calculateSubjectProgress(subjectId);
+              if (subjectProgress === 100) {
+                showSubjectCongratulations(subjectId);
+              }
+              
+              logStudyActivity(topicId);
             }
-            
-            logStudyActivity(topicId);
           }
         }
       });
@@ -4506,10 +4520,7 @@
       document.getElementById('subjectChartPercentage').textContent = `${Math.round(progress)}%`;
     }
     
-    function showCongratulations(checkbox) {
-      const topicId = checkbox.id;
-      const [subjectId, topicKey] = topicId.split('_');
-      
+    function showCongratulations(subjectId, topicKey) {
       const subject = CONFIG.subjects.find(s => s.id === subjectId);
       if (!subject) return;
       
@@ -6359,5 +6370,3 @@
   </script>
 </body>
 </html>
-
-

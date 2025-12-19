@@ -9,218 +9,258 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Raleway:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-   /* =========================
-   REPLACE THESE THEME BLOCKS
-   (Paste in place of your existing :root + .theme-* blocks)
-   ========================= */
+    /* ===== CSS Variables for Themes (refined for better contrast & lighter drawer) ===== */
+    :root {
+      /* Modern Light Theme (Default) - tuned for readable text & lighter drawer */
+      --bg: #f8fafc;
+      --glass: rgba(15, 23, 42, 0.03);               /* lighter glass for subtle depth */
+      --card: #ffffff;
+      --text: #0b1220;                                 /* slightly stronger than before */
+      --muted: #525f73;                                /* darker muted for legibility */
+      --border: #e6eef6;                               /* soft border */
+      --accent: #2563eb;                               /* clearer blue accent */
+      --accent-2: #7c3aed;
+      --accent-3: #059669;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: #f1f5f9;
+      --shadow: 0 12px 35px rgba(2,6,23,0.08);
+      --gradient: linear-gradient(135deg, #2563eb, #7c3aed, #f59e0b, #059669);
+      --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
+      --success: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --drawer-bg: rgba(255, 255, 255, 0.92);         /* lighter drawer so outer text stands out */
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%232563eb" opacity="0.28"/><circle cx="80" cy="30" r="8" fill="%237c3aed" opacity="0.22"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.08"/></svg>');
+      --card-opacity: 0.98;
+      --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --header-text-color: #071029;                    /* darker header for crisp titles */
+      --menu-text-color: var(--accent);                /* menu uses accent for clarity */
+      --theme-btn-light: #2563eb;
+      --theme-btn-dark: #1e293b;
+      --theme-btn-blue: #1e40af;
+      --theme-btn-green: #065f46;
+      --theme-btn-purple: #5b21b6;
+      --theme-btn-pink: #be185d;
+      --theme-btn-orange: #ea580c;
+    }
 
-/* ===== Improved Modern Light (Default) ===== */
-:root {
-  --bg: #f8fafc;
-  --glass: rgba(15, 23, 42, 0.04);
-  --card: #ffffff;
-  --text: #0b1220;            /* slightly darker for best contrast */
-  --muted: #6b7280;
-  --border: #e6eef8;
-  --accent: #2563eb;         /* primary blue (balanced) */
-  --accent-2: #7c3aed;
-  --accent-3: #059669;
-  --accent-4: #d97706;
-  --accent-5: #dc2626;
-  --accent-6: #db2777;
-  --pill: #f1f5f9;
-  --shadow: 0 10px 28px rgba(7,12,19,0.06);
-  --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --drawer-bg: rgba(255, 255, 255, 0.92); /* lighter than before so outside text visible */
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%232563eb" opacity="0.25"/><circle cx="80" cy="30" r="8" fill="%237c3aed" opacity="0.18"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23d97706" opacity="0.18"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.06"/></svg>');
-  --card-opacity: 0.98;
-  --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --header-text-color: #071028;
-  --menu-text-color: #2563eb;
-  --theme-btn-light: #2563eb;
-  --theme-btn-dark: #1e293b;
-}
+    /* Dark Theme - improved readability, slightly lighter drawer for white text contrast */
+    .theme-dark {
+      --bg: #071125;                                   /* deep but not fully black to reduce strain */
+      --glass: rgba(255,255,255,0.06);                 /* subtle glass on dark */
+      --card: #111827;
+      --text: #f8fafc;                                 /* very readable text on dark */
+      --muted: #98a7bb;                                /* readable muted */
+      --border: #243340;
+      --accent: #60a5fa;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --accent-4: #fbbf24;
+      --accent-5: #f87171;
+      --accent-6: #f472b6;
+      --pill: #0f1726;
+      --shadow: 0 12px 35px rgba(0,0,0,0.5);
+      --gradient: linear-gradient(135deg, #60a5fa, #a78bfa, #fbbf24, #34d399);
+      --gradient-card: linear-gradient(145deg, #0f1726, #0b1220);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --drawer-bg: rgba(15, 23, 42, 0.85);             /* lighter than before so content edges readable */
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%2360a5fa" opacity="0.28"/><circle cx="80" cy="30" r="8" fill="%23a78bfa" opacity="0.22"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23fbbf24" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2334d399" stroke-width="1" opacity="0.08"/></svg>');
+      --card-opacity: 0.94;
+      --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --header-text-color: #f8fafc;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #60a5fa;
+      --theme-btn-dark: #334155;
+      --theme-btn-blue: #93c5fd;
+      --theme-btn-green: #34d399;
+      --theme-btn-purple: #a78bfa;
+      --theme-btn-pink: #f472b6;
+      --theme-btn-orange: #fdba74;
+    }
 
-/* ===== Improved Dark Theme ===== */
-.theme-dark {
-  --bg: #0b1624;
-  --glass: rgba(255,255,255,0.06);
-  --card: #0f1724;
-  --text: #ffffff;             /* white text for dark background */
-  --muted: #a7b0bf;
-  --border: #233041;
-  --accent: #60a5fa;
-  --accent-2: #9f7aea;
-  --accent-3: #34d399;
-  --accent-4: #fbbf24;
-  --accent-5: #f87171;
-  --accent-6: #f472b6;
-  --pill: #111827;
-  --shadow: 0 12px 30px rgba(2,6,23,0.55);
-  --gradient: linear-gradient(135deg, #0f1724 0%, #12243a 100%);
-  --gradient-card: linear-gradient(145deg, #0f1724, #0b1624);
-  --success: #34d399;
-  --warning: #fbbf24;
-  --danger: #f87171;
-  --drawer-bg: rgba(2,8,23,0.60); /* lighter (more transparent) so outside text remains readable */
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%2360a5fa" opacity="0.22"/><circle cx="80" cy="30" r="8" fill="%239f7aea" opacity="0.14"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23fbbf24" opacity="0.12"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2334d399" stroke-width="1" opacity="0.04"/></svg>');
-  --card-opacity: 0.94;
-  --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: #7cc2ff;
-  --theme-btn-light: #60a5fa;
-  --theme-btn-dark: #233041;
-}
+    /* Blue Theme - keep cards bright & drawer slightly translucent */
+    .theme-blue {
+      --bg: linear-gradient(135deg, #0f172a 0%, #0b3b7a 100%);
+      --glass: rgba(255,255,255,0.10);
+      --card: rgba(255, 255, 255, 0.98);
+      --text: #071029;
+      --muted: #475569;
+      --border: #cfe8ff;
+      --accent: #1e40af;
+      --accent-2: #3730a3;
+      --accent-3: #0d9488;
+      --accent-4: #ea580c;
+      --accent-5: #dc2626;
+      --accent-6: #db2777;
+      --pill: rgba(30, 58, 138, 0.14);
+      --shadow: 0 12px 35px rgba(14, 165, 233, 0.18);
+      --gradient: linear-gradient(135deg, #2563eb, #4f46e5, #ea580c, #0d9488);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --drawer-bg: rgba(30, 58, 138, 0.88);            /* lighter so outer text contrasts */
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%231e40af" opacity="0.32"/><circle cx="80" cy="30" r="8" fill="%234f46e5" opacity="0.24"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23ea580c" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230d9488" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.96;
+      --font-family: 'Montserrat', 'Arial', sans-serif;
+      --header-text-color: #08123a;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #60a5fa;
+      --theme-btn-dark: #1e40af;
+      --theme-btn-blue: #2563eb;
+      --theme-btn-green: #0d9488;
+      --theme-btn-purple: #4f46e5;
+      --theme-btn-pink: #db2777;
+      --theme-btn-orange: #ea580c;
+    }
 
-/* ===== Improved Blue Theme ===== */
-.theme-blue {
-  --bg: linear-gradient(135deg, #0b2a66 0%, #0f3aa8 100%);
-  --glass: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.96);
-  --text: #ffffff;            /* white text on strong blue bg */
-  --muted: #dbeafe;
-  --border: rgba(255,255,255,0.08);
-  --accent: #1e40af;
-  --accent-2: #2563eb;
-  --accent-3: #0ea5a4;
-  --accent-4: #f59e0b;
-  --accent-5: #ef4444;
-  --accent-6: #db2777;
-  --pill: rgba(255,255,255,0.06);
-  --shadow: 0 12px 30px rgba(2,12,60,0.45);
-  --gradient: linear-gradient(135deg, #2563eb, #4f46e5);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,255,255,0.90));
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --drawer-bg: rgba(14, 40, 85, 0.78); /* lighter/translucent so outside content remains visible */
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%231e40af" opacity="0.30"/><circle cx="80" cy="30" r="8" fill="%232563eb" opacity="0.20"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.14"/></svg>');
-  --card-opacity: 0.96;
-  --font-family: 'Montserrat', 'Arial', sans-serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: rgba(255,255,255,0.9);
-  --theme-btn-blue: #2563eb;
-}
+    /* Green Theme - tuned contrasts and lighter drawer */
+    .theme-green {
+      --bg: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+      --glass: rgba(255,255,255,0.10);
+      --card: rgba(255, 255, 255, 0.98);
+      --text: #071029;
+      --muted: #475569;
+      --border: #dff7ef;
+      --accent: #059669;
+      --accent-2: #7c3aed;
+      --accent-3: #0d9488;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: rgba(6, 78, 59, 0.12);
+      --shadow: 0 12px 35px rgba(5, 90, 67, 0.14);
+      --gradient: linear-gradient(135deg, #059669, #7c3aed, #f59e0b, #0d9488);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --drawer-bg: rgba(6, 95, 70, 0.88);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%23059669" opacity="0.32"/><circle cx="80" cy="30" r="8" fill="%237c3aed" opacity="0.24"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230d9488" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.96;
+      --font-family: 'Nunito', 'Verdana', sans-serif;
+      --header-text-color: #044936;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #10b981;
+      --theme-btn-dark: #047857;
+      --theme-btn-blue: #0d9488;
+      --theme-btn-green: #059669;
+      --theme-btn-purple: #7c3aed;
+      --theme-btn-pink: #db2777;
+      --theme-btn-orange: #f59e0b;
+    }
 
-/* ===== Improved Green Theme ===== */
-.theme-green {
-  --bg: linear-gradient(135deg, #054f3f 0%, #047857 100%);
-  --glass: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.97);
-  --text: #ffffff; /* white on deep green background for readability */
-  --muted: #d1fae5;
-  --border: rgba(255,255,255,0.06);
-  --accent: #059669;
-  --accent-2: #10b981;
-  --accent-3: #0d9488;
-  --accent-4: #f59e0b;
-  --accent-5: #ef4444;
-  --accent-6: #db2777;
-  --pill: rgba(255,255,255,0.05);
-  --shadow: 0 12px 28px rgba(4,40,32,0.45);
-  --gradient: linear-gradient(135deg, #059669, #10b981);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.97), rgba(255,255,255,0.92));
-  --success: #059669;
-  --warning: #d97706;
-  --danger: #dc2626;
-  --drawer-bg: rgba(6, 95, 70, 0.78); /* slightly more transparent */
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23059669" opacity="0.28"/><circle cx="80" cy="30" r="8" fill="%237c3aed" opacity="0.18"/></svg>');
-  --card-opacity: 0.96;
-  --font-family: 'Nunito', 'Verdana', sans-serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: rgba(255,255,255,0.92);
-}
+    /* Purple Theme - improved contrast + lighter drawer */
+    .theme-purple {
+      --bg: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);
+      --glass: rgba(255,255,255,0.10);
+      --card: rgba(255, 255, 255, 0.98);
+      --text: #071029;
+      --muted: #4b5563;
+      --border: #e9e5ff;
+      --accent: #7c3aed;
+      --accent-2: #3b82f6;
+      --accent-3: #10b981;
+      --accent-4: #f59e0b;
+      --accent-5: #ec4899;
+      --accent-6: #ec4899;
+      --pill: rgba(91, 33, 182, 0.12);
+      --shadow: 0 12px 35px rgba(99, 60, 205, 0.16);
+      --gradient: linear-gradient(135deg, #7c3aed, #3b82f6, #f59e0b, #10b981);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ec4899;
+      --drawer-bg: rgba(91, 33, 182, 0.88);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%237c3aed" opacity="0.32"/><circle cx="80" cy="30" r="8" fill="%233b82f6" opacity="0.24"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2310b981" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.96;
+      --font-family: 'Poppins', 'Georgia', serif;
+      --header-text-color: #3b1464;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #8b5cf6;
+      --theme-btn-dark: #7c3aed;
+      --theme-btn-blue: #6366f1;
+      --theme-btn-green: #10b981;
+      --theme-btn-purple: #7c3aed;
+      --theme-btn-pink: #ec4899;
+      --theme-btn-orange: #f59e0b;
+    }
 
-/* ===== Improved Purple Theme ===== */
-.theme-purple {
-  --bg: linear-gradient(135deg, #4b106a 0%, #6d28d9 100%);
-  --glass: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.97);
-  --text: #ffffff;
-  --muted: #e9d5ff;
-  --border: rgba(255,255,255,0.06);
-  --accent: #7c3aed;
-  --accent-2: #6d28d9;
-  --accent-3: #10b981;
-  --accent-4: #f59e0b;
-  --accent-5: #ec4899;
-  --accent-6: #ec4899;
-  --pill: rgba(255,255,255,0.06);
-  --shadow: 0 12px 30px rgba(63,10,100,0.45);
-  --gradient: linear-gradient(135deg, #7c3aed, #6d28d9);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.97), rgba(255,255,255,0.92));
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ec4899;
-  --drawer-bg: rgba(74, 21, 120, 0.76); /* translucent drawer */
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%237c3aed" opacity="0.30"/><circle cx="80" cy="30" r="8" fill="%236d28d9" opacity="0.20"/></svg>');
-  --card-opacity: 0.96;
-  --font-family: 'Poppins', 'Georgia', serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: rgba(255,255,255,0.92);
-}
+    /* Pink Theme - refined */
+    .theme-pink {
+      --bg: linear-gradient(135deg, #9f1239 0%, #be185d 100%);
+      --glass: rgba(255,255,255,0.10);
+      --card: rgba(255, 255, 255, 0.98);
+      --text: #071029;
+      --muted: #4b5563;
+      --border: #ffe6ef;
+      --accent: #db2777;
+      --accent-2: #9333ea;
+      --accent-3: #059669;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: rgba(190, 24, 93, 0.12);
+      --shadow: 0 12px 35px rgba(221, 39, 119, 0.14);
+      --gradient: linear-gradient(135deg, #db2777, #9333ea, #f59e0b, #059669);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+      --success: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --drawer-bg: rgba(190, 24, 93, 0.88);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%23db2777" opacity="0.32"/><circle cx="80" cy="30" r="8" fill="%239333ea" opacity="0.24"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.96;
+      --font-family: 'Raleway', 'Arial', sans-serif;
+      --header-text-color: #8a153c;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #f472b6;
+      --theme-btn-dark: #db2777;
+      --theme-btn-blue: #9333ea;
+      --theme-btn-green: #059669;
+      --theme-btn-purple: #9333ea;
+      --theme-btn-pink: #db2777;
+      --theme-btn-orange: #f59e0b;
+    }
 
-/* ===== Improved Pink Theme ===== */
-.theme-pink {
-  --bg: linear-gradient(135deg, #7b0b4b 0%, #a21b66 60%, #db2777 100%);
-  --glass: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.97);
-  --text: #ffffff;
-  --muted: #ffd6e7;
-  --border: rgba(255,255,255,0.06);
-  --accent: #db2777;
-  --accent-2: #9333ea;
-  --accent-3: #059669;
-  --accent-4: #f59e0b;
-  --accent-5: #ef4444;
-  --accent-6: #db2777;
-  --pill: rgba(255,255,255,0.06);
-  --shadow: 0 12px 28px rgba(119,10,55,0.45);
-  --gradient: linear-gradient(135deg, #db2777, #9333ea);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.97), rgba(255,255,255,0.92));
-  --success: #059669;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --drawer-bg: rgba(155, 21, 82, 0.76);
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23db2777" opacity="0.30"/></svg>');
-  --card-opacity: 0.96;
-  --font-family: 'Raleway', 'Arial', sans-serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: rgba(255,255,255,0.92);
-}
-
-/* ===== Improved Orange Theme ===== */
-.theme-orange {
-  --bg: linear-gradient(135deg, #b44a06 0%, #f97316 100%);
-  --glass: rgba(255,255,255,0.08);
-  --card: rgba(255,255,255,0.97);
-  --text: #ffffff; /* white text keeps readability on strong orange */
-  --muted: #fff7ed;
-  --border: rgba(255,255,255,0.06);
-  --accent: #f97316;
-  --accent-2: #7c3aed;
-  --accent-3: #059669;
-  --accent-4: #3b82f6;
-  --accent-5: #ef4444;
-  --accent-6: #db2777;
-  --pill: rgba(255,255,255,0.06);
-  --shadow: 0 12px 30px rgba(125,40,10,0.42);
-  --gradient: linear-gradient(135deg, #f97316, #9333ea);
-  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.97), rgba(255,255,255,0.92));
-  --success: #059669;
-  --warning: #f97316;
-  --danger: #ef4444;
-  --drawer-bg: rgba(160, 65, 10, 0.78);
-  --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23f97316" opacity="0.30"/></svg>');
-  --card-opacity: 0.96;
-  --font-family: 'Quicksand', 'Verdana', sans-serif;
-  --header-text-color: #ffffff;
-  --menu-text-color: rgba(255,255,255,0.92);
-}
+    /* Orange Theme - tuned */
+    .theme-orange {
+      --bg: linear-gradient(135deg, #b45309 0%, #ea580c 100%);
+      --glass: rgba(255,255,255,0.10);
+      --card: rgba(255, 255, 255, 0.98);
+      --text: #071029;
+      --muted: #475569;
+      --border: #fff1e6;
+      --accent: #f97316;
+      --accent-2: #9333ea;
+      --accent-3: #059669;
+      --accent-4: #3b82f6;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: rgba(234, 88, 12, 0.12);
+      --shadow: 0 12px 35px rgba(249, 115, 22, 0.16);
+      --gradient: linear-gradient(135deg, #f97316, #9333ea, #3b82f6, #059669);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+      --success: #059669;
+      --warning: #f97316;
+      --danger: #ef4444;
+      --drawer-bg: rgba(234, 88, 12, 0.88);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100"><rect x="18" y="18" width="12" height="12" fill="%23f97316" opacity="0.32"/><circle cx="80" cy="30" r="8" fill="%239333ea" opacity="0.24"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%233b82f6" opacity="0.28"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.1"/></svg>');
+      --card-opacity: 0.96;
+      --font-family: 'Quicksand', 'Verdana', sans-serif;
+      --header-text-color: #87350b;
+      --menu-text-color: var(--accent);
+      --theme-btn-light: #fdba74;
+      --theme-btn-dark: #f97316;
+      --theme-btn-blue: #3b82f6;
+      --theme-btn-green: #059669;
+      --theme-btn-purple: #9333ea;
+      --theme-btn-pink: #db2777;
+      --theme-btn-orange: #f97316;
+    }
 
 /* ===== Helpful small utilities (optional) =====
    You can add these to ensure components use the variables consistently.
@@ -6319,4 +6359,5 @@
   </script>
 </body>
 </html>
+
 

@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NTPC PRO</title>
+  <title>SSC CGL PRO</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Raleway:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ===== CSS Variables for Themes ===== */
     :root {
@@ -17,21 +18,27 @@
       --text: #0f172a;
       --muted: #64748b;
       --border: #e2e8f0;
-      --accent: #4f46e5;
-      --accent-2: #db2777;
-      --accent-3: #059669;
-      --accent-4: #d97706;
-      --accent-5: #7c3aed;
+      --accent: #3b82f6;
+      --accent-2: #8b5cf6;
+      --accent-3: #10b981;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #ec4899;
       --pill: #f1f5f9;
       --shadow: 0 12px 35px rgba(0,0,0,0.08);
-      --gradient: linear-gradient(135deg, #4f46e5, #db2777, #d97706, #059669);
+      --gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #f59e0b, #10b981);
       --gradient-card: linear-gradient(145deg, #ffffff, #f8fafc);
-      --success: #059669;
-      --warning: #d97706;
-      --danger: #dc2626;
-      --drawer-bg: rgba(255, 255, 255, 0.98);
-      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%234f46e5" opacity="0.2"/><circle cx="80" cy="30" r="8" fill="%23db2777" opacity="0.2"/><circle cx="40" cy="80" r="6" fill="%23d97706" opacity="0.2"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.1"/></svg>');
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%233b82f6" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%238b5cf6" opacity="0.2"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2310b981" stroke-width="1" opacity="0.1"/></svg>');
       --card-opacity: 0.95;
+      --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --header-text-color: #0f172a;
+      --menu-text-color: #3b82f6;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
     }
     
     /* Dark Theme */
@@ -42,71 +49,182 @@
       --text: #f1f5f9;
       --muted: #cbd5e1;
       --border: #334155;
-      --accent: #6366f1;
-      --accent-2: #ec4899;
-      --accent-3: #10b981;
-      --accent-4: #f59e0b;
-      --accent-5: #8b5cf6;
+      --accent: #60a5fa;
+      --accent-2: #a78bfa;
+      --accent-3: #34d399;
+      --accent-4: #fbbf24;
+      --accent-5: #f87171;
+      --accent-6: #f472b6;
       --pill: #1a2437;
       --shadow: 0 12px 35px rgba(0,0,0,0.4);
-      --gradient: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b, #10b981);
+      --gradient: linear-gradient(135deg, #60a5fa, #a78bfa, #fbbf24, #34d399);
       --gradient-card: linear-gradient(145deg, #1e293b, #1a2437);
-      --success: #10b981;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --drawer-bg: rgba(15, 23, 42, 0.95);
-      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%236366f1" opacity="0.2"/><circle cx="80" cy="30" r="8" fill="%23ec4899" opacity="0.2"/><circle cx="40" cy="80" r="6" fill="%23f59e0b" opacity="0.2"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2310b981" stroke-width="1" opacity="0.1"/></svg>');
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+      --drawer-bg: rgba(30, 41, 59, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%2360a5fa" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%23a78bfa" opacity="0.2"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23fbbf24" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2334d399" stroke-width="1" opacity="0.1"/></svg>');
       --card-opacity: 0.92;
+      --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --header-text-color: #f1f5f9;
+      --menu-text-color: #60a5fa;
+      --drawer-text: #f1f5f9;
+      --drawer-section-bg: rgba(30, 41, 59, 0.6);
     }
     
     /* Blue Theme */
     .theme-blue {
-      --bg: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%);
+      --bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
       --glass: rgba(255,255,255,0.15);
       --card: rgba(255, 255, 255, 0.95);
       --text: #0f172a;
       --muted: #475569;
       --border: #60a5fa;
-      --accent: #1d4ed8;
-      --accent-2: #2563eb;
-      --accent-3: #0284c7;
-      --accent-4: #0ea5e9;
-      --accent-5: #3b82f6;
+      --accent: #2563eb;
+      --accent-2: #4f46e5;
+      --accent-3: #0d9488;
+      --accent-4: #ea580c;
+      --accent-5: #dc2626;
+      --accent-6: #db2777;
       --pill: rgba(30, 58, 138, 0.2);
       --shadow: 0 12px 35px rgba(14, 165, 233, 0.3);
-      --gradient: linear-gradient(135deg, #1d4ed8, #2563eb, #0ea5e9, #0284c7);
+      --gradient: linear-gradient(135deg, #2563eb, #4f46e5, #ea580c, #0d9488);
       --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
       --success: #059669;
       --warning: #d97706;
       --danger: #dc2626;
-      --drawer-bg: rgba(12, 74, 110, 0.97);
-      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%231d4ed8" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%232563eb" opacity="0.3"/><circle cx="40" cy="80" r="6" fill="%230ea5e9" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230284c7" stroke-width="1" opacity="0.2"/></svg>');
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%232563eb" opacity="0.4"/><circle cx="80" cy="30" r="8" fill="%234f46e5" opacity="0.3"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23ea580c" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230d9488" stroke-width="1" opacity="0.2"/></svg>');
       --card-opacity: 0.92;
+      --font-family: 'Montserrat', 'Arial', sans-serif;
+      --header-text-color: #1e3a8a;
+      --menu-text-color: #2563eb;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
     }
     
     /* Green Theme */
     .theme-green {
-      --bg: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+      --bg: linear-gradient(135deg, #065f46 0%, #047857 100%);
       --glass: rgba(255,255,255,0.15);
       --card: rgba(255, 255, 255, 0.95);
       --text: #0f172a;
       --muted: #475569;
       --border: #10b981;
-      --accent: #047857;
-      --accent-2: #059669;
-      --accent-3: #10b981;
-      --accent-4: #34d399;
-      --accent-5: #059669;
+      --accent: #059669;
+      --accent-2: #7c3aed;
+      --accent-3: #0d9488;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
       --pill: rgba(6, 78, 59, 0.2);
       --shadow: 0 12px 35px rgba(16, 185, 129, 0.3);
-      --gradient: linear-gradient(135deg, #047857, #059669, #10b981, #34d399);
+      --gradient: linear-gradient(135deg, #059669, #7c3aed, #f59e0b, #0d9488);
       --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
       --success: #059669;
       --warning: #d97706;
       --danger: #dc2626;
-      --drawer-bg: rgba(6, 78, 59, 0.97);
-      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%23047857" opacity="0.3"/><circle cx="80" cy="30" r="8" fill="%23059669" opacity="0.3"/><circle cx="40" cy="80" r="6" fill="%2310b981" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2334d399" stroke-width="1" opacity="0.2"/></svg>');
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23059669" opacity="0.4"/><circle cx="80" cy="30" r="8" fill="%237c3aed" opacity="0.3"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%230d9488" stroke-width="1" opacity="0.2"/></svg>');
       --card-opacity: 0.92;
+      --font-family: 'Nunito', 'Verdana', sans-serif;
+      --header-text-color: #065f46;
+      --menu-text-color: #059669;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
+    }
+    
+    /* Purple Theme */
+    .theme-purple {
+      --bg: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+      --glass: rgba(255,255,255,0.15);
+      --card: rgba(255, 255, 255, 0.95);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #a78bfa;
+      --accent: #7c3aed;
+      --accent-2: #3b82f6;
+      --accent-3: #10b981;
+      --accent-4: #f59e0b;
+      --accent-5: #ec4899;
+      --accent-6: #ec4899;
+      --pill: rgba(91, 33, 182, 0.2);
+      --shadow: 0 12px 35px rgba(124, 58, 237, 0.3);
+      --gradient: linear-gradient(135deg, #7c3aed, #3b82f6, #f59e0b, #10b981);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ec4899;
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%237c3aed" opacity="0.4"/><circle cx="80" cy="30" r="8" fill="%233b82f6" opacity="0.3"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%2310b981" stroke-width="1" opacity="0.2"/></svg>');
+      --card-opacity: 0.92;
+      --font-family: 'Poppins', 'Georgia', serif;
+      --header-text-color: #5b21b6;
+      --menu-text-color: #7c3aed;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
+    }
+    
+    /* Pink Theme (NEW) */
+    .theme-pink {
+      --bg: linear-gradient(135deg, #be185d 0%, #db2777 100%);
+      --glass: rgba(255,255,255,0.15);
+      --card: rgba(255, 255, 255, 0.95);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #f472b6;
+      --accent: #db2777;
+      --accent-2: #9333ea;
+      --accent-3: #059669;
+      --accent-4: #f59e0b;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: rgba(190, 24, 93, 0.2);
+      --shadow: 0 12px 35px rgba(219, 39, 119, 0.3);
+      --gradient: linear-gradient(135deg, #db2777, #9333ea, #f59e0b, #059669);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      --success: #059669;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23db2777" opacity="0.4"/><circle cx="80" cy="30" r="8" fill="%239333ea" opacity="0.3"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%23f59e0b" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.2"/></svg>');
+      --card-opacity: 0.92;
+      --font-family: 'Raleway', 'Arial', sans-serif;
+      --header-text-color: #be185d;
+      --menu-text-color: #db2777;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
+    }
+    
+    /* Orange Theme (NEW) */
+    .theme-orange {
+      --bg: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+      --glass: rgba(255,255,255,0.15);
+      --card: rgba(255, 255, 255, 0.95);
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #fdba74;
+      --accent: #f97316;
+      --accent-2: #9333ea;
+      --accent-3: #059669;
+      --accent-4: #3b82f6;
+      --accent-5: #ef4444;
+      --accent-6: #db2777;
+      --pill: rgba(234, 88, 12, 0.2);
+      --shadow: 0 12px 35px rgba(249, 115, 22, 0.3);
+      --gradient: linear-gradient(135deg, #f97316, #9333ea, #3b82f6, #059669);
+      --gradient-card: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+      --success: #059669;
+      --warning: #f97316;
+      --danger: #ef4444;
+      --drawer-bg: rgba(255, 255, 255, 0.95);
+      --illustration: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="20" y="20" width="10" height="10" fill="%23f97316" opacity="0.4"/><circle cx="80" cy="30" r="8" fill="%239333ea" opacity="0.3"/><polygon points="40,80 50,70 60,80 55,90 45,90" fill="%233b82f6" opacity="0.3"/><path d="M10,50 Q50,10 90,50 T10,50" fill="none" stroke="%23059669" stroke-width="1" opacity="0.2"/></svg>');
+      --card-opacity: 0.92;
+      --font-family: 'Quicksand', 'Verdana', sans-serif;
+      --header-text-color: #ea580c;
+      --menu-text-color: #f97316;
+      --drawer-text: #0f172a;
+      --drawer-section-bg: rgba(248, 250, 252, 0.7);
     }
     
     /* ===== Base Styles ===== */
@@ -119,7 +237,7 @@
     
     html, body {
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: var(--font-family);
       transition: background-color 0.5s ease, color 0.3s ease;
     }
     
@@ -146,9 +264,10 @@
       left: 5%;
       width: 100px;
       height: 100px;
-      border-radius: 50%;
+      border-radius: 20px;
       background: var(--accent);
       animation: float 20s infinite linear;
+      transform: rotate(45deg);
     }
     
     .bg-doodle-2 {
@@ -156,7 +275,7 @@
       right: 10%;
       width: 150px;
       height: 150px;
-      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      border-radius: 50%;
       background: var(--accent-2);
       animation: float 25s infinite linear reverse;
     }
@@ -166,9 +285,41 @@
       left: 15%;
       width: 80px;
       height: 80px;
-      border-radius: 50%;
+      border-radius: 20px;
       background: var(--accent-3);
       animation: float 18s infinite linear;
+      transform: rotate(45deg);
+    }
+    
+    .bg-doodle-4 {
+      top: 20%;
+      right: 20%;
+      width: 120px;
+      height: 120px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: var(--accent-4);
+      animation: float 30s infinite linear;
+    }
+    
+    .bg-doodle-5 {
+      top: 80%;
+      left: 20%;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--accent-5);
+      animation: float 22s infinite linear reverse;
+    }
+    
+    .bg-doodle-6 {
+      bottom: 40%;
+      right: 5%;
+      width: 110px;
+      height: 110px;
+      border-radius: 20px;
+      background: var(--accent-6);
+      animation: float 28s infinite linear;
+      transform: rotate(45deg);
     }
     
     @keyframes float {
@@ -262,6 +413,7 @@
       color: transparent;
       font-weight: 900;
       letter-spacing: -0.5px;
+      font-family: var(--font-family);
     }
     
     .welcome-content p {
@@ -270,6 +422,7 @@
       line-height: 1.6;
       margin-bottom: 25px;
       padding: 0 10px;
+      font-family: var(--font-family);
     }
     
     .name-input {
@@ -283,12 +436,13 @@
       font-size: 1.1rem;
       text-align: center;
       transition: all 0.3s ease;
+      font-family: var(--font-family);
     }
     
     .name-input:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
       background: rgba(255, 255, 255, 0.15);
     }
     
@@ -302,7 +456,7 @@
       font-weight: 700;
       border-radius: 16px;
       cursor: pointer;
-      box-shadow: 0 15px 35px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin: 20px auto;
       display: block;
@@ -311,11 +465,12 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .welcome-btn:hover {
       transform: translateY(-5px);
-      box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
+      box-shadow: 0 25px 50px rgba(59, 130, 246, 0.4);
     }
     
     /* Button shine effect */
@@ -335,6 +490,7 @@
       justify-content: center;
       gap: 10px;
       box-shadow: var(--shadow);
+      font-family: var(--font-family);
     }
     
     .btn-shine::after {
@@ -374,7 +530,7 @@
       background: linear-gradient(180deg, rgba(15,23,42,0.9), rgba(15,23,42,0.7));
     }
     
-    .theme-blue header, .theme-green header {
+    .theme-blue header, .theme-green header, .theme-purple header, .theme-pink header, .theme-orange header {
       background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.8));
     }
     
@@ -423,6 +579,7 @@
       background-clip: text;
       color: transparent;
       font-weight: 900;
+      font-family: var(--font-family);
     }
     
     .titles p {
@@ -432,11 +589,13 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      font-family: var(--font-family);
     }
     
     .greeting {
       font-weight: 700;
       color: var(--accent);
+      font-family: var(--font-family);
     }
     
     .nav-controls {
@@ -460,6 +619,7 @@
       font-size: 1.2rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .nav-btn:hover {
@@ -528,13 +688,14 @@
       height: 45px;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .nav-tab-btn.active {
       background: var(--accent);
       border-color: var(--accent);
       color: white;
-      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
     }
     
     .nav-tab-btn:hover:not(.active) {
@@ -558,7 +719,7 @@
       left: 120%;
     }
     
-    /* ===== Drawer Menu ===== */
+    /* ===== Drawer Menu - ENHANCED ===== */
     .drawer-overlay {
       position: fixed;
       top: 0;
@@ -598,20 +759,33 @@
       transform: translateX(0);
     }
     
+    .drawer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--gradient);
+    }
+    
     .drawer-header {
       padding: 25px;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
     }
     
     .drawer-header h2 {
       font-size: 1.5rem;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--menu-text-color);
+      font-weight: 800;
+      font-family: var(--font-family);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     
     .drawer-close {
@@ -626,19 +800,39 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      font-family: var(--font-family);
     }
     
     .drawer-close:hover {
-      background: rgba(255,255,255,0.1);
+      background: var(--accent);
+      color: white;
+      transform: rotate(90deg);
     }
     
     .drawer-content {
       padding: 25px;
+      color: var(--drawer-text);
     }
     
     .drawer-section {
       margin-bottom: 30px;
+      padding: 20px;
+      background: var(--drawer-section-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .drawer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--accent);
     }
     
     .drawer-section h3 {
@@ -648,11 +842,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: var(--font-family);
     }
     
     .theme-selector {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-bottom: 20px;
     }
@@ -668,11 +863,53 @@
       font-weight: 600;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
     }
     
     .theme-btn.active {
       border-color: var(--accent);
-      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* Theme-specific button colors */
+    .theme-btn[data-theme="light"] {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    
+    .theme-btn[data-theme="dark"] {
+      background: #1e293b;
+      color: #f1f5f9;
+    }
+    
+    .theme-btn[data-theme="blue"] {
+      background: #dbeafe;
+      color: #1e3a8a;
+    }
+    
+    .theme-btn[data-theme="green"] {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .theme-btn[data-theme="purple"] {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    
+    .theme-btn[data-theme="pink"] {
+      background: #fce7f3;
+      color: #be185d;
+    }
+    
+    .theme-btn[data-theme="orange"] {
+      background: #ffedd5;
+      color: #ea580c;
     }
     
     .theme-btn::after {
@@ -699,6 +936,7 @@
       border-radius: 12px;
       padding: 4px;
       margin-bottom: 20px;
+      overflow: hidden;
     }
     
     .lang-btn {
@@ -712,6 +950,7 @@
       font-size: 0.95rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .lang-btn.active {
@@ -749,15 +988,17 @@
       border-radius: 12px;
       background: rgba(255,255,255,0.05);
       text-decoration: none;
-      color: var(--text);
+      color: var(--drawer-text);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .social-link:hover {
       background: var(--accent);
       transform: translateX(5px);
+      color: white;
     }
     
     .social-link i {
@@ -776,7 +1017,7 @@
       border-radius: 12px;
       border: none;
       background: rgba(255,255,255,0.1);
-      color: var(--text);
+      color: var(--drawer-text);
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
@@ -786,11 +1027,13 @@
       gap: 12px;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .drawer-btn:hover {
       background: var(--accent);
       transform: translateX(5px);
+      color: white;
     }
     
     .drawer-btn::after {
@@ -830,6 +1073,12 @@
     .tab-content {
       display: none;
       opacity: var(--card-opacity);
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: var(--card-opacity); transform: translateY(0); }
     }
     
     .tab-content.active {
@@ -859,6 +1108,12 @@
       position: relative;
       margin: 15px 0;
       opacity: var(--card-opacity);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
     
     .card::before {
@@ -883,6 +1138,7 @@
       gap: 10px;
       justify-content: space-between;
       flex-wrap: wrap;
+      font-family: var(--font-family);
     }
     
     .card h3 {
@@ -893,13 +1149,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: var(--font-family);
     }
     
     .card .body {
       padding: 20px;
     }
     
-    /* ===== NEW: Subject Controls in Card Header ===== */
+    /* ===== Subject Controls in Card Header ===== */
     .subject-controls {
       display: flex;
       gap: 8px;
@@ -921,6 +1178,7 @@
       white-space: nowrap;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .subject-controls button:hover {
@@ -951,6 +1209,12 @@
       border-radius: 18px;
       overflow: hidden;
       background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent);
+      transition: transform 0.3s ease;
+    }
+    
+    .subject:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     /* FIXED: Mobile layout for subject header */
@@ -985,21 +1249,16 @@
       font-weight: 800;
       background: var(--accent);
       white-space: nowrap;
+      font-family: var(--font-family);
     }
     
-    .badge.arithmetic { background: #4f46e5; }
-    .badge.advanced-math { background: #7c3aed; }
-    .badge.reasoning { background: #059669; }
-    .badge.history { background: #d97706; }
-    .badge.polity { background: #db2777; }
-    .badge.geography { background: #3b82f6; }
-    .badge.economy { background: #10b981; }
-    .badge.static-gk { background: #06b6d4; }
-    .badge.current-affairs { background: #ec4899; }
-    .badge.science { background: #f97316; }
-    .badge.computer { background: #8b5cf6; }
+    .badge.quantitative { background: #3b82f6; }
+    .badge.english { background: #8b5cf6; }
+    .badge.reasoning { background: #10b981; }
+    .badge.general-awareness { background: #f59e0b; }
+    .badge.computer { background: #ef4444; }
     
-    /* NEW: Mobile-friendly progress section */
+    /* Mobile-friendly progress section */
     .subject-progress-mobile {
       display: flex;
       align-items: center;
@@ -1039,6 +1298,7 @@
       width: 60px;
       text-align: right;
       font-weight: 700;
+      font-family: var(--font-family);
     }
     
     .toggle-btn {
@@ -1057,6 +1317,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .toggle-btn:hover {
@@ -1122,6 +1383,7 @@
       flex: 1;
       padding-right: 10px;
       margin: 5px 0;
+      font-family: var(--font-family);
     }
     
     .topic small {
@@ -1130,6 +1392,7 @@
       margin-top: 8px;
       font-size: 0.9rem;
       margin: 8px 0 0 0;
+      font-family: var(--font-family);
     }
     
     .weight {
@@ -1143,6 +1406,7 @@
       font-weight: 700;
       min-width: 60px;
       text-align: center;
+      font-family: var(--font-family);
     }
     
     /* Star ratings */
@@ -1178,6 +1442,7 @@
       fill: var(--text);
       font-size: 28px;
       font-weight: 900;
+      font-family: var(--font-family);
     }
     
     .subject-charts {
@@ -1215,6 +1480,7 @@
       fill: var(--text);
       font-size: 16px;
       font-weight: 800;
+      font-family: var(--font-family);
     }
     
     .legend {
@@ -1231,6 +1497,7 @@
       gap: 8px;
       font-size: 0.95rem;
       color: var(--muted);
+      font-family: var(--font-family);
     }
     
     .dot {
@@ -1239,17 +1506,11 @@
       border-radius: 50%;
     }
     
-    .dot.arithmetic { background: #4f46e5; }
-    .dot.advanced-math { background: #7c3aed; }
-    .dot.reasoning { background: #059669; }
-    .dot.history { background: #d97706; }
-    .dot.polity { background: #db2777; }
-    .dot.geography { background: #3b82f6; }
-    .dot.economy { background: #10b981; }
-    .dot.static-gk { background: #06b6d4; }
-    .dot.current-affairs { background: #ec4899; }
-    .dot.science { background: #f97316; }
-    .dot.computer { background: #8b5cf6; }
+    .dot.quantitative { background: #3b82f6; }
+    .dot.english { background: #8b5cf6; }
+    .dot.reasoning { background: #10b981; }
+    .dot.general-awareness { background: #f59e0b; }
+    .dot.computer { background: #ef4444; }
     .dot.todo { background: var(--border); }
     .dot.done { background: var(--accent-3); }
     
@@ -1258,6 +1519,7 @@
       font-size: 1.1rem;
       font-weight: 800;
       color: var(--accent);
+      font-family: var(--font-family);
     }
     
     /* ===== Modern Subject Selector ===== */
@@ -1273,6 +1535,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: var(--font-family);
     }
     
     .subject-selector {
@@ -1297,6 +1560,7 @@
       position: relative;
       overflow: hidden;
       font-size: 0.9rem;
+      font-family: var(--font-family);
     }
     
     .subject-selector-btn.active {
@@ -1304,7 +1568,7 @@
       background: var(--accent);
       color: white;
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
     }
     
     .subject-selector-btn::after {
@@ -1354,9 +1618,10 @@
       font-weight: 900;
       color: var(--accent);
       text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-family: var(--font-family);
     }
     
-    /* ===== CBT Analysis Section ===== */
+    /* ===== Mock Analysis Section ===== */
     .cbt-container {
       display: grid;
       gap: 25px;
@@ -1399,6 +1664,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .cbt-type-btn.active {
@@ -1446,6 +1712,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .test-type-btn.active {
@@ -1485,6 +1752,7 @@
     .form-group label {
       font-weight: 600;
       color: var(--muted);
+      font-family: var(--font-family);
     }
     
     .form-group input, .form-group select {
@@ -1494,12 +1762,13 @@
       background: rgba(255,255,255,0.05);
       color: var(--text);
       font-size: 1rem;
+      font-family: var(--font-family);
     }
     
     .form-group input:focus, .form-group select:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
     
     .form-row {
@@ -1535,9 +1804,9 @@
       border-radius: 24px;
       padding: 30px;
       text-align: center;
-      max-width: 800px;
-      width: 90%;
-      max-height: 80vh;
+      max-width: 900px;
+      width: 95%;
+      max-height: 85vh;
       border: 1px solid var(--border);
       box-shadow: 0 30px 60px rgba(0,0,0,0.5);
       position: relative;
@@ -1557,19 +1826,21 @@
     .history-content h2 {
       font-size: 1.8rem;
       margin-bottom: 20px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--accent);
+      font-family: var(--font-family);
+    }
+    
+    .history-table-container {
+      max-height: 60vh;
+      overflow-y: auto;
+      margin: 20px 0;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
     
     .history-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
-      max-height: 60vh;
-      overflow-y: auto;
-      display: block;
     }
     
     .history-table thead {
@@ -1586,12 +1857,14 @@
       text-align: left;
       font-weight: 600;
       border: 1px solid var(--border);
+      font-family: var(--font-family);
     }
     
     .history-table td {
       padding: 12px;
       border: 1px solid var(--border);
       text-align: left;
+      font-family: var(--font-family);
     }
     
     .history-table tr:nth-child(even) {
@@ -1615,6 +1888,7 @@
       margin: 20px auto 0;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .close-history:hover {
@@ -1709,10 +1983,8 @@
     .congrats-content h2 {
       font-size: 2.2rem;
       margin-bottom: 15px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--accent);
+      font-family: var(--font-family);
     }
     
     .congrats-content p {
@@ -1721,12 +1993,13 @@
       margin-bottom: 25px;
       line-height: 1.6;
       padding: 0 10px;
+      font-family: var(--font-family);
     }
     
-    /* Continue button को right align करने के लिए */
+    /* Continue button को center करने के लिए */
     .congrats-content .button-container {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       width: 100%;
       margin-top: 20px;
     }
@@ -1741,9 +2014,9 @@
       cursor: pointer;
       transition: transform 0.3s ease;
       display: inline-block;
-      margin-left: auto;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .close-congrats:hover {
@@ -1841,11 +2114,9 @@
     .subject-congrats-content h2 {
       font-size: 3rem;
       margin-bottom: 20px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--accent);
       text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-family: var(--font-family);
     }
     
     .subject-congrats-content p {
@@ -1854,12 +2125,13 @@
       margin-bottom: 30px;
       line-height: 1.6;
       padding: 0 20px;
+      font-family: var(--font-family);
     }
     
-    /* Continue button को right align करने के लिए */
+    /* Continue button को center करने के लिए */
     .subject-congrats-content .button-container {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       width: 100%;
       margin-top: 20px;
     }
@@ -1876,9 +2148,9 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       display: inline-block;
-      margin-left: auto;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .close-subject-congrats:hover {
@@ -1926,6 +2198,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .graph-btn.active {
@@ -1978,6 +2251,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .graph-cbt-btn.active {
@@ -2008,6 +2282,7 @@
       margin-top: -10px;
       margin-bottom: 15px;
       font-style: italic;
+      font-family: var(--font-family);
     }
     
     /* ===== Reset Confirmation ===== */
@@ -2047,6 +2322,7 @@
       font-size: 1.8rem;
       margin-bottom: 15px;
       color: var(--danger);
+      font-family: var(--font-family);
     }
     
     .reset-content p {
@@ -2054,6 +2330,7 @@
       margin-bottom: 25px;
       line-height: 1.6;
       padding: 0 10px;
+      font-family: var(--font-family);
     }
     
     .reset-confirm-input {
@@ -2107,6 +2384,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .performance-subject-btn.active {
@@ -2114,7 +2392,7 @@
       background: var(--accent);
       color: white;
       transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
     }
     
     .performance-subject-btn::after {
@@ -2182,6 +2460,7 @@
       font-size: 0.9rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .view-btn.active {
@@ -2212,7 +2491,7 @@
       border-radius: 12px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.05);
-      color: var(--text);
+      color: var(--drawer-text);
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
@@ -2223,11 +2502,13 @@
       margin-bottom: 10px;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .settings-btn:hover {
       background: var(--accent);
       transform: translateX(5px);
+      color: white;
     }
     
     .settings-btn::after {
@@ -2302,12 +2583,14 @@
       font-weight: 900;
       color: var(--accent);
       margin: 10px 0;
+      font-family: var(--font-family);
     }
     
     .avg-score-label {
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.4;
+      font-family: var(--font-family);
     }
     
     /* NEW: History Button */
@@ -2326,6 +2609,7 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .history-btn:hover {
@@ -2358,6 +2642,7 @@
       border: 1px solid var(--border);
       transition: all 0.3s ease;
       cursor: pointer;
+      font-family: var(--font-family);
     }
     
     .history-item:hover {
@@ -2393,6 +2678,7 @@
       font-size: 0.85rem;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .full-test-btn.active {
@@ -2416,7 +2702,7 @@
       left: 120%;
     }
     
-    /* Test Data Saved Congratulations Modal */
+    /* Test Data Saved Congratulations Modal - ENHANCED */
     .test-congrats-modal {
       position: fixed;
       top: 0;
@@ -2443,7 +2729,7 @@
       border-radius: 30px;
       padding: 50px 40px;
       text-align: center;
-      max-width: 600px;
+      max-width: 650px;
       width: 90%;
       border: 3px solid var(--border);
       box-shadow: 0 40px 80px rgba(0,0,0,0.7);
@@ -2463,8 +2749,8 @@
     }
     
     .test-congrats-image {
-      width: 300px;
-      height: 200px;
+      width: 400px;
+      height: 250px;
       margin: 0 auto 30px;
       border-radius: 16px;
       overflow: hidden;
@@ -2484,26 +2770,25 @@
     }
     
     .test-congrats-content h2 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 20px;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--accent);
       text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      font-family: var(--font-family);
     }
     
     .test-congrats-content p {
       color: var(--muted);
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 30px;
       line-height: 1.6;
       padding: 0 20px;
+      font-family: var(--font-family);
     }
     
     .test-congrats-content .button-container {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       width: 100%;
       margin-top: 20px;
     }
@@ -2520,9 +2805,9 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       display: inline-block;
-      margin-left: auto;
       position: relative;
       overflow: hidden;
+      font-family: var(--font-family);
     }
     
     .close-test-congrats:hover {
@@ -2544,6 +2829,132 @@
     
     .close-test-congrats:hover::after {
       left: 120%;
+    }
+    
+    /* Latest Performance Selector */
+    .latest-performance-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    
+    .performance-tier-selector {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    
+    .performance-tier-btn {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-family);
+    }
+    
+    .performance-tier-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+    
+    .performance-test-type-selector {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .performance-test-type-btn {
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+      font-family: var(--font-family);
+    }
+    
+    .performance-test-type-btn.active {
+      background: var(--accent-3);
+      border-color: var(--accent-3);
+      color: white;
+    }
+    
+    /* Form validation styles */
+    .form-group.required label::after {
+      content: " *";
+      color: var(--danger);
+    }
+    
+    .error-message {
+      color: var(--danger);
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .error-message.show {
+      display: block;
+    }
+    
+    input.error {
+      border-color: var(--danger) !important;
+    }
+    
+    /* Loading Spinner */
+    .loading-spinner {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-family: var(--font-family);
+      margin-top: 20px;
+    }
+    
+    .creator {
+      color: var(--accent);
+      font-weight: 700;
     }
     
     /* Responsive adjustments */
@@ -2653,8 +3064,12 @@
       }
       
       .test-congrats-image {
-        width: 250px;
+        width: 300px;
         height: 180px;
+      }
+      
+      .theme-selector {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     
@@ -2737,8 +3152,12 @@
       }
       
       .test-congrats-image {
-        width: 200px;
+        width: 250px;
         height: 150px;
+      }
+      
+      .theme-selector {
+        grid-template-columns: 1fr;
       }
     }
     
@@ -2759,15 +3178,18 @@
   <div class="bg-doodle bg-doodle-1"></div>
   <div class="bg-doodle bg-doodle-2"></div>
   <div class="bg-doodle bg-doodle-3"></div>
+  <div class="bg-doodle bg-doodle-4"></div>
+  <div class="bg-doodle bg-doodle-5"></div>
+  <div class="bg-doodle bg-doodle-6"></div>
   
   <!-- Welcome Screen -->
   <div id="welcomeScreen">
     <div class="welcome-content">
       <div class="welcome-logo">
-        <img src="https://image2url.com/images/1766043743592-6b43d649-a3ae-48d7-8b00-6c6c751e23d7.png" alt="NTPC PRO Logo">
+        <img src="https://image2url.com/images/1766116077549-242d5a4d-1dc2-4734-94ac-de602b3ebc2a.png" alt="SSC CGL PRO Logo">
       </div>
-      <h1>NTPC PRO</h1>
-      <p>Smart tool for RRB NTPC exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.</p>
+      <h1>SSC CGL PRO</h1>
+      <p>Smart tool for SSC CGL exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.</p>
       
       <input type="text" class="name-input" id="studentName" placeholder="Enter your name (e.g., Rahul Sharma)" maxlength="30">
       
@@ -2816,10 +3238,27 @@
         </button>
         <div class="settings-content" id="themeSettings">
           <div class="theme-selector">
-            <button class="theme-btn active" data-theme="light">Light</button>
-            <button class="theme-btn" data-theme="dark">Dark</button>
-            <button class="theme-btn" data-theme="blue">Blue</button>
-            <button class="theme-btn" data-theme="green">Green</button>
+            <button class="theme-btn active" data-theme="light">
+              <i class="fas fa-sun"></i> Light
+            </button>
+            <button class="theme-btn" data-theme="dark">
+              <i class="fas fa-moon"></i> Dark
+            </button>
+            <button class="theme-btn" data-theme="blue">
+              <i class="fas fa-water"></i> Blue
+            </button>
+            <button class="theme-btn" data-theme="green">
+              <i class="fas fa-leaf"></i> Green
+            </button>
+            <button class="theme-btn" data-theme="purple">
+              <i class="fas fa-crown"></i> Purple
+            </button>
+            <button class="theme-btn" data-theme="pink">
+              <i class="fas fa-heart"></i> Pink
+            </button>
+            <button class="theme-btn" data-theme="orange">
+              <i class="fas fa-fire"></i> Orange
+            </button>
           </div>
         </div>
         
@@ -2850,7 +3289,7 @@
       <div class="drawer-section">
         <h3><i class="fas fa-info-circle"></i> Information</h3>
         <p style="color: var(--muted); font-size: 0.95rem; line-height: 1.6; margin: 10px 0;">
-          NTPC PRO is specifically designed for RRB NTPC exam preparation. 
+          SSC CGL PRO is specifically designed for SSC CGL exam preparation. 
           All data is securely stored on your device.
         </p>
         <p style="color: var(--accent); margin-top: 15px; font-weight: 600;">
@@ -2877,17 +3316,18 @@
   <!-- Test History Modal -->
   <div class="history-modal" id="historyModal">
     <div class="history-content">
-      <h2><i class="fas fa-history"></i> Test History (Last 30 Tests)</h2>
+      <h2><i class="fas fa-history"></i> Test History</h2>
       <div class="history-table-container">
         <table class="history-table" id="historyTable">
           <thead>
             <tr>
               <th>Test Name</th>
               <th>Type</th>
-              <th>CBT</th>
+              <th>Tier</th>
               <th>Date</th>
               <th>Total</th>
-              <th>Math</th>
+              <th>Quantitative</th>
+              <th>English</th>
               <th>Reasoning</th>
               <th>Awareness</th>
             </tr>
@@ -2897,7 +3337,9 @@
           </tbody>
         </table>
       </div>
-      <button class="close-history center-button" id="closeHistory">Close</button>
+      <div class="button-container">
+        <button class="close-history center-button" id="closeHistory">Close</button>
+      </div>
     </div>
   </div>
   
@@ -2935,8 +3377,8 @@
       <div class="test-congrats-image">
         <img src="https://image2url.com/images/1766104959384-526229c1-deb3-4ac8-949e-300960e18dfd.png" alt="Test Data Saved">
       </div>
-      <h2>Test Data Saved!</h2>
-      <p>Your test data has been saved successfully. Keep up the good work!</p>
+      <h2>Your Test Data Has Been Saved!</h2>
+      <p>Keep up the good work and continue your preparation journey!</p>
       <div class="button-container">
         <button class="close-test-congrats" id="closeTestCongrats">Continue</button>
       </div>
@@ -2949,10 +3391,10 @@
       <div class="nav-container">
         <div class="brand">
           <div class="logo">
-            <img src="https://image2url.com/images/1766043743592-6b43d649-a3ae-48d7-8b00-6c6c751e23d7.png" alt="NTPC PRO Logo">
+            <img src="https://image2url.com/images/1766116077549-242d5a4d-1dc2-4734-94ac-de602b3ebc2a.png" alt="SSC CGL PRO Logo">
           </div>
           <div class="titles">
-            <h1>NTPC PRO</h1>
+            <h1>SSC CGL PRO</h1>
             <p><span class="greeting" id="greetingText">Welcome</span></p>
           </div>
         </div>
@@ -3062,13 +3504,13 @@
         <div class="card">
           <h2><i class="fas fa-chart-line"></i> Mock Test Analysis</h2>
           <div class="body">
-            <!-- CBT Selection -->
+            <!-- Tier Selection -->
             <div class="cbt-selection">
-              <button class="cbt-type-btn active" data-cbt="cbt1">
-                <i class="fas fa-file-alt"></i> CBT-1 (100 marks)
+              <button class="cbt-type-btn active" data-cbt="tier1">
+                <i class="fas fa-file-alt"></i> Tier 1 (200 marks)
               </button>
-              <button class="cbt-type-btn" data-cbt="cbt2">
-                <i class="fas fa-file-alt"></i> CBT-2 (120 marks)
+              <button class="cbt-type-btn" data-cbt="tier2">
+                <i class="fas fa-file-alt"></i> Tier 2 (390 marks)
               </button>
             </div>
             
@@ -3077,8 +3519,11 @@
               <button class="test-type-btn active" data-test-type="full">
                 <i class="fas fa-clipboard-check"></i> Full Test
               </button>
-              <button class="test-type-btn" data-test-type="math">
-                <i class="fas fa-calculator"></i> Mathematics
+              <button class="test-type-btn" data-test-type="quantitative">
+                <i class="fas fa-calculator"></i> Quantitative Aptitude
+              </button>
+              <button class="test-type-btn" data-test-type="english">
+                <i class="fas fa-language"></i> English Language
               </button>
               <button class="test-type-btn" data-test-type="reasoning">
                 <i class="fas fa-brain"></i> Reasoning
@@ -3093,51 +3538,65 @@
                 <h3 id="testFormTitle"><i class="fas fa-edit"></i> Full Test Marks Entry</h3>
                 <div class="body">
                   <form class="cbt-form" id="cbtForm">
-                    <div class="form-group">
+                    <div class="form-group required">
                       <label for="testName">Test Name:</label>
                       <input type="text" id="testName" placeholder="e.g., Mock Test 1, Previous Year Paper" required>
+                      <div class="error-message" id="testNameError">Test name is required</div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group required">
                       <label for="testDate">Date:</label>
                       <input type="date" id="testDate" required>
+                      <div class="error-message" id="testDateError">Date is required</div>
                     </div>
                     
                     <!-- Full Test Fields (Initially visible) -->
                     <div id="fullTestFields">
                       <div class="form-row">
-                        <div class="form-group">
-                          <label for="mathMarks">Mathematics (marks):</label>
-                          <input type="number" id="mathMarks" min="0" max="30" placeholder="0-30">
+                        <div class="form-group required">
+                          <label for="quantitativeMarks">Quantitative Aptitude (marks):</label>
+                          <input type="number" id="quantitativeMarks" min="0" placeholder="Enter marks" required>
+                          <div class="error-message" id="quantitativeError">This field is required for full test</div>
                         </div>
-                        <div class="form-group">
-                          <label for="reasoningMarks">Reasoning (marks):</label>
-                          <input type="number" id="reasoningMarks" min="0" max="30" placeholder="0-30">
+                        <div class="form-group required">
+                          <label for="englishMarks">English Language (marks):</label>
+                          <input type="number" id="englishMarks" min="0" placeholder="Enter marks" required>
+                          <div class="error-message" id="englishError">This field is required for full test</div>
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group required">
+                          <label for="reasoningMarks">Reasoning (marks):</label>
+                          <input type="number" id="reasoningMarks" min="0" placeholder="Enter marks" required>
+                          <div class="error-message" id="reasoningError">This field is required for full test</div>
+                        </div>
+                        <div class="form-group required">
                           <label for="awarenessMarks">General Awareness (marks):</label>
-                          <input type="number" id="awarenessMarks" min="0" max="40" placeholder="0-40">
+                          <input type="number" id="awarenessMarks" min="0" placeholder="Enter marks" required>
+                          <div class="error-message" id="awarenessError">This field is required for full test</div>
                         </div>
-                        <div class="form-group">
-                          <label for="accuracy">Accuracy (%):</label>
-                          <input type="number" id="accuracy" min="0" max="100" placeholder="0-100" step="0.1">
-                        </div>
+                      </div>
+                      <div class="form-group required">
+                        <label for="accuracy">Accuracy (%):</label>
+                        <input type="number" id="accuracy" min="0" max="100" placeholder="0-100" step="0.1" required>
+                        <div class="error-message" id="accuracyError">Accuracy is required for full test</div>
                       </div>
                       <div class="form-group">
                         <label for="totalMarks">Total Marks (auto):</label>
-                        <input type="number" id="totalMarks" min="0" max="100" placeholder="0-100" readonly>
+                        <input type="number" id="totalMarks" placeholder="Calculated automatically" readonly>
                       </div>
                     </div>
                     
                     <!-- Sectional Test Fields (Initially hidden) -->
                     <div id="sectionalTestFields" style="display: none;">
-                      <div class="form-group">
+                      <div class="form-group required">
                         <label id="sectionalMarksLabel">Marks:</label>
-                        <input type="number" id="sectionalMarks" min="0" max="30" placeholder="0-30">
+                        <input type="number" id="sectionalMarks" min="0" placeholder="Enter marks" required>
+                        <div class="error-message" id="sectionalMarksError">Marks are required</div>
                       </div>
                     </div>
+                    
+                    <div class="loading-spinner" id="formLoading"></div>
                     
                     <button type="submit" class="btn-shine center-button" id="submitTestBtn">
                       <i class="fas fa-save"></i> Save & Update Graphs
@@ -3146,7 +3605,7 @@
                   
                   <!-- History Button -->
                   <button class="history-btn center-button" id="showHistoryBtn">
-                    <i class="fas fa-history"></i> View Test History (Last 30 Tests)
+                    <i class="fas fa-history"></i> View Test History
                   </button>
                 </div>
               </div>
@@ -3154,6 +3613,41 @@
               <div class="card">
                 <h3><i class="fas fa-trophy"></i> Latest Performance</h3>
                 <div class="body">
+                  <!-- Performance Selector -->
+                  <div class="latest-performance-selector">
+                    <div class="performance-tier-selector">
+                      <button class="performance-tier-btn active" data-tier="any">
+                        <i class="fas fa-star"></i> Latest Any Tier
+                      </button>
+                      <button class="performance-tier-btn" data-tier="tier1">
+                        <i class="fas fa-file-alt"></i> Tier 1
+                      </button>
+                      <button class="performance-tier-btn" data-tier="tier2">
+                        <i class="fas fa-file-alt"></i> Tier 2
+                      </button>
+                    </div>
+                    <div class="performance-test-type-selector">
+                      <button class="performance-test-type-btn active" data-type="any">
+                        Any Type
+                      </button>
+                      <button class="performance-test-type-btn" data-type="full">
+                        Full Test
+                      </button>
+                      <button class="performance-test-type-btn" data-type="quantitative">
+                        Quantitative
+                      </button>
+                      <button class="performance-test-type-btn" data-type="english">
+                        English
+                      </button>
+                      <button class="performance-test-type-btn" data-type="reasoning">
+                        Reasoning
+                      </button>
+                      <button class="performance-test-type-btn" data-type="awareness">
+                        Awareness
+                      </button>
+                    </div>
+                  </div>
+                  
                   <div id="latestPerformance">
                     <div class="no-data-container">
                       <div class="no-data-image">
@@ -3170,11 +3664,11 @@
                 <h3><i class="fas fa-chart-line"></i> Full Test Performance</h3>
                 <div class="body">
                   <div class="graph-cbt-toggle" id="graph1CbtToggle">
-                    <button class="graph-cbt-btn active" data-cbt="cbt1">
-                      <i class="fas fa-file-alt"></i> CBT-1
+                    <button class="graph-cbt-btn active" data-cbt="tier1">
+                      <i class="fas fa-file-alt"></i> Tier 1
                     </button>
-                    <button class="graph-cbt-btn" data-cbt="cbt2">
-                      <i class="fas fa-file-alt"></i> CBT-2
+                    <button class="graph-cbt-btn" data-cbt="tier2">
+                      <i class="fas fa-file-alt"></i> Tier 2
                     </button>
                   </div>
                   
@@ -3183,8 +3677,11 @@
                     <button class="full-test-btn active" data-view="total">
                       <i class="fas fa-chart-line"></i> Total Marks
                     </button>
-                    <button class="full-test-btn" data-view="math">
-                      <i class="fas fa-calculator"></i> Mathematics
+                    <button class="full-test-btn" data-view="quantitative">
+                      <i class="fas fa-calculator"></i> Quantitative
+                    </button>
+                    <button class="full-test-btn" data-view="english">
+                      <i class="fas fa-language"></i> English
                     </button>
                     <button class="full-test-btn" data-view="reasoning">
                       <i class="fas fa-brain"></i> Reasoning
@@ -3203,7 +3700,7 @@
                       <div class="no-data-image">
                         <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
                       </div>
-                      <p style="color: var(--muted); margin: 10px 0;">No full test data available for selected CBT.</p>
+                      <p style="color: var(--muted); margin: 10px 0;">No full test data available for selected Tier.</p>
                     </div>
                   </div>
                 </div>
@@ -3214,17 +3711,20 @@
                 <h3><i class="fas fa-chart-bar"></i> Subject-wise Performance</h3>
                 <div class="body">
                   <div class="graph-cbt-toggle" id="graph2CbtToggle">
-                    <button class="graph-cbt-btn active" data-cbt="cbt1">
-                      <i class="fas fa-file-alt"></i> CBT-1
+                    <button class="graph-cbt-btn active" data-cbt="tier1">
+                      <i class="fas fa-file-alt"></i> Tier 1
                     </button>
-                    <button class="graph-cbt-btn" data-cbt="cbt2">
-                      <i class="fas fa-file-alt"></i> CBT-2
+                    <button class="graph-cbt-btn" data-cbt="tier2">
+                      <i class="fas fa-file-alt"></i> Tier 2
                     </button>
                   </div>
                   <p class="graph-info">Sectional test data only (full test marks not included)</p>
                   <div class="performance-subject-buttons" id="subjectGraphButtons">
-                    <button class="performance-subject-btn active" data-subject="math">
-                      <i class="fas fa-calculator"></i> Mathematics
+                    <button class="performance-subject-btn active" data-subject="quantitative">
+                      <i class="fas fa-calculator"></i> Quantitative Aptitude
+                    </button>
+                    <button class="performance-subject-btn" data-subject="english">
+                      <i class="fas fa-language"></i> English Language
                     </button>
                     <button class="performance-subject-btn" data-subject="reasoning">
                       <i class="fas fa-brain"></i> Reasoning
@@ -3241,7 +3741,7 @@
                       <div class="no-data-image">
                         <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
                       </div>
-                      <p style="color: var(--muted); margin: 10px 0;">No subject test data available for selected CBT.</p>
+                      <p style="color: var(--muted); margin: 10px 0;">No subject test data available for selected Tier.</p>
                     </div>
                   </div>
                 </div>
@@ -3252,11 +3752,11 @@
                 <h3><i class="fas fa-bullseye"></i> Accuracy Analysis</h3>
                 <div class="body">
                   <div class="graph-cbt-toggle" id="graph3CbtToggle">
-                    <button class="graph-cbt-btn active" data-cbt="cbt1">
-                      <i class="fas fa-file-alt"></i> CBT-1
+                    <button class="graph-cbt-btn active" data-cbt="tier1">
+                      <i class="fas fa-file-alt"></i> Tier 1
                     </button>
-                    <button class="graph-cbt-btn" data-cbt="cbt2">
-                      <i class="fas fa-file-alt"></i> CBT-2
+                    <button class="graph-cbt-btn" data-cbt="tier2">
+                      <i class="fas fa-file-alt"></i> Tier 2
                     </button>
                   </div>
                   <p class="graph-info">Accuracy from full tests only</p>
@@ -3268,7 +3768,7 @@
                       <div class="no-data-image">
                         <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
                       </div>
-                      <p style="color: var(--muted); margin: 10px 0;">No accuracy data available for selected CBT.</p>
+                      <p style="color: var(--muted); margin: 10px 0;">No accuracy data available for selected Tier.</p>
                     </div>
                   </div>
                 </div>
@@ -3302,7 +3802,7 @@
     </div>
     
     <footer>
-      © <span class="creator">NTPC PRO 2026</span> — RRB NTPC Syllabus Tracker
+      © <span class="creator">SSC CGL PRO 2026</span> — SSC CGL Syllabus Tracker
     </footer>
   </div>
   
@@ -3312,167 +3812,37 @@
   <script>
     // ========== CONFIGURATION ==========
     const CONFIG = {
-      appName: "NTPC PRO",
-      appVersion: "2026.4.0",
+      appName: "SSC CGL PRO",
+      appVersion: "2026.5.2",
       
-      // Hindi Translations
-      translations: {
-        en: {
-          appName: "NTPC PRO",
-          welcomeTitle: "NTPC PRO",
-          welcomeSubtitle: "Smart tool for RRB NTPC exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.",
-          namePlaceholder: "Enter your name (e.g., Rahul Sharma)",
-          getStarted: "Get Started",
-          continue: "Continue",
-          subjects: "Subjects and Topics",
-          progressOverview: "Progress Overview",
-          mockAnalysis: "Mock Analysis",
-          syllabusTracker: "Syllabus Tracker",
-          overallSyllabus: "Overall Syllabus",
-          subjectWiseGraph: "Subject-wise Graph",
-          selectSubject: "Select Subject",
-          cbt1: "CBT-1 (100 marks)",
-          cbt2: "CBT-2 (120 marks)",
-          fullTest: "Full Test",
-          mathematics: "Mathematics",
-          reasoning: "Reasoning",
-          generalAwareness: "General Awareness",
-          testName: "Test Name:",
-          date: "Date:",
-          mathMarks: "Mathematics (marks):",
-          reasoningMarks: "Reasoning (marks):",
-          awarenessMarks: "General Awareness (marks):",
-          accuracy: "Accuracy (%):",
-          totalMarks: "Total Marks (auto):",
-          marks: "Marks:",
-          save: "Save & Update Graphs",
-          latestPerformance: "Latest Performance",
-          performanceGraphs: "Performance Graphs",
-          fullTestGraph: "Full Test",
-          mathGraph: "Mathematics",
-          reasoningGraph: "Reasoning",
-          gsGraph: "General Awareness",
-          accuracyGraph: "Accuracy",
-          noData: "No test data yet. Add your first test entry.",
-          expandAll: "Expand All",
-          collapseAll: "Collapse All",
-          resetConfirm: "RESET MY PROGRESS",
-          resetPlaceholder: 'Type "RESET MY PROGRESS" here',
-          shareProgress: "Share Progress",
-          shareWebsite: "Share Website",
-          generateImage: "Generate Progress Image",
-          helpQueries: "Help and Queries",
-          exportBackup: "Export Backup",
-          importBackup: "Import Backup",
-          resetData: "Reset Data",
-          createdBy: "Created by: Mr. SHAILENDRA KUSHWAH",
-          footerText: "© NTPC PRO 2026 — RRB NTPC Syllabus Tracker",
-          congratulations: "Congratulations!",
-          congratsMessage: "You have completed a topic! Your hard work will lead you to success.",
-          subjectCongrats: "Amazing Achievement!",
-          subjectCongratsMessage: "You have successfully completed an entire subject! Your dedication is inspiring.",
-          continueBtn: "Continue",
-          celebrateBtn: "Celebrate & Continue",
-          completed: "Completed",
-          remaining: "Remaining",
-          viewHistory: "View Test History",
-          testHistory: "Test History",
-          avgScore: "Average Score",
-          cbt1Avg: "CBT-1 Average",
-          cbt2Avg: "CBT-2 Average",
-          overallAvg: "Overall Average",
-          fullTests: "Full Tests",
-          mathTests: "Math Tests",
-          reasoningTests: "Reasoning Tests",
-          awarenessTests: "Awareness Tests",
-          tests: "tests",
-          percentage: "Percentage",
-          downloadImage: "Download Image",
-          shareImage: "Share Image",
-          closeImage: "Close"
+      // SSC CGL Tier Configuration - CORRECTED
+      cbtConfig: {
+        tier1: {
+          totalMarks: 200,
+          sections: {
+            quantitative: { maxMarks: 50 },
+            english: { maxMarks: 50 },
+            reasoning: { maxMarks: 50 },
+            awareness: { maxMarks: 50 }
+          }
         },
-        hi: {
-          appName: "एनटीपीसी प्रो",
-          welcomeTitle: "एनटीपीसी प्रो",
-          welcomeSubtitle: "आरआरबी एनटीपीसी परीक्षा की तैयारी के लिए स्मार्ट टूल। विषय-वार प्रगति ट्रैक करें, मॉक टेस्ट का विश्लेषण करें, और अपने प्रदर्शन में सुधार करें।",
-          namePlaceholder: "अपना नाम दर्ज करें (जैसे, राहुल शर्मा)",
-          getStarted: "शुरू करें",
-          continue: "जारी रखें",
-          subjects: "विषय और टॉपिक्स",
-          progressOverview: "प्रगति अवलोकन",
-          mockAnalysis: "मॉक विश्लेषण",
-          syllabusTracker: "पाठ्यक्रम ट्रैकर",
-          overallSyllabus: "समग्र पाठ्यक्रम",
-          subjectWiseGraph: "विषय-वार ग्राफ",
-          selectSubject: "विषय चुनें",
-          cbt1: "सीबीटी-1 (100 अंक)",
-          cbt2: "सीबीटी-2 (120 अंक)",
-          fullTest: "पूर्ण परीक्षा",
-          mathematics: "गणित",
-          reasoning: "तर्कशक्ति",
-          generalAwareness: "सामान्य जागरूकता",
-          testName: "टेस्ट नाम:",
-          date: "तारीख:",
-          mathMarks: "गणित (अंक):",
-          reasoningMarks: "तर्कशक्ति (अंक):",
-          awarenessMarks: "सामान्य जागरूकता (अंक):",
-          accuracy: "सटीकता (%):",
-          totalMarks: "कुल अंक (स्वचालित):",
-          marks: "अंक:",
-          save: "सहेजें और ग्राफ अपडेट करें",
-          latestPerformance: "नवीनतम प्रदर्शन",
-          performanceGraphs: "प्रदर्शन ग्राफ",
-          fullTestGraph: "पूर्ण परीक्षा",
-          mathGraph: "गणित",
-          reasoningGraph: "तर्कशक्ति",
-          gsGraph: "सामान्य जागरूकता",
-          accuracyGraph: "सटीकता",
-          noData: "अभी तक कोई टेस्ट डेटा नहीं है। अपनी पहली टेस्ट एंट्री जोड़ें।",
-          expandAll: "सभी विस्तारित करें",
-          collapseAll: "सभी संक्षिप्त करें",
-          resetConfirm: "मेरी प्रगति रीसेट करें",
-          resetPlaceholder: '"मेरी प्रगति रीसेट करें" टाइप करें',
-          shareProgress: "प्रगति साझा करें",
-          shareWebsite: "वेबसाइट साझा करें",
-          generateImage: "प्रगति छवि बनाएं",
-          helpQueries: "सहायता और प्रश्न",
-          exportBackup: "बैकअप निर्यात करें",
-          importBackup: "बैकअप आयात करें",
-          resetData: "डेटा रीसेट करें",
-          createdBy: "बनाया गया: श्री शैलेंद्र कुशवाह द्वारा",
-          footerText: "© एनटीपीसी प्रो 2026 — आरआरबी एनटीपीसी पाठ्यक्रम ट्रैकर",
-          congratulations: "बधाई हो!",
-          congratsMessage: "आपने एक टॉपिक पूरा कर लिया है! आपकी मेहनत आपको सफलता की ओर ले जाएगी।",
-          subjectCongrats: "अद्भुत उपलब्धि!",
-          subjectCongratsMessage: "आपने पूरा विषय सफलतापूर्वक पूरा कर लिया है! आपका समर्पण प्रेरणादायक है।",
-          continueBtn: "जारी रखें",
-          celebrateBtn: "जश्न मनाएं और जारी रखें",
-          completed: "पूर्ण",
-          remaining: "शेष",
-          viewHistory: "टेस्ट इतिहास देखें",
-          testHistory: "टेस्ट इतिहास",
-          avgScore: "औसत स्कोर",
-          cbt1Avg: "सीबीटी-1 औसत",
-          cbt2Avg: "सीबीटी-2 औसत",
-          overallAvg: "कुल औसत",
-          fullTests: "पूर्ण टेस्ट",
-          mathTests: "गणित टेस्ट",
-          reasoningTests: "तर्कशक्ति टेस्ट",
-          awarenessTests: "सामान्य जागरूकता टेस्ट",
-          tests: "टेस्ट",
-          percentage: "प्रतिशत",
-          downloadImage: "छवि डाउनलोड करें",
-          shareImage: "छवि साझा करें",
-          closeImage: "बंद करें"
+        tier2: {
+          totalMarks: 390,
+          sections: {
+            quantitative: { maxMarks: 90 },
+            english: { maxMarks: 135 },
+            reasoning: { maxMarks: 90 },
+            awareness: { maxMarks: 75 }
+          }
         }
       },
       
-      // Subjects with Hindi translations
+      // SSC CGL Subjects with expanded topics - ENGLISH TOPICS ALWAYS IN ENGLISH
       subjects: [
         {
-          id: "arithmetic",
-          title: { en: "Arithmetic", hi: "अंकगणित" },
-          colorClass: "arithmetic",
+          id: "quantitative",
+          title: { en: "Quantitative Aptitude", hi: "मात्रात्मक अभियोग्यता" },
+          colorClass: "quantitative",
           weight: 1,
           topics: [
             { id:"numSys", name: { en:"Number System", hi:"संख्या प्रणाली" }, hint: { en:"Number system, decimals, fractions, LCM and HCF", hi:"संख्या प्रणाली, दशमलव, भिन्न, लघुत्तम समापवर्त्य और महत्तम समापवर्तक" }, weight:1, stars: 3 },
@@ -3484,19 +3854,37 @@
             { id:"simpleInterest", name: { en:"Simple and Compound Interest", hi:"साधारण और चक्रवृद्धि ब्याज" }, hint: { en:"Simple and compound interest", hi:"साधारण और चक्रवृद्धि ब्याज" }, weight:1, stars: 2 },
             { id:"profitLoss", name: { en:"Profit and Loss", hi:"लाभ और हानि" }, hint: { en:"Profit and loss", hi:"लाभ और हानि" }, weight:1, stars: 2 },
             { id:"dataInterpretation", name: { en:"Data Interpretation", hi:"डेटा व्याख्या" }, hint: { en:"Data interpretation", hi:"डेटा व्याख्या" }, weight:1, stars: 3 },
-            { id:"simplification", name: { en:"Simplification", hi:"सरलीकरण" }, hint: { en:"Simplification", hi:"सरलीकरण" }, weight:1, stars: 2 }
+            { id:"simplification", name: { en:"Simplification", hi:"सरलीकरण" }, hint: { en:"Simplification", hi:"सरलीकरण" }, weight:1, stars: 2 },
+            { id:"algebra", name: { en:"Algebra", hi:"बीजगणित" }, hint: { en:"Algebraic expressions and equations", hi:"बीजीय व्यंजक और समीकरण" }, weight:1, stars: 3 },
+            { id:"geometry", name: { en:"Geometry", hi:"ज्यामिति" }, hint: { en:"Lines, angles, triangles, circles", hi:"रेखाएं, कोण, त्रिभुज, वृत्त" }, weight:1, stars: 3 },
+            { id:"trigonometry", name: { en:"Trigonometry", hi:"त्रिकोणमिति" }, hint: { en:"Trigonometric ratios and identities", hi:"त्रिकोणमितीय अनुपात और सर्वसमिकाएं" }, weight:1, stars: 2 },
+            { id:"statistics", name: { en:"Statistics", hi:"सांख्यिकी" }, hint: { en:"Mean, median, mode, standard deviation", hi:"माध्य, माध्यिका, बहुलक, मानक विचलन" }, weight:1, stars: 2 }
           ]
         },
         {
-          id: "advanced-math",
-          title: { en: "Advanced Mathematics", hi: "उन्नत गणित" },
-          colorClass: "advanced-math",
+          id: "english",
+          title: { en: "English Language", hi: "अंग्रेजी भाषा" },
+          colorClass: "english",
           weight: 1,
           topics: [
-            { id:"algebra", name: { en:"Elementary Algebra", hi:"प्रारंभिक बीजगणित" }, hint: { en:"Elementary algebra", hi:"प्रारंभिक बीजगणित" }, weight:1, stars: 3 },
-            { id:"geometry", name: { en:"Geometry", hi:"ज्यामिति" }, hint: { en:"Geometry", hi:"ज्यामिति" }, weight:1, stars: 2 },
-            { id:"trigonometry", name: { en:"Trigonometry", hi:"त्रिकोणमिति" }, hint: { en:"Trigonometry", hi:"त्रिकोणमिति" }, weight:1, stars: 1 },
-            { id:"statistics", name: { en:"Elementary Statistics", hi:"प्रारंभिक सांख्यिकी" }, hint: { en:"Elementary statistics", hi:"प्रारंभिक सांख्यिकी" }, weight:1, stars: 1 }
+            { id:"grammar_tenses", name: "Tenses", hint: "Present, past, future tenses", weight:1, stars: 3 },
+            { id:"grammar_parts", name: "Parts of Speech", hint: "Noun, pronoun, verb, adjective, etc.", weight:1, stars: 3 },
+            { id:"grammar_voice", name: "Voice", hint: "Active and passive voice", weight:1, stars: 2 },
+            { id:"grammar_narration", name: "Narration", hint: "Direct and indirect speech", weight:1, stars: 2 },
+            { id:"grammar_agreement", name: "Subject-Verb Agreement", hint: "Subject-verb agreement rules", weight:1, stars: 2 },
+            { id:"grammar_articles", name: "Articles", hint: "Use of a, an, the", weight:1, stars: 1 },
+            { id:"grammar_prepositions", name: "Prepositions", hint: "Prepositions and their usage", weight:1, stars: 2 },
+            { id:"vocab_synonyms", name: "Synonyms", hint: "Words with similar meanings", weight:1, stars: 3 },
+            { id:"vocab_antonyms", name: "Antonyms", hint: "Words with opposite meanings", weight:1, stars: 3 },
+            { id:"vocab_oneword", name: "One Word Substitution", hint: "Single word for phrases", weight:1, stars: 2 },
+            { id:"vocab_idioms", name: "Idioms and Phrases", hint: "Common idioms and their meanings", weight:1, stars: 2 },
+            { id:"vocab_spelling", name: "Spelling Check", hint: "Correct spelling of words", weight:1, stars: 2 },
+            { id:"comprehension", name: "Reading Comprehension", hint: "Passage reading and answering questions", weight:1, stars: 3 },
+            { id:"errorDetection", name: "Error Detection", hint: "Spotting errors in sentences", weight:1, stars: 3 },
+            { id:"sentenceImprovement", name: "Sentence Improvement", hint: "Improving given sentences", weight:1, stars: 2 },
+            { id:"fillBlanks", name: "Fill in the Blanks", hint: "Choosing correct words to fill blanks", weight:1, stars: 2 },
+            { id:"paraJumbles", name: "Para Jumbles", hint: "Rearranging sentences to form coherent paragraph", weight:1, stars: 3 },
+            { id:"clozeTest", name: "Cloze Test", hint: "Completing passage with appropriate words", weight:1, stars: 3 }
           ]
         },
         {
@@ -3525,107 +3913,35 @@
           ]
         },
         {
-          id: "history",
-          title: { en: "Indian History", hi: "भारतीय इतिहास" },
-          colorClass: "history",
+          id: "general-awareness",
+          title: { en: "General Awareness", hi: "सामान्य जागरूकता" },
+          colorClass: "general-awareness",
           weight: 1,
           topics: [
-            { id:"ancientHistory", name: { en:"Ancient Indian History", hi:"प्राचीन भारतीय इतिहास" }, hint: { en:"Indus Valley Civilization, Vedic Period, Maurya Empire, Gupta Empire", hi:"सिंधु घाटी सभ्यता, वैदिक काल, मौर्य साम्राज्य, गुप्त साम्राज्य" }, weight:1, stars: 2 },
-            { id:"medievalHistory", name: { en:"Medieval Indian History", hi:"मध्यकालीन भारतीय इतिहास" }, hint: { en:"Delhi Sultanate, Mughal Empire, Vijayanagara Empire, Maratha Empire", hi:"दिल्ली सल्तनत, मुगल साम्राज्य, विजयनगर साम्राज्य, मराठा साम्राज्य" }, weight:1, stars: 2 },
-            { id:"modernHistory", name: { en:"Modern Indian History", hi:"आधुनिक भारतीय इतिहास" }, hint: { en:"British rule, Revolt of 1857, Indian National Movement, Independence", hi:"ब्रिटिश शासन, 1857 का विद्रोह, भारतीय राष्ट्रीय आंदोलन, स्वतंत्रता" }, weight:1, stars: 3 },
-            { id:"freedomStruggle", name: { en:"Freedom Struggle", hi:"स्वतंत्रता संग्राम" }, hint: { en:"Major events and leaders of Indian freedom struggle", hi:"भारतीय स्वतंत्रता संग्राम की प्रमुख घटनाएं और नेता" }, weight:1, stars: 3 },
-            { id:"indianCulture", name: { en:"Indian Art and Culture", hi:"भारतीय कला और संस्कृति" }, hint: { en:"Indian art, culture, architecture and festivals", hi:"भारतीय कला, संस्कृति, वास्तुकला और त्योहार" }, weight:1, stars: 2 },
-            { id:"worldHistory", name: { en:"World History", hi:"विश्व इतिहास" }, hint: { en:"Major events in world history", hi:"विश्व इतिहास की प्रमुख घटनाएं" }, weight:1, stars: 1 }
-          ]
-        },
-        {
-          id: "polity",
-          title: { en: "Indian Polity", hi: "भारतीय राजव्यवस्था" },
-          colorClass: "polity",
-          weight: 1,
-          topics: [
-            { id:"constitution", name: { en:"Indian Constitution", hi:"भारतीय संविधान" }, hint: { en:"Constitution making, preamble, fundamental rights and duties", hi:"संविधान निर्माण, प्रस्तावना, मौलिक अधिकार और कर्तव्य" }, weight:1, stars: 3 },
-            { id:"politicalSystem", name: { en:"Political System", hi:"राजनीतिक व्यवस्था" }, hint: { en:"Parliament, President, Prime Minister, Cabinet", hi:"संसद, राष्ट्रपति, प्रधानमंत्री, मंत्रिमंडल" }, weight:1, stars: 3 },
-            { id:"judiciary", name: { en:"Judiciary", hi:"न्यायपालिका" }, hint: { en:"Supreme Court, High Court, judicial system", hi:"सुप्रीम कोर्ट, हाई कोर्ट, न्यायिक प्रणाली" }, weight:1, stars: 2 },
-            { id:"centralState", name: { en:"Center-State Relations", hi:"केंद्र-राज्य संबंध" }, hint: { en:"Relations between center and state governments", hi:"केंद्र और राज्य सरकारों के बीच संबंध" }, weight:1, stars: 2 },
-            { id:"localGovt", name: { en:"Local Government", hi:"स्थानीय सरकार" }, hint: { en:"Panchayati Raj, Municipal Corporation", hi:"पंचायती राज, नगर निगम" }, weight:1, stars: 1 },
-            { id:"constitutionalBodies", name: { en:"Constitutional Bodies", hi:"संवैधानिक निकाय" }, hint: { en:"Election Commission, UPSC, CAG", hi:"चुनाव आयोग, यूपीएससी, सीएजी" }, weight:1, stars: 2 }
-          ]
-        },
-        {
-          id: "geography",
-          title: { en: "Geography", hi: "भूगोल" },
-          colorClass: "geography",
-          weight: 1,
-          topics: [
-            { id:"physicalGeo", name: { en:"Physical Geography", hi:"भौतिक भूगोल" }, hint: { en:"Mountains, plateaus, plains, rivers, climate", hi:"पर्वत, पठार, मैदान, नदियाँ, जलवायु" }, weight:1, stars: 3 },
-            { id:"indianGeo", name: { en:"Geography of India", hi:"भारत का भूगोल" }, hint: { en:"Geographical features of India, states and capitals", hi:"भारत की भौगोलिक विशेषताएं, राज्य और राजधानियाँ" }, weight:1, stars: 3 },
-            { id:"worldGeo", name: { en:"World Geography", hi:"विश्व भूगोल" }, hint: { en:"Continents, oceans, important places", hi:"महाद्वीप, महासागर, महत्वपूर्ण स्थान" }, weight:1, stars: 2 },
-            { id:"economicGeo", name: { en:"Economic Geography", hi:"आर्थिक भूगोल" }, hint: { en:"Agriculture, minerals, industry, transport", hi:"कृषि, खनिज, उद्योग, परिवहन" }, weight:1, stars: 2 },
-            { id:"environment", name: { en:"Environment and Ecology", hi:"पर्यावरण और पारिस्थितिकी" }, hint: { en:"Environmental issues, conservation, national parks", hi:"पर्यावरणीय मुद्दे, संरक्षण, राष्ट्रीय उद्यान" }, weight:1, stars: 2 },
-            { id:"disasterMgmt", name: { en:"Disaster Management", hi:"आपदा प्रबंधन" }, hint: { en:"Natural disasters and their management", hi:"प्राकृतिक आपदाएं और उनका प्रबंधन" }, weight:1, stars: 1 }
-          ]
-        },
-        {
-          id: "economy",
-          title: { en: "Economy", hi: "अर्थव्यवस्था" },
-          colorClass: "economy",
-          weight: 1,
-          topics: [
-            { id:"basicConcepts", name: { en:"Basic Concepts of Economy", hi:"अर्थव्यवस्था की मूल अवधारणाएं" }, hint: { en:"Demand and supply, inflation, unemployment", hi:"मांग और आपूर्ति, मुद्रास्फीति, बेरोजगारी" }, weight:1, stars: 3 },
-            { id:"indianEconomy", name: { en:"Indian Economy", hi:"भारतीय अर्थव्यवस्था" }, hint: { en:"Planning, budget, banking, tax system", hi:"योजना, बजट, बैंकिंग, कर प्रणाली" }, weight:1, stars: 3 },
-            { id:"economicTerms", name: { en:"Economic Terminology", hi:"आर्थिक शब्दावली" }, hint: { en:"GDP, GNP, repo rate, reverse repo", hi:"जीडीपी, जीएनपी, रेपो रेट, रिवर्स रेपो" }, weight:1, stars: 2 },
-            { id:"agriculture", name: { en:"Agriculture and Rural Development", hi:"कृषि और ग्रामीण विकास" }, hint: { en:"Agricultural policies, Green Revolution", hi:"कृषि नीतियां, हरित क्रांति" }, weight:1, stars: 2 },
-            { id:"industry", name: { en:"Industry and Infrastructure", hi:"उद्योग और अवसंरचना" }, hint: { en:"Industrial policies, infrastructure projects", hi:"औद्योगिक नीतियां, अवसंरचना परियोजनाएं" }, weight:1, stars: 2 },
-            { id:"internationalEco", name: { en:"International Economy", hi:"अंतर्राष्ट्रीय अर्थव्यवस्था" }, hint: { en:"World Bank, IMF, WTO", hi:"विश्व बैंक, आईएमएफ, डब्ल्यूटीओ" }, weight:1, stars: 1 }
-          ]
-        },
-        {
-          id: "static-gk",
-          title: { en: "Static GK", hi: "स्थिर सामान्य ज्ञान" },
-          colorClass: "static-gk",
-          weight: 1,
-          topics: [
-            { id:"awards", name: { en:"Awards and Honors", hi:"पुरस्कार और सम्मान" }, hint: { en:"Bharat Ratna, Padma Awards, Nobel Prize", hi:"भारत रतन, पद्म पुरस्कार, नोबेल पुरस्कार" }, weight:1, stars: 2 },
-            { id:"booksAuthors", name: { en:"Books and Authors", hi:"पुस्तकें और लेखक" }, hint: { en:"Famous books and their authors", hi:"प्रसिद्ध पुस्तकें और उनके लेखक" }, weight:1, stars: 2 },
-            { id:"importantDays", name: { en:"Important Days", hi:"महत्वपूर्ण दिवस" }, hint: { en:"National and international days", hi:"राष्ट्रीय और अंतर्राष्ट्रीय दिवस" }, weight:1, stars: 1 },
-            { id:"sports", name: { en:"Sports", hi:"खेल" }, hint: { en:"Sports competitions, awards, players", hi:"खेल प्रतियोगिताएं, पुरस्कार, खिलाड़ी" }, weight:1, stars: 1 },
-            { id:"inventions", name: { en:"Inventions and Inventors", hi:"आविष्कार और आविष्कारक" }, hint: { en:"Important inventions and inventors", hi:"महत्वपूर्ण आविष्कार और आविष्कारक" }, weight:1, stars: 1 },
-            { id:"capitalsCurrencies", name: { en:"Capitals and Currencies", hi:"राजधानियाँ और मुद्राएं" }, hint: { en:"Capitals and currencies of countries", hi:"देशों की राजधानियाँ और मुद्राएं" }, weight:1, stars: 2 },
-            { id:"organizations", name: { en:"Organizations and Headquarters", hi:"संगठन और मुख्यालय" }, hint: { en:"National and international organizations", hi:"राष्ट्रीय और अंतर्राष्ट्रीय संगठन" }, weight:1, stars: 2 }
-          ]
-        },
-        {
-          id: "current-affairs",
-          title: { en: "Current Affairs", hi: "समसामयिक घटनाक्रम" },
-          colorClass: "current-affairs",
-          weight: 1,
-          topics: [
-            { id:"nationalCA", name: { en:"National Current Affairs", hi:"राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"Important events happening in the country", hi:"देश में होने वाली महत्वपूर्ण घटनाएं" }, weight:1, stars: 3 },
-            { id:"internationalCA", name: { en:"International Current Affairs", hi:"अंतर्राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"Important events happening in the world", hi:"दुनिया में होने वाली महत्वपूर्ण घटनाएं" }, weight:1, stars: 2 },
-            { id:"sportsCA", name: { en:"Sports Current Affairs", hi:"खेल समसामयिक घटनाक्रम" }, hint: { en:"Latest news from sports world", hi:"खेल जगत की नवीनतम खबरें" }, weight:1, stars: 1 },
-            { id:"scienceCA", name: { en:"Science and Technology", hi:"विज्ञान और प्रौद्योगिकी" }, hint: { en:"Scientific research and new technology", hi:"वैज्ञानिक शोध और नई प्रौद्योगिकी" }, weight:1, stars: 2 },
-            { id:"economyCA", name: { en:"Economy Current Affairs", hi:"अर्थव्यवस्था समसामयिक घटनाक्रम" }, hint: { en:"Economic policies and announcements", hi:"आर्थिक नीतियां और घोषणाएं" }, weight:1, stars: 2 },
-            { id:"importantPersons", name: { en:"Important Personalities", hi:"महत्वपूर्ण व्यक्तित्व" }, hint: { en:"Appointments and postings", hi:"नियुक्तियां और पदस्थापन" }, weight:1, stars: 1 }
-          ]
-        },
-        {
-          id: "science",
-          title: { en: "Science", hi: "विज्ञान" },
-          colorClass: "science",
-          weight: 1,
-          topics: [
-            { id:"physics", name: { en:"Physics", hi:"भौतिक विज्ञान" }, hint: { en:"Mechanics, optics, electricity, magnetism", hi:"यांत्रिकी, प्रकाशिकी, विद्युत, चुंबकत्व" }, weight:1, stars: 3 },
-            { id:"chemistry", name: { en:"Chemistry", hi:"रसायन विज्ञान" }, hint: { en:"Elements, compounds, acids, bases, salts", hi:"तत्व, यौगिक, अम्ल, क्षार, लवण" }, weight:1, stars: 2 },
-            { id:"biology", name: { en:"Biology", hi:"जीव विज्ञान" }, hint: { en:"Human body, plants, animals, ecology", hi:"मानव शरीर, पौधे, जानवर, पारिस्थितिकी" }, weight:1, stars: 3 },
-            { id:"everydayScience", name: { en:"Everyday Science", hi:"रोजमर्रा का विज्ञान" }, hint: { en:"Science in daily life", hi:"दैनिक जीवन में विज्ञान" }, weight:1, stars: 2 },
-            { id:"sciInventions", name: { en:"Scientific Inventions", hi:"वैज्ञानिक आविष्कार" }, hint: { en:"Important scientific inventions", hi:"महत्वपूर्ण वैज्ञानिक आविष्कार" }, weight:1, stars: 1 },
-            { id:"scientists", name: { en:"Scientists and their Contributions", hi:"वैज्ञानिक और उनके योगदान" }, hint: { en:"Famous scientists and their contributions", hi:"प्रसिद्ध वैज्ञानिक और उनके योगदान" }, weight:1, stars: 1 }
+            { id:"history_ancient", name: { en:"Ancient History", hi:"प्राचीन इतिहास" }, hint: { en:"Indus Valley, Vedic period, Maurya, Gupta", hi:"सिंधु घाटी, वैदिक काल, मौर्य, गुप्त" }, weight:1, stars: 2 },
+            { id:"history_medieval", name: { en:"Medieval History", hi:"मध्यकालीन इतिहास" }, hint: { en:"Delhi Sultanate, Mughal Empire", hi:"दिल्ली सल्तनत, मुगल साम्राज्य" }, weight:1, stars: 2 },
+            { id:"history_modern", name: { en:"Modern History", hi:"आधुनिक इतिहास" }, hint: { en:"British rule, freedom struggle", hi:"ब्रिटिश शासन, स्वतंत्रता संग्राम" }, weight:1, stars: 3 },
+            { id:"geography_india", name: { en:"Indian Geography", hi:"भारतीय भूगोल" }, hint: { en:"Physical, political, economic geography of India", hi:"भारत का भौतिक, राजनीतिक, आर्थिक भूगोल" }, weight:1, stars: 3 },
+            { id:"geography_world", name: { en:"World Geography", hi:"विश्व भूगोल" }, hint: { en:"Continents, oceans, climate, resources", hi:"महाद्वीप, महासागर, जलवायु, संसाधन" }, weight:1, stars: 2 },
+            { id:"polity_constitution", name: { en:"Constitution", hi:"संविधान" }, hint: { en:"Preamble, fundamental rights, duties", hi:"प्रस्तावना, मौलिक अधिकार, कर्तव्य" }, weight:1, stars: 3 },
+            { id:"polity_parliament", name: { en:"Parliament", hi:"संसद" }, hint: { en:"Lok Sabha, Rajya Sabha, legislative process", hi:"लोकसभा, राज्यसभा, विधायी प्रक्रिया" }, weight:1, stars: 2 },
+            { id:"polity_judiciary", name: { en:"Judiciary", hi:"न्यायपालिका" }, hint: { en:"Supreme Court, High Courts, judicial review", hi:"सुप्रीम कोर्ट, हाईकोर्ट, न्यायिक समीक्षा" }, weight:1, stars: 2 },
+            { id:"economy_basic", name: { en:"Basic Economics", hi:"मूल अर्थशास्त्र" }, hint: { en:"GDP, inflation, fiscal policy, monetary policy", hi:"जीडीपी, मुद्रास्फीति, राजकोषीय नीति, मौद्रिक नीति" }, weight:1, stars: 3 },
+            { id:"economy_india", name: { en:"Indian Economy", hi:"भारतीय अर्थव्यवस्था" }, hint: { en:"Planning, budgets, economic reforms", hi:"योजना, बजट, आर्थिक सुधार" }, weight:1, stars: 3 },
+            { id:"science_physics", name: { en:"Physics", hi:"भौतिकी" }, hint: { en:"Laws of motion, energy, optics, electricity", hi:"गति के नियम, ऊर्जा, प्रकाशिकी, विद्युत" }, weight:1, stars: 3 },
+            { id:"science_chemistry", name: { en:"Chemistry", hi:"रसायन विज्ञान" }, hint: { en:"Elements, compounds, chemical reactions", hi:"तत्व, यौगिक, रासायनिक अभिक्रियाएं" }, weight:1, stars: 2 },
+            { id:"science_biology", name: { en:"Biology", hi:"जीवविज्ञान" }, hint: { en:"Human body, plants, animals, diseases", hi:"मानव शरीर, पौधे, जानवर, रोग" }, weight:1, stars: 3 },
+            { id:"current_national", name: { en:"National Current Affairs", hi:"राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"National events, policies, appointments", hi:"राष्ट्रीय घटनाएं, नीतियां, नियुक्तियां" }, weight:1, stars: 3 },
+            { id:"current_international", name: { en:"International Current Affairs", hi:"अंतर्राष्ट्रीय समसामयिक घटनाक्रम" }, hint: { en:"Global events, summits, treaties", hi:"वैश्विक घटनाएं, शिखर सम्मेलन, संधियाँ" }, weight:1, stars: 2 },
+            { id:"awards", name: { en:"Awards and Honors", hi:"पुरस्कार और सम्मान" }, hint: { en:"National and international awards", hi:"राष्ट्रीय और अंतर्राष्ट्रीय पुरस्कार" }, weight:1, stars: 2 },
+            { id:"sports", name: { en:"Sports", hi:"खेल" }, hint: { en:"Sports events, players, awards", hi:"खेल आयोजन, खिलाड़ी, पुरस्कार" }, weight:1, stars: 2 },
+            { id:"booksAuthors", name: { en:"Books and Authors", hi:"पुस्तकें और लेखक" }, hint: { en:"Important books and their authors", hi:"महत्वपूर्ण पुस्तकें और उनके लेखक" }, weight:1, stars: 2 },
+            { id:"importantDays", name: { en:"Important Days", hi:"महत्वपूर्ण दिवस" }, hint: { en:"National and international days", hi:"राष्ट्रीय और अंतर्राष्ट्रीय दिवस" }, weight:1, stars: 2 }
           ]
         },
         {
           id: "computer",
-          title: { en: "Computer", hi: "कंप्यूटर" },
+          title: { en: "Computer Knowledge", hi: "कंप्यूटर ज्ञान" },
           colorClass: "computer",
           weight: 1,
           topics: [
@@ -3639,36 +3955,177 @@
         }
       ],
       
-      // CBT Configuration
-      cbtConfig: {
-        cbt1: {
-          totalMarks: 100,
-          sections: {
-            math: { maxMarks: 30, questions: 30 },
-            reasoning: { maxMarks: 30, questions: 30 },
-            awareness: { maxMarks: 40, questions: 40 }
-          }
+      // Hindi Translations
+      translations: {
+        en: {
+          appName: "SSC CGL PRO",
+          welcomeTitle: "SSC CGL PRO",
+          welcomeSubtitle: "Smart tool for SSC CGL exam preparation. Track subject-wise progress, analyze mock tests, and improve your performance.",
+          namePlaceholder: "Enter your name (e.g., Rahul Sharma)",
+          getStarted: "Get Started",
+          continue: "Continue",
+          subjects: "Subjects and Topics",
+          progressOverview: "Progress Overview",
+          mockAnalysis: "Mock Analysis",
+          syllabusTracker: "Syllabus Tracker",
+          overallSyllabus: "Overall Syllabus",
+          subjectWiseGraph: "Subject-wise Graph",
+          selectSubject: "Select Subject",
+          tier1: "Tier 1 (200 marks)",
+          tier2: "Tier 2 (390 marks)",
+          fullTest: "Full Test",
+          quantitative: "Quantitative Aptitude",
+          english: "English Language",
+          reasoning: "Reasoning",
+          generalAwareness: "General Awareness",
+          testName: "Test Name:",
+          date: "Date:",
+          quantitativeMarks: "Quantitative Aptitude (marks):",
+          englishMarks: "English Language (marks):",
+          reasoningMarks: "Reasoning (marks):",
+          awarenessMarks: "General Awareness (marks):",
+          accuracy: "Accuracy (%):",
+          totalMarks: "Total Marks (auto):",
+          marks: "Marks:",
+          save: "Save & Update Graphs",
+          latestPerformance: "Latest Performance",
+          performanceGraphs: "Performance Graphs",
+          fullTestGraph: "Full Test",
+          quantitativeGraph: "Quantitative Aptitude",
+          englishGraph: "English Language",
+          reasoningGraph: "Reasoning",
+          gsGraph: "General Awareness",
+          accuracyGraph: "Accuracy",
+          noData: "No test data yet. Add your first test entry.",
+          expandAll: "Expand All",
+          collapseAll: "Collapse All",
+          resetConfirm: "RESET MY PROGRESS",
+          resetPlaceholder: 'Type "RESET MY PROGRESS" here',
+          shareProgress: "Share Progress",
+          shareWebsite: "Share Website",
+          generateImage: "Generate Progress Image",
+          helpQueries: "Help and Queries",
+          exportBackup: "Export Backup",
+          importBackup: "Import Backup",
+          resetData: "Reset Data",
+          createdBy: "Created by: Mr. SHAILENDRA KUSHWAH",
+          footerText: "© SSC CGL PRO 2026 — SSC CGL Syllabus Tracker",
+          congratulations: "Congratulations!",
+          congratsMessage: "You have completed a topic! Your hard work will lead you to success.",
+          subjectCongrats: "Amazing Achievement!",
+          subjectCongratsMessage: "You have successfully completed an entire subject! Your dedication is inspiring.",
+          continueBtn: "Continue",
+          celebrateBtn: "Celebrate & Continue",
+          completed: "Completed",
+          remaining: "Remaining",
+          viewHistory: "View Test History",
+          testHistory: "Test History",
+          avgScore: "Average Score",
+          tier1Avg: "Tier 1 Average",
+          tier2Avg: "Tier 2 Average",
+          overallAvg: "Overall Average",
+          fullTests: "Full Tests",
+          quantitativeTests: "Quantitative Tests",
+          englishTests: "English Tests",
+          reasoningTests: "Reasoning Tests",
+          awarenessTests: "Awareness Tests",
+          tests: "tests",
+          percentage: "Percentage",
+          downloadImage: "Download Image",
+          shareImage: "Share Image",
+          closeImage: "Close"
         },
-        cbt2: {
-          totalMarks: 120,
-          sections: {
-            math: { maxMarks: 35, questions: 35 },
-            reasoning: { maxMarks: 35, questions: 35 },
-            awareness: { maxMarks: 50, questions: 50 }
-          }
+        hi: {
+          appName: "एसएससी सीजीएल प्रो",
+          welcomeTitle: "एसएससी सीजीएल प्रो",
+          welcomeSubtitle: "एसएससी सीजीएल परीक्षा की तैयारी के लिए स्मार्ट टूल। विषय-वार प्रगति ट्रैक करें, मॉक टेस्ट का विश्लेषण करें, और अपने प्रदर्शन में सुधार करें।",
+          namePlaceholder: "अपना नाम दर्ज करें (जैसे, राहुल शर्मा)",
+          getStarted: "शुरू करें",
+          continue: "जारी रखें",
+          subjects: "विषय और टॉपिक्स",
+          progressOverview: "प्रगति अवलोकन",
+          mockAnalysis: "मॉक विश्लेषण",
+          syllabusTracker: "पाठ्यक्रम ट्रैकर",
+          overallSyllabus: "समग्र पाठ्यक्रम",
+          subjectWiseGraph: "विषय-वार ग्राफ",
+          selectSubject: "विषय चुनें",
+          tier1: "टियर 1 (200 अंक)",
+          tier2: "टियर 2 (390 अंक)",
+          fullTest: "पूर्ण परीक्षा",
+          quantitative: "मात्रात्मक अभियोग्यता",
+          english: "अंग्रेजी भाषा",
+          reasoning: "तर्कशक्ति",
+          generalAwareness: "सामान्य जागरूकता",
+          testName: "टेस्ट नाम:",
+          date: "तारीख:",
+          quantitativeMarks: "मात्रात्मक अभियोग्यता (अंक):",
+          englishMarks: "अंग्रेजी भाषा (अंक):",
+          reasoningMarks: "तर्कशक्ति (अंक):",
+          awarenessMarks: "सामान्य जागरूकता (अंक):",
+          accuracy: "सटीकता (%):",
+          totalMarks: "कुल अंक (स्वचालित):",
+          marks: "अंक:",
+          save: "सहेजें और ग्राफ अपडेट करें",
+          latestPerformance: "नवीनतम प्रदर्शन",
+          performanceGraphs: "प्रदर्शन ग्राफ",
+          fullTestGraph: "पूर्ण परीक्षा",
+          quantitativeGraph: "मात्रात्मक अभियोग्यता",
+          englishGraph: "अंग्रेजी भाषा",
+          reasoningGraph: "तर्कशक्ति",
+          gsGraph: "सामान्य जागरूकता",
+          accuracyGraph: "सटीकता",
+          noData: "अभी तक कोई टेस्ट डेटा नहीं है। अपनी पहली टेस्ट एंट्री जोड़ें।",
+          expandAll: "सभी विस्तारित करें",
+          collapseAll: "सभी संक्षिप्त करें",
+          resetConfirm: "मेरी प्रगति रीसेट करें",
+          resetPlaceholder: '"मेरी प्रगति रीसेट करें" टाइप करें',
+          shareProgress: "प्रगति साझा करें",
+          shareWebsite: "वेबसाइट साझा करें",
+          generateImage: "प्रगति छवि बनाएं",
+          helpQueries: "सहायता और प्रश्न",
+          exportBackup: "बैकअप निर्यात करें",
+          importBackup: "बैकअप आयात करें",
+          resetData: "डेटा रीसेट करें",
+          createdBy: "बनाया गया: श्री शैलेंद्र कुशवाह द्वारा",
+          footerText: "© एसएससी सीजीएल प्रो 2026 — एसएससी सीजीएल पाठ्यक्रम ट्रैकर",
+          congratulations: "बधाई हो!",
+          congratsMessage: "आपने एक टॉपिक पूरा कर लिया है! आपकी मेहनत आपको सफलता की ओर ले जाएगी।",
+          subjectCongrats: "अद्भुत उपलब्धि!",
+          subjectCongratsMessage: "आपने पूरा विषय सफलतापूर्वक पूरा कर लिया है! आपका समर्पण प्रेरणादायक है।",
+          continueBtn: "जारी रखें",
+          celebrateBtn: "जश्न मनाएं और जारी रखें",
+          completed: "पूर्ण",
+          remaining: "शेष",
+          viewHistory: "टेस्ट इतिहास देखें",
+          testHistory: "टेस्ट इतिहास",
+          avgScore: "औसत स्कोर",
+          tier1Avg: "टियर 1 औसत",
+          tier2Avg: "टियर 2 औसत",
+          overallAvg: "कुल औसत",
+          fullTests: "पूर्ण टेस्ट",
+          quantitativeTests: "मात्रात्मक टेस्ट",
+          englishTests: "अंग्रेजी टेस्ट",
+          reasoningTests: "तर्कशक्ति टेस्ट",
+          awarenessTests: "सामान्य जागरूकता टेस्ट",
+          tests: "टेस्ट",
+          percentage: "प्रतिशत",
+          downloadImage: "छवि डाउनलोड करें",
+          shareImage: "छवि साझा करें",
+          closeImage: "बंद करें"
         }
       }
     };
     
     // ========== GLOBAL VARIABLES ==========
     const STORAGE_KEYS = {
-      PROGRESS: "ntpc_progress_v12",
-      UI_STATE: "ntpc_ui_state_v12",
-      STUDENT_NAME: "ntpc_student_name",
-      CBT_RESULTS: "ntpc_cbt_results_v12",
-      THEME: "ntpc_theme",
-      STUDY_LOG: "ntpc_study_log",
-      LANGUAGE: "ntpc_language"
+      PROGRESS: "ssc_cgl_progress_v15",
+      UI_STATE: "ssc_cgl_ui_state_v15",
+      STUDENT_NAME: "ssc_cgl_student_name",
+      CBT_RESULTS: "ssc_cgl_results_v15",
+      THEME: "ssc_cgl_theme",
+      STUDY_LOG: "ssc_cgl_study_log",
+      LANGUAGE: "ssc_cgl_language",
+      LATEST_PERF_SELECTION: "ssc_cgl_latest_perf_selection"
     };
     
     let savedProgress = JSON.parse(localStorage.getItem(STORAGE_KEYS.PROGRESS) || "{}");
@@ -3677,18 +4134,21 @@
     let studyLog = JSON.parse(localStorage.getItem(STORAGE_KEYS.STUDY_LOG) || "[]");
     let currentTheme = localStorage.getItem(STORAGE_KEYS.THEME) || "light";
     let currentLanguage = localStorage.getItem(STORAGE_KEYS.LANGUAGE) || "en";
+    let latestPerformanceSelection = JSON.parse(localStorage.getItem(STORAGE_KEYS.LATEST_PERF_SELECTION) || '{"tier":"any","type":"any"}');
+    
     let charts = {
       fullTest: null,
       subject: null,
       accuracy: null
     };
-    let currentCBT = "cbt1";
+    let currentCBT = "tier1";
     let currentTestType = "full";
     let selectedSubjectForGraph = null;
-    let currentGraphCBT = "cbt1";
-    let selectedSubjectForChart = "math";
-    let fullTestGraphView = "total"; // 'total', 'math', 'reasoning', 'awareness'
-    
+    let currentGraphCBT = "tier1";
+    let selectedSubjectForChart = "quantitative";
+    let fullTestGraphView = "total";
+    let isSubmitting = false;
+
     // ========== INITIALIZATION ==========
     function initializeApp() {
       setTheme(currentTheme);
@@ -3706,7 +4166,7 @@
       if (studentName) {
         nameInput.value = studentName;
         nameInput.readOnly = true;
-        startBtn.innerHTML = `<i class="fas fa-rocket"></i> Continue`;
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> ${t('continue')}`;
         
         setTimeout(() => {
           if (document.visibilityState === 'visible') {
@@ -3715,7 +4175,7 @@
         }, 1500);
       } else {
         nameInput.readOnly = false;
-        startBtn.innerHTML = `<i class="fas fa-rocket"></i> Get Started`;
+        startBtn.innerHTML = `<i class="fas fa-rocket"></i> ${t('getStarted')}`;
       }
       
       startBtn.onclick = () => {
@@ -3805,7 +4265,6 @@
         const header = document.createElement('div');
         header.className = 'subject-header';
         
-        // Mobile-friendly HTML structure
         header.innerHTML = `
           <div class="subject-title">
             <span class="badge ${subject.colorClass}">${subject.title[currentLanguage].split('(')[0].trim()}</span>
@@ -3841,11 +4300,21 @@
           else if (topic.stars === 2) starClass = 'two-stars';
           else if (topic.stars === 1) starClass = 'one-star';
           
+          // FIX: English topics always show English names
+          let topicName, topicHint;
+          if (subject.id === 'english') {
+            topicName = topic.name;
+            topicHint = topic.hint;
+          } else {
+            topicName = topic.name[currentLanguage] || topic.name;
+            topicHint = topic.hint[currentLanguage] || topic.hint;
+          }
+          
           topicElement.innerHTML = `
             <input type="checkbox" id="${topicId}" ${isChecked ? 'checked' : ''}>
             <label for="${topicId}">
-              <strong>${topic.name[currentLanguage]}<span class="stars ${starClass}"></span></strong>
-              <small>${topic.hint[currentLanguage]}</small>
+              <strong>${topicName}<span class="stars ${starClass}"></span></strong>
+              <small>${topicHint}</small>
             </label>
             <span class="weight">wt ${topic.weight}</span>
           `;
@@ -3857,7 +4326,6 @@
         subjectElement.appendChild(topicsContainer);
         container.appendChild(subjectElement);
         
-        // Set up event listener for the subject header
         const progressMobileEl = header.querySelector('.subject-progress-mobile');
         header.addEventListener('click', (e) => {
           if (e.target.closest('.toggle-btn')) return;
@@ -3879,7 +4347,6 @@
         });
       });
       
-      // Now show the progress sections on mobile
       setTimeout(() => {
         document.querySelectorAll('.subject-progress-mobile').forEach(el => {
           el.style.display = 'flex';
@@ -4010,16 +4477,24 @@
       const topic = subject.topics.find(t => t.id === topicKey);
       if (!topic) return;
       
+      // FIX: Get topic name correctly for all subjects
+      let topicName;
+      if (subjectId === 'english') {
+        topicName = topic.name;
+      } else {
+        topicName = topic.name[currentLanguage] || topic.name;
+      }
+      
       const messages = currentLanguage === 'hi' ? [
-        `बधाई हो! आपने "${topic.name[currentLanguage]}" पूरा कर लिया!`,
-        `शानदार! "${topic.name[currentLanguage]}" अब पूरा हो गया है!`,
-        `अद्भुत! आपने सफलतापूर्वक "${topic.name[currentLanguage]}" पूरा कर लिया!`,
-        `वाह! "${topic.name[currentLanguage]}" पूरा करने पर बधाई!`
+        `बधाई हो! आपने "${topicName}" पूरा कर लिया!`,
+        `शानदार! "${topicName}" अब पूरा हो गया है!`,
+        `अद्भुत! आपने सफलतापूर्वक "${topicName}" पूरा कर लिया!`,
+        `वाह! "${topicName}" पूरा करने पर बधाई!`
       ] : [
-        `Congratulations! You completed "${topic.name[currentLanguage]}"!`,
-        `Awesome! "${topic.name[currentLanguage]}" is now complete!`,
-        `Amazing! You successfully completed "${topic.name[currentLanguage]}"!`,
-        `Wow! Congratulations on completing "${topic.name[currentLanguage]}"!`
+        `Congratulations! You completed "${topicName}"!`,
+        `Awesome! "${topicName}" is now complete!`,
+        `Amazing! You successfully completed "${topicName}"!`,
+        `Wow! Congratulations on completing "${topicName}"!`
       ];
       
       const randomMessage = messages[Math.floor(Math.random() * messages.length)];
@@ -4063,7 +4538,7 @@
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#4f46e5', '#059669', '#db2777', '#d97706', '#7c3aed']
+        colors: ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444']
       });
       
       setTimeout(() => {
@@ -4072,7 +4547,7 @@
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ['#db2777', '#d97706']
+          colors: ['#8b5cf6', '#f59e0b']
         });
       }, 250);
       
@@ -4082,7 +4557,7 @@
           angle: 120,
           spread: 55,
           origin: { x: 1 },
-          colors: ['#4f46e5', '#059669', '#7c3aed']
+          colors: ['#3b82f6', '#10b981', '#ef4444']
         });
       }, 500);
     }
@@ -4094,7 +4569,7 @@
             particleCount: 300,
             spread: 100,
             origin: { y: 0.6 },
-            colors: ['#4f46e5', '#059669', '#db2777', '#d97706', '#7c3aed', '#3b82f6', '#8b5cf6']
+            colors: ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444', '#60a5fa', '#a78bfa']
           });
         }, i * 300);
       }
@@ -4105,7 +4580,7 @@
           angle: 60,
           spread: 80,
           origin: { x: 0 },
-          colors: ['#db2777', '#d97706', '#f97316']
+          colors: ['#8b5cf6', '#f59e0b', '#f97316']
         });
       }, 600);
       
@@ -4115,19 +4590,32 @@
           angle: 120,
           spread: 80,
           origin: { x: 1 },
-          colors: ['#4f46e5', '#059669', '#7c3aed', '#06b6d4']
+          colors: ['#3b82f6', '#10b981', '#ef4444', '#06b6d4']
         });
       }, 900);
     }
     
-    // ========== CBT ANALYSIS FUNCTIONS ==========
+    // ========== MOCK ANALYSIS FUNCTIONS ==========
     function initializeCBTForm() {
       const today = new Date();
       const formattedDate = today.toISOString().split('T')[0];
       document.getElementById('testDate').value = formattedDate;
       updateCBTForm();
       
-      document.getElementById('mathMarks').addEventListener('input', updateTotalMarks);
+      // Mark required fields
+      document.querySelectorAll('#fullTestFields input[required]').forEach(input => {
+        input.addEventListener('input', function() {
+          this.classList.remove('error');
+          const errorId = this.id + 'Error';
+          const errorElement = document.getElementById(errorId);
+          if (errorElement) {
+            errorElement.classList.remove('show');
+          }
+        });
+      });
+      
+      document.getElementById('quantitativeMarks').addEventListener('input', updateTotalMarks);
+      document.getElementById('englishMarks').addEventListener('input', updateTotalMarks);
       document.getElementById('reasoningMarks').addEventListener('input', updateTotalMarks);
       document.getElementById('awarenessMarks').addEventListener('input', updateTotalMarks);
     }
@@ -4137,32 +4625,58 @@
       
       const titles = {
         'full': 'Full Test',
-        'math': 'Mathematics',
+        'quantitative': 'Quantitative Aptitude',
+        'english': 'English Language',
         'reasoning': 'Reasoning',
         'awareness': 'General Awareness'
       };
       document.getElementById('testFormTitle').innerHTML = `<i class="fas fa-edit"></i> ${titles[currentTestType]} Marks Entry`;
       
+      // Clear any existing errors
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.classList.remove('show');
+      });
+      document.querySelectorAll('.error').forEach(el => {
+        el.classList.remove('error');
+      });
+      
       if (currentTestType === 'full') {
         document.getElementById('fullTestFields').style.display = 'block';
         document.getElementById('sectionalTestFields').style.display = 'none';
         
-        document.getElementById('mathMarks').max = config.sections.math.maxMarks;
-        document.getElementById('mathMarks').placeholder = `0-${config.sections.math.maxMarks}`;
+        document.getElementById('quantitativeMarks').max = config.sections.quantitative.maxMarks;
+        document.getElementById('quantitativeMarks').placeholder = `Max: ${config.sections.quantitative.maxMarks}`;
+        document.getElementById('englishMarks').max = config.sections.english.maxMarks;
+        document.getElementById('englishMarks').placeholder = `Max: ${config.sections.english.maxMarks}`;
         document.getElementById('reasoningMarks').max = config.sections.reasoning.maxMarks;
-        document.getElementById('reasoningMarks').placeholder = `0-${config.sections.reasoning.maxMarks}`;
+        document.getElementById('reasoningMarks').placeholder = `Max: ${config.sections.reasoning.maxMarks}`;
         document.getElementById('awarenessMarks').max = config.sections.awareness.maxMarks;
-        document.getElementById('awarenessMarks').placeholder = `0-${config.sections.awareness.maxMarks}`;
-        document.getElementById('totalMarks').max = config.totalMarks;
-        document.getElementById('totalMarks').placeholder = `0-${config.totalMarks}`;
+        document.getElementById('awarenessMarks').placeholder = `Max: ${config.sections.awareness.maxMarks}`;
+        document.getElementById('totalMarks').placeholder = `Max: ${config.totalMarks}`;
+        
+        // Set required attribute for full test fields
+        document.getElementById('quantitativeMarks').required = true;
+        document.getElementById('englishMarks').required = true;
+        document.getElementById('reasoningMarks').required = true;
+        document.getElementById('awarenessMarks').required = true;
+        document.getElementById('accuracy').required = true;
+        document.getElementById('sectionalMarks').required = false;
       } else {
         document.getElementById('fullTestFields').style.display = 'none';
         document.getElementById('sectionalTestFields').style.display = 'block';
         
         const maxMarks = config.sections[currentTestType].maxMarks;
-        document.getElementById('sectionalMarksLabel').textContent = `Marks (0-${maxMarks}):`;
+        document.getElementById('sectionalMarksLabel').textContent = `Marks (Max: ${maxMarks}):`;
         document.getElementById('sectionalMarks').max = maxMarks;
-        document.getElementById('sectionalMarks').placeholder = `0-${maxMarks}`;
+        document.getElementById('sectionalMarks').placeholder = `Max: ${maxMarks}`;
+        
+        // Set required attribute for sectional test field
+        document.getElementById('sectionalMarks').required = true;
+        document.getElementById('quantitativeMarks').required = false;
+        document.getElementById('englishMarks').required = false;
+        document.getElementById('reasoningMarks').required = false;
+        document.getElementById('awarenessMarks').required = false;
+        document.getElementById('accuracy').required = false;
       }
       
       updateTotalMarks();
@@ -4170,16 +4684,108 @@
     
     function updateTotalMarks() {
       if (currentTestType === 'full') {
-        const math = parseInt(document.getElementById('mathMarks').value) || 0;
-        const reasoning = parseInt(document.getElementById('reasoningMarks').value) || 0;
-        const awareness = parseInt(document.getElementById('awarenessMarks').value) || 0;
-        const total = math + reasoning + awareness;
-        document.getElementById('totalMarks').value = total;
+        const quantitative = parseFloat(document.getElementById('quantitativeMarks').value) || 0;
+        const english = parseFloat(document.getElementById('englishMarks').value) || 0;
+        const reasoning = parseFloat(document.getElementById('reasoningMarks').value) || 0;
+        const awareness = parseFloat(document.getElementById('awarenessMarks').value) || 0;
+        const total = quantitative + english + reasoning + awareness;
+        document.getElementById('totalMarks').value = total.toFixed(1);
       }
     }
     
+    function validateForm() {
+      let isValid = true;
+      
+      // Clear previous errors
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.classList.remove('show');
+      });
+      document.querySelectorAll('.error').forEach(el => {
+        el.classList.remove('error');
+      });
+      
+      // Validate test name
+      const testName = document.getElementById('testName').value.trim();
+      if (!testName) {
+        document.getElementById('testName').classList.add('error');
+        document.getElementById('testNameError').classList.add('show');
+        isValid = false;
+      }
+      
+      // Validate date
+      const testDate = document.getElementById('testDate').value;
+      if (!testDate) {
+        document.getElementById('testDate').classList.add('error');
+        document.getElementById('testDateError').classList.add('show');
+        isValid = false;
+      }
+      
+      if (currentTestType === 'full') {
+        const config = CONFIG.cbtConfig[currentCBT];
+        
+        // Validate quantitative marks
+        const quantitative = document.getElementById('quantitativeMarks').value;
+        if (!quantitative || quantitative === '' || parseFloat(quantitative) < 0 || parseFloat(quantitative) > config.sections.quantitative.maxMarks) {
+          document.getElementById('quantitativeMarks').classList.add('error');
+          document.getElementById('quantitativeError').classList.add('show');
+          isValid = false;
+        }
+        
+        // Validate english marks
+        const english = document.getElementById('englishMarks').value;
+        if (!english || english === '' || parseFloat(english) < 0 || parseFloat(english) > config.sections.english.maxMarks) {
+          document.getElementById('englishMarks').classList.add('error');
+          document.getElementById('englishError').classList.add('show');
+          isValid = false;
+        }
+        
+        // Validate reasoning marks
+        const reasoning = document.getElementById('reasoningMarks').value;
+        if (!reasoning || reasoning === '' || parseFloat(reasoning) < 0 || parseFloat(reasoning) > config.sections.reasoning.maxMarks) {
+          document.getElementById('reasoningMarks').classList.add('error');
+          document.getElementById('reasoningError').classList.add('show');
+          isValid = false;
+        }
+        
+        // Validate awareness marks
+        const awareness = document.getElementById('awarenessMarks').value;
+        if (!awareness || awareness === '' || parseFloat(awareness) < 0 || parseFloat(awareness) > config.sections.awareness.maxMarks) {
+          document.getElementById('awarenessMarks').classList.add('error');
+          document.getElementById('awarenessError').classList.add('show');
+          isValid = false;
+        }
+        
+        // Validate accuracy
+        const accuracy = document.getElementById('accuracy').value;
+        if (!accuracy || accuracy === '' || parseFloat(accuracy) < 0 || parseFloat(accuracy) > 100) {
+          document.getElementById('accuracy').classList.add('error');
+          document.getElementById('accuracyError').classList.add('show');
+          isValid = false;
+        }
+      } else {
+        // Validate sectional marks
+        const config = CONFIG.cbtConfig[currentCBT];
+        const maxMarks = config.sections[currentTestType].maxMarks;
+        const sectionalMarks = document.getElementById('sectionalMarks').value;
+        
+        if (!sectionalMarks || sectionalMarks === '' || parseFloat(sectionalMarks) < 0 || parseFloat(sectionalMarks) > maxMarks) {
+          document.getElementById('sectionalMarks').classList.add('error');
+          document.getElementById('sectionalMarksError').classList.add('show');
+          isValid = false;
+        }
+      }
+      
+      return isValid;
+    }
+    
     function loadCBTResults() {
+      updateLatestPerformance();
+    }
+    
+    function updateLatestPerformance() {
       const latestPerformance = document.getElementById('latestPerformance');
+      const selectedTier = latestPerformanceSelection.tier;
+      const selectedType = latestPerformanceSelection.type;
       
       if (cbtResults.length === 0) {
         latestPerformance.innerHTML = `
@@ -4187,17 +4793,45 @@
             <div class="no-data-image">
               <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
             </div>
-            <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
+            <p style="color: var(--muted); margin: 10px 0;">${t('noData')}</p>
           </div>`;
         return;
       }
       
-      cbtResults.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      const latest = cbtResults[0];
+      // Filter results based on selection
+      let filteredResults = [...cbtResults];
+      
+      if (selectedTier !== 'any') {
+        filteredResults = filteredResults.filter(r => r.cbt === selectedTier);
+      }
+      
+      if (selectedType !== 'any') {
+        if (selectedType === 'full') {
+          filteredResults = filteredResults.filter(r => r.testType === 'full');
+        } else {
+          filteredResults = filteredResults.filter(r => r.testType === 'sectional' && r.section === selectedType);
+        }
+      }
+      
+      if (filteredResults.length === 0) {
+        latestPerformance.innerHTML = `
+          <div class="no-data-container">
+            <div class="no-data-image">
+              <img src="https://image2url.com/images/1765986538625-dc51de7a-19d5-4f09-9c44-b96d1a48e991.gif" alt="No Data Available">
+            </div>
+            <p style="color: var(--muted); margin: 10px 0;">No test data found for selected criteria.</p>
+          </div>`;
+        return;
+      }
+      
+      // Sort by timestamp and get the latest
+      filteredResults.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      const latest = filteredResults[0];
       
       let html = '';
       if (latest.testType === 'full') {
-        const percentage = ((latest.total / latest.maxTotal) * 100).toFixed(1);
+        const config = CONFIG.cbtConfig[latest.cbt];
+        const percentage = ((latest.total / config.totalMarks) * 100).toFixed(1);
         const date = new Date(latest.date).toLocaleDateString();
         const time = latest.time || '';
         
@@ -4206,33 +4840,37 @@
             <h3 style="color: var(--accent); margin-bottom: 15px;">${latest.name}</h3>
             <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 15px 0;">${percentage}%</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
-              <div style="background: rgba(79, 70, 229, 0.1); padding: 15px; border-radius: 12px;">
-                <div style="font-size: 0.9rem; color: var(--muted);">Mathematics</div>
-                <div style="font-size: 1.5rem; font-weight: 800;">${latest.math}/${latest.maxMath}</div>
+              <div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">Quantitative</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.quantitative}/${config.sections.quantitative.maxMarks}</div>
               </div>
-              <div style="background: rgba(5, 150, 105, 0.1); padding: 15px; border-radius: 12px;">
+              <div style="background: rgba(139, 92, 246, 0.1); padding: 15px; border-radius: 12px;">
+                <div style="font-size: 0.9rem; color: var(--muted);">English</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.english}/${config.sections.english.maxMarks}</div>
+              </div>
+              <div style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 12px;">
                 <div style="font-size: 0.9rem; color: var(--muted);">Reasoning</div>
-                <div style="font-size: 1.5rem; font-weight: 800;">${latest.reasoning}/${latest.maxReasoning}</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.reasoning}/${config.sections.reasoning.maxMarks}</div>
               </div>
-              <div style="background: rgba(217, 119, 6, 0.1); padding: 15px; border-radius: 12px;">
+              <div style="background: rgba(245, 158, 11, 0.1); padding: 15px; border-radius: 12px;">
                 <div style="font-size: 0.9rem; color: var(--muted);">General Awareness</div>
-                <div style="font-size: 1.5rem; font-weight: 800;">${latest.awareness}/${latest.maxAwareness}</div>
-              </div>
-              <div style="background: rgba(124, 58, 237, 0.1); padding: 15px; border-radius: 12px;">
-                <div style="font-size: 0.9rem; color: var(--muted);">Total Marks</div>
-                <div style="font-size: 1.5rem; font-weight: 800;">${latest.total}/${latest.maxTotal}</div>
+                <div style="font-size: 1.5rem; font-weight: 800;">${latest.awareness}/${config.sections.awareness.maxMarks}</div>
               </div>
             </div>
             <div style="color: var(--muted); font-size: 0.9rem; margin: 10px 0;">Date: ${date} ${time ? `(${time})` : ''}</div>
-            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</div>
+            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'tier1' ? 'Tier 1' : 'Tier 2'} • Full Test</div>
+            <div style="color: var(--accent-3); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">Accuracy: ${latest.accuracy}%</div>
           </div>
         `;
       } else {
-        const percentage = ((latest.marks / latest.maxMarks) * 100).toFixed(1);
+        const config = CONFIG.cbtConfig[latest.cbt];
+        const maxMarks = config.sections[latest.section].maxMarks;
+        const percentage = ((latest.marks / maxMarks) * 100).toFixed(1);
         const date = new Date(latest.date).toLocaleDateString();
         const time = latest.time || '';
         const sectionNames = {
-          'math': 'Mathematics',
+          'quantitative': 'Quantitative Aptitude',
+          'english': 'English Language',
           'reasoning': 'Reasoning',
           'awareness': 'General Awareness'
         };
@@ -4241,12 +4879,12 @@
           <div style="text-align: center;">
             <h3 style="color: var(--accent); margin-bottom: 15px;">${latest.name}</h3>
             <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent); margin: 15px 0;">${percentage}%</div>
-            <div style="background: rgba(79, 70, 229, 0.1); padding: 30px; border-radius: 16px; margin: 20px 0;">
+            <div style="background: rgba(59, 130, 246, 0.1); padding: 30px; border-radius: 16px; margin: 20px 0;">
               <div style="font-size: 1.2rem; color: var(--muted); margin-bottom: 10px;">${sectionNames[latest.section]}</div>
-              <div style="font-size: 3rem; font-weight: 800; color: var(--accent);">${latest.marks}/${latest.maxMarks}</div>
+              <div style="font-size: 3rem; font-weight: 800; color: var(--accent);">${latest.marks}/${maxMarks}</div>
             </div>
             <div style="color: var(--muted); font-size: 0.9rem; margin: 10px 0;">Date: ${date} ${time ? `(${time})` : ''}</div>
-            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</div>
+            <div style="color: var(--accent); font-size: 0.9rem; margin: 10px 0; font-weight: 600;">${latest.cbt === 'tier1' ? 'Tier 1' : 'Tier 2'} • Sectional Test</div>
           </div>
         `;
       }
@@ -4300,23 +4938,23 @@
           {
             label: 'Total Marks',
             data: scores,
-            borderColor: '#4f46e5',
-            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
             tension: 0.3,
             fill: true,
             pointRadius: pointRadius,
-            pointBackgroundColor: '#4f46e5',
+            pointBackgroundColor: '#3b82f6',
             yAxisID: 'y'
           },
           {
             label: 'Accuracy',
             data: percentages,
-            borderColor: '#db2777',
-            backgroundColor: 'rgba(219, 39, 119, 0.1)',
+            borderColor: '#8b5cf6',
+            backgroundColor: 'rgba(139, 92, 246, 0.1)',
             tension: 0.3,
             fill: false,
             pointRadius: pointRadius,
-            pointBackgroundColor: '#db2777',
+            pointBackgroundColor: '#8b5cf6',
             yAxisID: 'y1'
           }
         ];
@@ -4324,20 +4962,23 @@
         document.getElementById('fullTestGraphInfo').textContent = 'Shows full test scores and accuracy';
       } else {
         const subjectData = filteredResults.map(r => {
-          if (fullTestGraphView === 'math') return r.math;
+          if (fullTestGraphView === 'quantitative') return r.quantitative;
+          if (fullTestGraphView === 'english') return r.english;
           if (fullTestGraphView === 'reasoning') return r.reasoning;
           if (fullTestGraphView === 'awareness') return r.awareness;
           return 0;
         });
         
         const colors = {
-          'math': '#4f46e5',
-          'reasoning': '#059669',
-          'awareness': '#d97706'
+          'quantitative': '#3b82f6',
+          'english': '#8b5cf6',
+          'reasoning': '#10b981',
+          'awareness': '#f59e0b'
         };
         
         const labelsText = {
-          'math': 'Mathematics',
+          'quantitative': 'Quantitative Aptitude',
+          'english': 'English Language',
           'reasoning': 'Reasoning',
           'awareness': 'General Awareness'
         };
@@ -4385,7 +5026,7 @@
             },
             title: {
               display: true,
-              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - Full Test Performance (${fullTestGraphView === 'total' ? 'Total Marks' : fullTestGraphView.charAt(0).toUpperCase() + fullTestGraphView.slice(1)})`,
+              text: `${currentGraphCBT === 'tier1' ? 'Tier 1' : 'Tier 2'} - Full Test Performance (${fullTestGraphView === 'total' ? 'Total Marks' : fullTestGraphView.charAt(0).toUpperCase() + fullTestGraphView.slice(1)})`,
               color: 'var(--text)',
               font: {
                 size: 16,
@@ -4470,7 +5111,6 @@
         charts.subject.destroy();
       }
       
-      // Filter results for selected CBT and SECTIONAL tests only (not full tests)
       let filteredResults = cbtResults.filter(r => r.cbt === currentGraphCBT && 
         r.testType === 'sectional' && r.section === selectedSubjectForChart);
       
@@ -4497,15 +5137,17 @@
       const pointRadius = filteredResults.length === 1 ? 8 : 6;
       
       const subjectNames = {
-        'math': 'Mathematics',
+        'quantitative': 'Quantitative Aptitude',
+        'english': 'English Language',
         'reasoning': 'Reasoning',
         'awareness': 'General Awareness'
       };
       
       const colors = {
-        'math': '#4f46e5',
-        'reasoning': '#059669',
-        'awareness': '#d97706'
+        'quantitative': '#3b82f6',
+        'english': '#8b5cf6',
+        'reasoning': '#10b981',
+        'awareness': '#f59e0b'
       };
       
       charts.subject = new Chart(ctx, {
@@ -4540,7 +5182,7 @@
             },
             title: {
               display: true,
-              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - ${subjectNames[selectedSubjectForChart]} Performance (Sectional Tests Only)`,
+              text: `${currentGraphCBT === 'tier1' ? 'Tier 1' : 'Tier 2'} - ${subjectNames[selectedSubjectForChart]} Performance (Sectional Tests Only)`,
               color: 'var(--text)',
               font: {
                 size: 16,
@@ -4619,12 +5261,12 @@
             {
               label: 'Accuracy',
               data: accuracyData,
-              borderColor: '#db2777',
-              backgroundColor: 'rgba(219, 39, 119, 0.1)',
+              borderColor: '#8b5cf6',
+              backgroundColor: 'rgba(139, 92, 246, 0.1)',
               tension: 0.3,
               fill: true,
               pointRadius: pointRadius,
-              pointBackgroundColor: '#db2777'
+              pointBackgroundColor: '#8b5cf6'
             }
           ]
         },
@@ -4643,7 +5285,7 @@
             },
             title: {
               display: true,
-              text: `${currentGraphCBT === 'cbt1' ? 'CBT-1' : 'CBT-2'} - Accuracy Analysis`,
+              text: `${currentGraphCBT === 'tier1' ? 'Tier 1' : 'Tier 2'} - Accuracy Analysis`,
               color: 'var(--text)',
               font: {
                 size: 16,
@@ -4693,22 +5335,25 @@
       if (cbtResults.length === 0) {
         container.innerHTML = `
           <div class="no-data-container" style="width: 100%;">
-            <p style="color: var(--muted); margin: 10px 0;">No test data yet. Add your first test entry.</p>
+            <p style="color: var(--muted); margin: 10px 0;">${t('noData')}</p>
           </div>`;
         return;
       }
       
-      let cbt1FullTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'full');
-      let cbt2FullTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'full');
+      let tier1FullTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'full');
+      let tier2FullTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'full');
       
-      let cbt1MathTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'math');
-      let cbt2MathTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'math');
+      let tier1QuantitativeTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'sectional' && r.section === 'quantitative');
+      let tier2QuantitativeTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'sectional' && r.section === 'quantitative');
       
-      let cbt1ReasoningTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'reasoning');
-      let cbt2ReasoningTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'reasoning');
+      let tier1EnglishTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'sectional' && r.section === 'english');
+      let tier2EnglishTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'sectional' && r.section === 'english');
       
-      let cbt1AwarenessTests = cbtResults.filter(r => r.cbt === 'cbt1' && r.testType === 'sectional' && r.section === 'awareness');
-      let cbt2AwarenessTests = cbtResults.filter(r => r.cbt === 'cbt2' && r.testType === 'sectional' && r.section === 'awareness');
+      let tier1ReasoningTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'sectional' && r.section === 'reasoning');
+      let tier2ReasoningTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'sectional' && r.section === 'reasoning');
+      
+      let tier1AwarenessTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'sectional' && r.section === 'awareness');
+      let tier2AwarenessTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'sectional' && r.section === 'awareness');
       
       function calculateAverage(tests, type) {
         if (tests.length === 0) return 0;
@@ -4725,55 +5370,57 @@
         return (total / tests.length).toFixed(1);
       }
       
-      const cbt1FullAvg = calculateAverage(cbt1FullTests, 'full');
-      const cbt2FullAvg = calculateAverage(cbt2FullTests, 'full');
-      const cbt1MathAvg = calculateAverage(cbt1MathTests, 'math');
-      const cbt2MathAvg = calculateAverage(cbt2MathTests, 'math');
-      const cbt1ReasoningAvg = calculateAverage(cbt1ReasoningTests, 'reasoning');
-      const cbt2ReasoningAvg = calculateAverage(cbt2ReasoningTests, 'reasoning');
-      const cbt1AwarenessAvg = calculateAverage(cbt1AwarenessTests, 'awareness');
-      const cbt2AwarenessAvg = calculateAverage(cbt2AwarenessTests, 'awareness');
+      const tier1FullAvg = calculateAverage(tier1FullTests, 'full');
+      const tier2FullAvg = calculateAverage(tier2FullTests, 'full');
+      const tier1QuantitativeAvg = calculateAverage(tier1QuantitativeTests, 'quantitative');
+      const tier2QuantitativeAvg = calculateAverage(tier2QuantitativeTests, 'quantitative');
+      const tier1EnglishAvg = calculateAverage(tier1EnglishTests, 'english');
+      const tier2EnglishAvg = calculateAverage(tier2EnglishTests, 'english');
+      const tier1ReasoningAvg = calculateAverage(tier1ReasoningTests, 'reasoning');
+      const tier2ReasoningAvg = calculateAverage(tier2ReasoningTests, 'reasoning');
+      const tier1AwarenessAvg = calculateAverage(tier1AwarenessTests, 'awareness');
+      const tier2AwarenessAvg = calculateAverage(tier2AwarenessTests, 'awareness');
       
       container.innerHTML = `
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-1 Full Tests</div>
-          <div class="avg-score-value">${cbt1FullAvg > 0 ? cbt1FullAvg : '--'}</div>
-          <div class="avg-score-label">${cbt1FullTests.length} tests</div>
+          <div class="avg-score-label">${t('tier1Avg')}</div>
+          <div class="avg-score-value">${tier1FullAvg > 0 ? tier1FullAvg : '--'}</div>
+          <div class="avg-score-label">${tier1FullTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-2 Full Tests</div>
-          <div class="avg-score-value">${cbt2FullAvg > 0 ? cbt2FullAvg : '--'}</div>
-          <div class="avg-score-label">${cbt2FullTests.length} tests</div>
+          <div class="avg-score-label">${t('tier2Avg')}</div>
+          <div class="avg-score-value">${tier2FullAvg > 0 ? tier2FullAvg : '--'}</div>
+          <div class="avg-score-label">${tier2FullTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-1 Math Tests</div>
-          <div class="avg-score-value">${cbt1MathAvg > 0 ? cbt1MathAvg : '--'}</div>
-          <div class="avg-score-label">${cbt1MathTests.length} tests</div>
+          <div class="avg-score-label">Tier 1 Quantitative</div>
+          <div class="avg-score-value">${tier1QuantitativeAvg > 0 ? tier1QuantitativeAvg : '--'}</div>
+          <div class="avg-score-label">${tier1QuantitativeTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-2 Math Tests</div>
-          <div class="avg-score-value">${cbt2MathAvg > 0 ? cbt2MathAvg : '--'}</div>
-          <div class="avg-score-label">${cbt2MathTests.length} tests</div>
+          <div class="avg-score-label">Tier 2 Quantitative</div>
+          <div class="avg-score-value">${tier2QuantitativeAvg > 0 ? tier2QuantitativeAvg : '--'}</div>
+          <div class="avg-score-label">${tier2QuantitativeTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-1 Reasoning Tests</div>
-          <div class="avg-score-value">${cbt1ReasoningAvg > 0 ? cbt1ReasoningAvg : '--'}</div>
-          <div class="avg-score-label">${cbt1ReasoningTests.length} tests</div>
+          <div class="avg-score-label">Tier 1 English</div>
+          <div class="avg-score-value">${tier1EnglishAvg > 0 ? tier1EnglishAvg : '--'}</div>
+          <div class="avg-score-label">${tier1EnglishTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-2 Reasoning Tests</div>
-          <div class="avg-score-value">${cbt2ReasoningAvg > 0 ? cbt2ReasoningAvg : '--'}</div>
-          <div class="avg-score-label">${cbt2ReasoningTests.length} tests</div>
+          <div class="avg-score-label">Tier 2 English</div>
+          <div class="avg-score-value">${tier2EnglishAvg > 0 ? tier2EnglishAvg : '--'}</div>
+          <div class="avg-score-label">${tier2EnglishTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-1 Awareness Tests</div>
-          <div class="avg-score-value">${cbt1AwarenessAvg > 0 ? cbt1AwarenessAvg : '--'}</div>
-          <div class="avg-score-label">${cbt1AwarenessTests.length} tests</div>
+          <div class="avg-score-label">Tier 1 Reasoning</div>
+          <div class="avg-score-value">${tier1ReasoningAvg > 0 ? tier1ReasoningAvg : '--'}</div>
+          <div class="avg-score-label">${tier1ReasoningTests.length} ${t('tests')}</div>
         </div>
         <div class="avg-score-card">
-          <div class="avg-score-label">CBT-2 Awareness Tests</div>
-          <div class="avg-score-value">${cbt2AwarenessAvg > 0 ? cbt2AwarenessAvg : '--'}</div>
-          <div class="avg-score-label">${cbt2AwarenessTests.length} tests</div>
+          <div class="avg-score-label">Tier 2 Reasoning</div>
+          <div class="avg-score-value">${tier2ReasoningAvg > 0 ? tier2ReasoningAvg : '--'}</div>
+          <div class="avg-score-label">${tier2ReasoningTests.length} ${t('tests')}</div>
         </div>
       `;
     }
@@ -4783,12 +5430,11 @@
       tableBody.innerHTML = '';
       
       const sortedResults = [...cbtResults].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-      const recentTests = sortedResults.slice(0, 30);
       
-      if (recentTests.length === 0) {
+      if (sortedResults.length === 0) {
         tableBody.innerHTML = `
           <tr>
-            <td colspan="8" style="text-align: center; padding: 30px; color: var(--muted);">
+            <td colspan="9" style="text-align: center; padding: 30px; color: var(--muted);">
               No test data yet. Add your first test entry.
             </td>
           </tr>
@@ -4796,7 +5442,7 @@
         return;
       }
       
-      recentTests.forEach(test => {
+      sortedResults.forEach(test => {
         const row = document.createElement('tr');
         row.className = 'history-item';
         
@@ -4805,32 +5451,39 @@
         const time = test.time || '';
         
         let typeText = '';
-        let mathText = '', reasoningText = '', awarenessText = '';
+        let quantitativeText = '', englishText = '', reasoningText = '', awarenessText = '';
         
         if (test.testType === 'full') {
           typeText = 'Full Test';
-          mathText = `${test.math}/${test.maxMath}`;
-          reasoningText = `${test.reasoning}/${test.maxReasoning}`;
-          awarenessText = `${test.awareness}/${test.maxAwareness}`;
+          const config = CONFIG.cbtConfig[test.cbt];
+          quantitativeText = `${test.quantitative}/${config.sections.quantitative.maxMarks}`;
+          englishText = `${test.english}/${config.sections.english.maxMarks}`;
+          reasoningText = `${test.reasoning}/${config.sections.reasoning.maxMarks}`;
+          awarenessText = `${test.awareness}/${config.sections.awareness.maxMarks}`;
         } else {
           const sectionNames = {
-            'math': 'Mathematics',
+            'quantitative': 'Quantitative Aptitude',
+            'english': 'English Language',
             'reasoning': 'Reasoning',
             'awareness': 'General Awareness'
           };
           typeText = sectionNames[test.section] || test.section;
-          if (test.section === 'math') mathText = `${test.marks}/${test.maxMarks}`;
-          else if (test.section === 'reasoning') reasoningText = `${test.marks}/${test.maxMarks}`;
-          else if (test.section === 'awareness') awarenessText = `${test.marks}/${test.maxMarks}`;
+          const config = CONFIG.cbtConfig[test.cbt];
+          const maxMarks = config.sections[test.section].maxMarks;
+          if (test.section === 'quantitative') quantitativeText = `${test.marks}/${maxMarks}`;
+          else if (test.section === 'english') englishText = `${test.marks}/${maxMarks}`;
+          else if (test.section === 'reasoning') reasoningText = `${test.marks}/${maxMarks}`;
+          else if (test.section === 'awareness') awarenessText = `${test.marks}/${maxMarks}`;
         }
         
         row.innerHTML = `
           <td>${test.name}</td>
           <td>${typeText}</td>
-          <td>${test.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}</td>
+          <td>${test.cbt === 'tier1' ? 'Tier 1' : 'Tier 2'}</td>
           <td>${formattedDate} ${time ? `(${time})` : ''}</td>
-          <td><strong>${test.testType === 'full' ? `${test.total}/${test.maxTotal}` : ''}</strong></td>
-          <td>${mathText}</td>
+          <td><strong>${test.testType === 'full' ? `${test.total}/${CONFIG.cbtConfig[test.cbt].totalMarks}` : ''}</strong></td>
+          <td>${quantitativeText}</td>
+          <td>${englishText}</td>
           <td>${reasoningText}</td>
           <td>${awarenessText}</td>
         `;
@@ -4839,19 +5492,23 @@
           let details = `${test.name}\n`;
           details += `Date: ${formattedDate} ${time ? `(${time})` : ''}\n`;
           details += `Type: ${typeText}\n`;
-          details += `CBT: ${test.cbt === 'cbt1' ? 'CBT-1' : 'CBT-2'}\n`;
+          details += `Tier: ${test.cbt === 'tier1' ? 'Tier 1' : 'Tier 2'}\n`;
           
           if (test.testType === 'full') {
-            details += `\nMathematics: ${test.math}/${test.maxMath}\n`;
-            details += `Reasoning: ${test.reasoning}/${test.maxReasoning}\n`;
-            details += `General Awareness: ${test.awareness}/${test.maxAwareness}\n`;
-            details += `Total Marks: ${test.total}/${test.maxTotal}\n`;
+            const config = CONFIG.cbtConfig[test.cbt];
+            details += `\nQuantitative Aptitude: ${test.quantitative}/${config.sections.quantitative.maxMarks}\n`;
+            details += `English Language: ${test.english}/${config.sections.english.maxMarks}\n`;
+            details += `Reasoning: ${test.reasoning}/${config.sections.reasoning.maxMarks}\n`;
+            details += `General Awareness: ${test.awareness}/${config.sections.awareness.maxMarks}\n`;
+            details += `Total Marks: ${test.total}/${config.totalMarks}\n`;
             if (test.accuracy) {
               details += `Accuracy: ${test.accuracy}%`;
             }
           } else {
-            details += `\nMarks: ${test.marks}/${test.maxMarks}\n`;
-            details += `Percentage: ${((test.marks / test.maxMarks) * 100).toFixed(1)}%`;
+            const config = CONFIG.cbtConfig[test.cbt];
+            const maxMarks = config.sections[test.section].maxMarks;
+            details += `\nMarks: ${test.marks}/${maxMarks}\n`;
+            details += `Percentage: ${((test.marks / maxMarks) * 100).toFixed(1)}%`;
           }
           
           alert(details);
@@ -4878,11 +5535,73 @@
         });
       }
       
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      studyLog = studyLog.filter(log => new Date(log.date) >= thirtyDaysAgo);
-      
       localStorage.setItem(STORAGE_KEYS.STUDY_LOG, JSON.stringify(studyLog));
+    }
+    
+    // ========== SHARE PROGRESS FUNCTION ==========
+    async function shareProgress() {
+      try {
+        const overallProgress = calculateOverallProgress();
+        const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "Student";
+        
+        // Calculate subject-wise progress
+        let subjectProgressText = "";
+        CONFIG.subjects.forEach(subject => {
+          const progress = calculateSubjectProgress(subject.id);
+          const emoji = progress === 100 ? "✅" : progress >= 50 ? "🟡" : "🔴";
+          subjectProgressText += `\n${emoji} ${subject.title[currentLanguage].split('(')[0].trim()}: ${Math.round(progress)}%`;
+        });
+        
+        // Calculate average scores
+        let tier1FullTests = cbtResults.filter(r => r.cbt === 'tier1' && r.testType === 'full');
+        let tier2FullTests = cbtResults.filter(r => r.cbt === 'tier2' && r.testType === 'full');
+        
+        let tier1FullAvg = tier1FullTests.length > 0 ? 
+          (tier1FullTests.reduce((sum, t) => sum + t.total, 0) / tier1FullTests.length).toFixed(1) : 0;
+        let tier2FullAvg = tier2FullTests.length > 0 ? 
+          (tier2FullTests.reduce((sum, t) => sum + t.total, 0) / tier2FullTests.length).toFixed(1) : 0;
+        
+        // Build share text with emojis
+        const shareText = currentLanguage === 'hi' ? 
+          `📊 *मेरी SSC CGL PRO प्रगति रिपोर्ट* 📊\n\n` +
+          `👤 *छात्र:* ${studentName}\n` +
+          `📅 *तारीख:* ${new Date().toLocaleDateString('hi-IN')}\n\n` +
+          `🎯 *समग्र प्रगति:* ${Math.round(overallProgress)}%\n\n` +
+          `📚 *विषय-वार प्रगति:*${subjectProgressText}\n\n` +
+          `🏆 *औसत स्कोर:*\n` +
+          `   • Tier 1: ${tier1FullAvg > 0 ? tier1FullAvg + '/200' : 'अभी तक डेटा नहीं'}\n` +
+          `   • Tier 2: ${tier2FullAvg > 0 ? tier2FullAvg + '/390' : 'अभी तक डेटा नहीं'}\n\n` +
+          `🚀 *कुल टेस्ट दिए:* ${cbtResults.length}\n` +
+          `📈 *पूर्ण टेस्ट:* ${tier1FullTests.length + tier2FullTests.length}\n\n` +
+          `🔗 *अपनी तैयारी ट्रैक करें:* https://skpro7.github.io/cgl/\n\n` +
+          `#SSC_CGL_PRO #SSC_CGL #ExamPreparation 💪` :
+          `📊 *My SSC CGL PRO Progress Report* 📊\n\n` +
+          `👤 *Student:* ${studentName}\n` +
+          `📅 *Date:* ${new Date().toLocaleDateString('en-US')}\n\n` +
+          `🎯 *Overall Progress:* ${Math.round(overallProgress)}%\n\n` +
+          `📚 *Subject-wise Progress:*${subjectProgressText}\n\n` +
+          `🏆 *Average Scores:*\n` +
+          `   • Tier 1: ${tier1FullAvg > 0 ? tier1FullAvg + '/200' : 'No data yet'}\n` +
+          `   • Tier 2: ${tier2FullAvg > 0 ? tier2FullAvg + '/390' : 'No data yet'}\n\n` +
+          `🚀 *Total Tests Taken:* ${cbtResults.length}\n` +
+          `📈 *Full Tests:* ${tier1FullTests.length + tier2FullTests.length}\n\n` +
+          `🔗 *Track your preparation:* https://skpro7.github.io/cgl/\n\n` +
+          `#SSC_CGL_PRO #SSC_CGL #ExamPreparation 💪`;
+        
+        if (navigator.share) {
+          await navigator.share({
+            title: `${studentName}'s SSC CGL Progress Report`,
+            text: shareText
+          });
+        } else {
+          await navigator.clipboard.writeText(shareText);
+          alert(currentLanguage === 'hi' ? 
+            'प्रगति रिपोर्ट क्लिपबोर्ड पर कॉपी किया गया! आप अब इसे साझा कर सकते हैं।' : 
+            'Progress report copied to clipboard! You can now share it.');
+        }
+      } catch (error) {
+        console.error('Error sharing progress:', error);
+      }
     }
     
     // ========== EVENT LISTENERS SETUP ==========
@@ -4896,42 +5615,72 @@
       document.getElementById('drawerClose').addEventListener('click', closeDrawer);
       document.getElementById('drawerOverlay').addEventListener('click', closeDrawer);
       
-      // Settings buttons toggle
-      document.getElementById('themeSettingsBtn').addEventListener('click', function() {
+      // Settings buttons toggle - FIXED: Prevent default behavior
+      document.getElementById('themeSettingsBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         const content = document.getElementById('themeSettings');
         content.classList.toggle('active');
-        this.querySelector('i').classList.toggle('fa-chevron-right');
-        this.querySelector('i').classList.toggle('fa-chevron-down');
+        const icon = this.querySelector('i.fa-chevron-right, i.fa-chevron-down');
+        if (icon) {
+          icon.classList.toggle('fa-chevron-right');
+          icon.classList.toggle('fa-chevron-down');
+        }
       });
       
-      document.getElementById('languageSettingsBtn').addEventListener('click', function() {
+      document.getElementById('languageSettingsBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         const content = document.getElementById('languageSettings');
         content.classList.toggle('active');
-        this.querySelector('i').classList.toggle('fa-chevron-right');
-        this.querySelector('i').classList.toggle('fa-chevron-down');
+        const icon = this.querySelector('i.fa-chevron-right, i.fa-chevron-down');
+        if (icon) {
+          icon.classList.toggle('fa-chevron-right');
+          icon.classList.toggle('fa-chevron-down');
+        }
       });
       
-      // Language toggle - FIXED: Use event delegation
-      document.getElementById('languageSettings').addEventListener('click', function(e) {
+      // Language toggle - FIXED: Prevent event bubbling
+      document.addEventListener('click', function(e) {
         const langBtn = e.target.closest('.lang-btn');
         if (langBtn) {
+          e.preventDefault();
+          e.stopPropagation();
           const lang = langBtn.dataset.lang;
           setLanguage(lang);
           
           document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
           langBtn.classList.add('active');
+          
+          // Close settings content after selection
+          document.getElementById('languageSettings').classList.remove('active');
+          const icon = document.getElementById('languageSettingsBtn').querySelector('i.fa-chevron-down, i.fa-chevron-right');
+          if (icon) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+          }
         }
       });
       
-      // Theme buttons - FIXED: Use event delegation
-      document.getElementById('themeSettings').addEventListener('click', function(e) {
+      // Theme buttons - FIXED: Prevent event bubbling
+      document.addEventListener('click', function(e) {
         const themeBtn = e.target.closest('.theme-btn');
         if (themeBtn) {
+          e.preventDefault();
+          e.stopPropagation();
           const theme = themeBtn.dataset.theme;
           setTheme(theme);
           
           document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
           themeBtn.classList.add('active');
+          
+          // Close settings content after selection
+          document.getElementById('themeSettings').classList.remove('active');
+          const icon = document.getElementById('themeSettingsBtn').querySelector('i.fa-chevron-down, i.fa-chevron-right');
+          if (icon) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+          }
         }
       });
       
@@ -4983,7 +5732,7 @@
         });
       });
       
-      // CBT type buttons
+      // Tier type buttons
       document.querySelectorAll('.cbt-type-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           document.querySelectorAll('.cbt-type-btn').forEach(b => b.classList.remove('active'));
@@ -5045,9 +5794,52 @@
         });
       });
       
-      // CBT form submission - FIXED: Remove double validation
+      // Latest Performance Selector
+      document.querySelectorAll('.performance-tier-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const tier = this.dataset.tier;
+          
+          document.querySelectorAll('.performance-tier-btn').forEach(b => {
+            b.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          latestPerformanceSelection.tier = tier;
+          localStorage.setItem(STORAGE_KEYS.LATEST_PERF_SELECTION, JSON.stringify(latestPerformanceSelection));
+          updateLatestPerformance();
+        });
+      });
+      
+      document.querySelectorAll('.performance-test-type-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const type = this.dataset.type;
+          
+          document.querySelectorAll('.performance-test-type-btn').forEach(b => {
+            b.classList.remove('active');
+          });
+          this.classList.add('active');
+          
+          latestPerformanceSelection.type = type;
+          localStorage.setItem(STORAGE_KEYS.LATEST_PERF_SELECTION, JSON.stringify(latestPerformanceSelection));
+          updateLatestPerformance();
+        });
+      });
+      
+      // CBT form submission - FIXED: Prevent multiple submissions
       document.getElementById('cbtForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        if (isSubmitting) {
+          return;
+        }
+        
+        // Validate form before submission
+        if (!validateForm()) {
+          alert('Please fill all required fields with valid values!');
+          return;
+        }
+        
+        isSubmitting = true;
         
         const config = CONFIG.cbtConfig[currentCBT];
         let testData;
@@ -5057,98 +5849,81 @@
         
         // Disable submit button to prevent double submission
         const submitBtn = document.getElementById('submitTestBtn');
+        const loadingSpinner = document.getElementById('formLoading');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
         submitBtn.disabled = true;
+        loadingSpinner.style.display = 'block';
         
-        if (currentTestType === 'full') {
-          const math = parseInt(document.getElementById('mathMarks').value) || 0;
-          const reasoning = parseInt(document.getElementById('reasoningMarks').value) || 0;
-          const awareness = parseInt(document.getElementById('awarenessMarks').value) || 0;
-          const accuracy = parseFloat(document.getElementById('accuracy').value) || 0;
-          const total = math + reasoning + awareness;
-          
-          // Validate marks
-          if (math < 0 || math > config.sections.math.maxMarks) {
-            alert(`Mathematics marks must be between 0 and ${config.sections.math.maxMarks}`);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            return;
-          }
-          if (reasoning < 0 || reasoning > config.sections.reasoning.maxMarks) {
-            alert(`Reasoning marks must be between 0 and ${config.sections.reasoning.maxMarks}`);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            return;
-          }
-          if (awareness < 0 || awareness > config.sections.awareness.maxMarks) {
-            alert(`General Awareness marks must be between 0 and ${config.sections.awareness.maxMarks}`);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            return;
-          }
-          
-          testData = {
-            name: document.getElementById('testName').value,
-            date: document.getElementById('testDate').value,
-            time: timeString,
-            timestamp: now.toISOString(),
-            cbt: currentCBT,
-            testType: 'full',
-            math: math,
-            maxMath: config.sections.math.maxMarks,
-            reasoning: reasoning,
-            maxReasoning: config.sections.reasoning.maxMarks,
-            awareness: awareness,
-            maxAwareness: config.sections.awareness.maxMarks,
-            total: total,
-            maxTotal: config.totalMarks,
-            accuracy: accuracy
-          };
-        } else {
-          const marks = parseInt(document.getElementById('sectionalMarks').value) || 0;
-          
-          if (marks < 0 || marks > config.sections[currentTestType].maxMarks) {
-            alert(`Marks must be between 0 and ${config.sections[currentTestType].maxMarks}`);
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            return;
-          }
-          
-          testData = {
-            name: document.getElementById('testName').value,
-            date: document.getElementById('testDate').value,
-            time: timeString,
-            timestamp: now.toISOString(),
-            cbt: currentCBT,
-            testType: 'sectional',
-            section: currentTestType,
-            marks: marks,
-            maxMarks: config.sections[currentTestType].maxMarks
-          };
-        }
-        
-        cbtResults.push(testData);
-        localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
-        
-        this.reset();
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-        document.getElementById('testDate').value = formattedDate;
-        updateCBTForm();
-        
-        loadCBTResults();
-        updateAllGraphs();
-        updateAverageScores();
-        
-        // Reset button and show congratulations
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // Show congratulations modal instead of alert
         setTimeout(() => {
-          showTestCongratsModal();
-        }, 300);
+          try {
+            if (currentTestType === 'full') {
+              const quantitative = parseFloat(document.getElementById('quantitativeMarks').value) || 0;
+              const english = parseFloat(document.getElementById('englishMarks').value) || 0;
+              const reasoning = parseFloat(document.getElementById('reasoningMarks').value) || 0;
+              const awareness = parseFloat(document.getElementById('awarenessMarks').value) || 0;
+              const accuracy = parseFloat(document.getElementById('accuracy').value) || 0;
+              const total = quantitative + english + reasoning + awareness;
+              
+              testData = {
+                name: document.getElementById('testName').value.trim(),
+                date: document.getElementById('testDate').value,
+                time: timeString,
+                timestamp: now.toISOString(),
+                cbt: currentCBT,
+                testType: 'full',
+                quantitative: quantitative,
+                english: english,
+                reasoning: reasoning,
+                awareness: awareness,
+                total: total,
+                accuracy: accuracy
+              };
+            } else {
+              testData = {
+                name: document.getElementById('testName').value.trim(),
+                date: document.getElementById('testDate').value,
+                time: timeString,
+                timestamp: now.toISOString(),
+                cbt: currentCBT,
+                testType: 'sectional',
+                section: currentTestType,
+                marks: parseFloat(document.getElementById('sectionalMarks').value) || 0
+              };
+            }
+            
+            cbtResults.push(testData);
+            localStorage.setItem(STORAGE_KEYS.CBT_RESULTS, JSON.stringify(cbtResults));
+            
+            this.reset();
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            document.getElementById('testDate').value = formattedDate;
+            updateCBTForm();
+            
+            loadCBTResults();
+            updateAllGraphs();
+            updateAverageScores();
+            
+            // Reset button and hide loading spinner
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            loadingSpinner.style.display = 'none';
+            isSubmitting = false;
+            
+            // Show congratulations modal
+            setTimeout(() => {
+              showTestCongratsModal();
+            }, 300);
+          } catch (error) {
+            console.error('Error saving test data:', error);
+            alert('Error saving test data. Please try again.');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            loadingSpinner.style.display = 'none';
+            isSubmitting = false;
+          }
+        }, 1000);
       });
       
       // Control buttons
@@ -5301,7 +6076,7 @@
       updateGreeting();
       
       document.querySelectorAll('.card h2').forEach(card => {
-        if (card.innerHTML.includes('Subjects and Topics')) {
+        if (card.innerHTML.includes('Subjects and Topics') || card.innerHTML.includes('विषय और टॉपिक्स')) {
           const progressSpan = document.getElementById('totalProgress');
           card.innerHTML = `<i class="fas fa-graduation-cap"></i> ${t('subjects')} <span id="totalProgress">${progressSpan ? progressSpan.textContent : '(0% Complete)'}</span>
             <div class="subject-controls">
@@ -5312,17 +6087,24 @@
                 <i class="fas fa-compress-alt"></i> ${t('collapseAll')}
               </button>
             </div>`;
-        } else if (card.innerHTML.includes('Progress Overview')) {
+        } else if (card.innerHTML.includes('Progress Overview') || card.innerHTML.includes('प्रगति अवलोकन')) {
           card.innerHTML = `<i class="fas fa-chart-pie"></i> ${t('progressOverview')}`;
-        } else if (card.innerHTML.includes('Mock Test Analysis')) {
+        } else if (card.innerHTML.includes('Mock Test Analysis') || card.innerHTML.includes('मॉक विश्लेषण')) {
           card.innerHTML = `<i class="fas fa-chart-line"></i> ${t('mockAnalysis')}`;
         }
       });
       
+      // Update CBT buttons text
+      const tier1Btn = document.querySelector('.cbt-type-btn[data-cbt="tier1"]');
+      const tier2Btn = document.querySelector('.cbt-type-btn[data-cbt="tier2"]');
+      if (tier1Btn) tier1Btn.innerHTML = `<i class="fas fa-file-alt"></i> ${t('tier1')}`;
+      if (tier2Btn) tier2Btn.innerHTML = `<i class="fas fa-file-alt"></i> ${t('tier2')}`;
+      
       const formLabels = {
         'testName': t('testName'),
         'testDate': t('date'),
-        'mathMarks': t('mathMarks'),
+        'quantitativeMarks': t('quantitativeMarks'),
+        'englishMarks': t('englishMarks'),
         'reasoningMarks': t('reasoningMarks'),
         'awarenessMarks': t('awarenessMarks'),
         'accuracy': t('accuracy'),
@@ -5439,7 +6221,7 @@
       
       const a = document.createElement('a');
       a.href = url;
-      a.download = `ntpc_backup_${new Date().toISOString().slice(0,10)}.json`;
+      a.download = `ssc_cgl_backup_${new Date().toISOString().slice(0,10)}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -5516,41 +6298,16 @@
       event.target.value = '';
     }
     
-    // ========== SHARE FUNCTIONS ==========
-    async function shareProgress() {
-      try {
-        const overallProgress = calculateOverallProgress();
-        const studentName = localStorage.getItem(STORAGE_KEYS.STUDENT_NAME) || "Student";
-        
-        const shareText = currentLanguage === 'hi' ? 
-          `📊 मेरी NTPC PRO प्रगति: ${Math.round(overallProgress)}% पूर्ण\n👤 छात्र: ${studentName}\n📅 तारीख: ${new Date().toLocaleDateString('hi-IN')}\n🚀 अपनी तैयारी ट्रैक करें: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation` :
-          `📊 My NTPC PRO Progress: ${Math.round(overallProgress)}% Complete\n👤 Student: ${studentName}\n📅 Date: ${new Date().toLocaleDateString('en-US')}\n🚀 Track your preparation: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation`;
-        
-        if (navigator.share) {
-          await navigator.share({
-            title: `${studentName}'s NTPC Progress`,
-            text: shareText
-          });
-        } else {
-          await navigator.clipboard.writeText(shareText);
-          alert(currentLanguage === 'hi' ? 
-            'प्रगति पाठ क्लिपबोर्ड पर कॉपी किया गया! आप अब इसे साझा कर सकते हैं।' : 
-            'Progress text copied to clipboard! You can now share it.');
-        }
-      } catch (error) {
-        console.error('Error sharing progress:', error);
-      }
-    }
-    
+    // ========== SHARE WEBSITE FUNCTION ==========
     async function shareWebsite() {
       try {
         const shareText = currentLanguage === 'hi' ? 
-          '🚀 आरआरबी एनटीपीसी परीक्षा की तैयारी के लिए NTPC PRO ऐप का उपयोग करें!\n\n📊 अपनी प्रगति ट्रैक करें और अपने प्रदर्शन में सुधार करें।\n\n🔗 लिंक: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation 💪' :
-          '🚀 Use NTPC PRO app for RRB NTPC exam preparation!\n\n📊 Track your progress and improve your performance.\n\n🔗 Link: https://skpro7.github.io/ntpc/\n\n#NTPCPRO #RRBNTPC #ExamPreparation 💪';
+          '🚀 एसएससी सीजीएल परीक्षा की तैयारी के लिए SSC CGL PRO ऐप का उपयोग करें!\n\n📊 अपनी प्रगति ट्रैक करें और अपने प्रदर्शन में सुधार करें।\n\n🔗 लिंक: https://skpro7.github.io/cgl/\n\n#SSC_CGL_PRO #SSC_CGL #ExamPreparation 💪' :
+          '🚀 Use SSC CGL PRO app for SSC CGL exam preparation!\n\n📊 Track your progress and improve your performance.\n\n🔗 Link: https://skpro7.github.io/cgl/\n\n#SSC_CGL_PRO #SSC_CGL #ExamPreparation 💪';
         
         if (navigator.share) {
           await navigator.share({
-            title: 'NTPC PRO - RRB NTPC Preparation',
+            title: 'SSC CGL PRO - SSC CGL Preparation',
             text: shareText
           });
         } else {
@@ -5568,4 +6325,4 @@
     document.addEventListener('DOMContentLoaded', initializeApp);
   </script>
 </body>
-</html>
+</html> 
